@@ -1,7 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import styles from "./styles/expertiseSection.module.scss";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const expertise = [
@@ -14,6 +13,7 @@ const expertise = [
 const ExpertiseSection = ({ scrollContainerRef }) => {
   const contentRef = useRef();
   const headingRef = useRef();
+  const circleRef = useRef();
   const sectionContainerRef = useRef();
 
   const lettersRef = useRef([]);
@@ -24,49 +24,58 @@ const ExpertiseSection = ({ scrollContainerRef }) => {
     }
   };
 
-  gsap.registerPlugin(ScrollTrigger);
-  useGSAP(() => {
-    const t1 = gsap.timeline({
-      scrollTrigger: {
-        trigger: headingRef.current,
-        scroller: scrollContainerRef.current,
-        start: "top 50%",
-        end: "100px 0px",
-        // markers: {
-        //   startColor: "orange",
-        //   endColor: "orange",
-        // },
-      },
-    });
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animation for heading and circle
+      const t1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: headingRef.current,
+          scroller: scrollContainerRef.current,
+          start: "top 50%",
+          end: "100px 0px",
+        },
+      });
 
-    gsap.set(lettersRef.current, {
-      opacity: 0.1,
-    });
+      // Animate the heading and circle
+      t1.fromTo(
+        headingRef.current,
+        { y: 50, opacity: 0 }, // Initial state
+        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" } // Final state
+      ).fromTo(
+        circleRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 1, ease: "power2.out" },
+        "-=0.5" // Overlap with the previous animation
+      );
 
-    gsap.to(lettersRef.current, {
-      opacity: 1,
-      stagger: 10,
-      ease: "power1",
-      scrollTrigger: {
-        trigger: contentRef.current,
-        scroller: scrollContainerRef.current,
-        start: `top ${headingRef.current.offsetHeight + 50}`,
-        end: "bottom -100vh",
-        scrub: 1,
-        pin: sectionContainerRef.current,
-        // markers: {
-        //   startColor: "red",
-        //   endColor: "red",
-        // },
-      },
-    });
+      // Set initial opacity of letters
+      gsap.set(lettersRef.current, { opacity: 0.1 });
+
+      // Animate letters on scroll
+      gsap.to(lettersRef.current, {
+        opacity: 1,
+        stagger: 0.05,
+        ease: "power1.inOut",
+        scrollTrigger: {
+          trigger: contentRef.current,
+          scroller: scrollContainerRef.current,
+          start: `top ${headingRef.current.offsetHeight + 50}`,
+          end: "bottom -100vh",
+          scrub: 1,
+          pin: sectionContainerRef.current,
+        },
+      });
+    }, sectionContainerRef);
+
+    // Cleanup on unmount
+    return () => ctx.revert();
   }, []);
 
   return (
     <div className={styles.sectionWrapper} ref={sectionContainerRef}>
       <div className={styles.sectionHeadingWrapper} ref={headingRef}>
         <div className={styles.headingDiv}>
-          <div className={styles.circle}></div>
+          <div className={styles.circle} ref={circleRef}></div>
           <p>Expertise</p>
         </div>
       </div>

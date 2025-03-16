@@ -54,6 +54,8 @@ const ProjectSection = ({ scrollContainerRef }) => {
   const titleRefs = useRef([]);
   const numRefs = useRef([]);
   const techStackRefs = useRef([]);
+  const headingRef = useRef();
+  const circleRef = useRef();
 
   imageRefs.current = [];
   descRefs.current = [];
@@ -69,6 +71,28 @@ const ProjectSection = ({ scrollContainerRef }) => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Animation for heading and circle
+      const t1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: headingRef.current,
+          scroller: scrollContainerRef.current,
+          start: "top 50%",
+          end: "100px 0px",
+        },
+      });
+
+      // Animate the heading and circle
+      t1.fromTo(
+        headingRef.current,
+        { y: 50, opacity: 0 }, // Initial state
+        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" } // Final state
+      ).fromTo(
+        circleRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 1, ease: "power2.out" },
+        "-=0.5" // Overlap with the previous animation
+      );
+
       // Create a single scroll trigger for pinning the section
       ScrollTrigger.create({
         trigger: sectionRef.current,
@@ -260,9 +284,9 @@ const ProjectSection = ({ scrollContainerRef }) => {
   return (
     <div className={styles.projectSectionWrapper} ref={sectionRef}>
       <div className={styles.innerWrapper}>
-        <div className={styles.sectionHeadingContainer}>
+        <div className={styles.sectionHeadingContainer} ref={headingRef}>
           <div className={styles.headingDiv}>
-            <div className={styles.circle}></div>
+            <div className={styles.circle} ref={circleRef}></div>
             <p>Projects</p>
           </div>
         </div>

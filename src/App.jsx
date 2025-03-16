@@ -7,7 +7,9 @@ import Logo from "./icons/Logo";
 import HeroSection from "./components/HeroSection/HeroSection";
 import AboutMeSection from "./components/AboutMeSection/AboutMeSection";
 import ProjectSection from "./components/ProjectSection/ProjectSection";
-
+import OtherWorkSection from "./components/OtherWorkSection/OtherWorkSection";
+import ExpertiseSection from "./components/WhatIDo/ExpertiseSection";
+import FooterSection from "./components/FooterSection/FooterSection";
 import Lenis from "lenis";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -87,9 +89,9 @@ const App = () => {
         <HeroSection scrollContainerRef={scrollContainerRef} />
         <AboutMeSection scrollContainerRef={scrollContainerRef} />
         <ProjectSection scrollContainerRef={scrollContainerRef} />
-        <div
-          style={{ width: "100%", height: "150vh", border: "1px solid white" }}
-        ></div>
+        <OtherWorkSection scrollContainerRef={scrollContainerRef} />
+        <ExpertiseSection scrollContainerRef={scrollContainerRef} />
+        <FooterSection scrollContainerRef={scrollContainerRef} />
       </div>
     </div>
   );

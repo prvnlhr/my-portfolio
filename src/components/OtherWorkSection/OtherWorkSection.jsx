@@ -68,9 +68,9 @@ const OtherWorkSection = ({ scrollContainerRef }) => {
                   className={styles.projectCard}
                   ref={(el) => addRefs(el, cardRefs)}
                 >
-                  {/* <div className={styles.gitLogoDiv}>
+                  <div className={styles.gitLogoDiv}>
                     <GitHubIcon />
-                  </div> */}
+                  </div>
                   <div className={styles.descContainer}>
                     <p>
                       A sleek and intuitive custom date picker component built
