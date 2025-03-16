@@ -4,8 +4,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styles from "./app.module.scss";
 import Logo from "./icons/Logo";
-import AboutMeSection from "./components/AboutMeSection/AboutMeSection";
 import HeroSection from "./components/HeroSection/HeroSection";
+import AboutMeSection from "./components/AboutMeSection/AboutMeSection";
+import ProjectSection from "./components/ProjectSection/ProjectSection";
+
 import Lenis from "lenis";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -84,6 +86,7 @@ const App = () => {
       <div className={styles.appScrollWrapper} ref={scrollContainerRef}>
         <HeroSection scrollContainerRef={scrollContainerRef} />
         <AboutMeSection scrollContainerRef={scrollContainerRef} />
+        <ProjectSection scrollContainerRef={scrollContainerRef} />
         <div
           style={{ width: "100%", height: "150vh", border: "1px solid white" }}
         ></div>
