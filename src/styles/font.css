@@ -1,0 +1,936 @@
+/* *Thin----------------------------------------- */
+@font-face {
+  font-family: "SharpGroteskThin05";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Thin05.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskThin10";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Thin10.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskThin15";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Thin15.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskThin20";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Thin20.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskThin25";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Thin25.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskThinItalic05";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-ThinItalic05.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskThinItalic10";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-ThinItalic10.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskThinItalic15";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-ThinItalic15.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskThinItalic20";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-ThinItalic20.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+/* *Light---------------------------------------------------------------- */
+
+@font-face {
+  font-family: "SharpGroteskLight05";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Light05.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskLight10";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Light10.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskLight15";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Light15.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskLight20";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Light20.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskLight25";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Light25.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskLightItalic05";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-LightItalic05.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskLightItalic10";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-LightItalic10.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskLightItalic15";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-LightItalic15.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskLightItalic20";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-LightItalic20.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+/* *Book---------------------------------------------- */
+
+@font-face {
+  font-family: "SharpGroteskBook05";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Book05.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBook10";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Book10.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBook15";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Book15.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBook20";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Book20.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBook25";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Book25.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBookItalic05";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-BookItalic05.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBookItalic10";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-BookItalic10.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBookItalic15";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-BookItalic15.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBookItalic20";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-BookItalic20.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+/* *Medium------------------------------------------------------------- */
+
+@font-face {
+  font-family: "SharpGroteskMedium05";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Medium05.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskMedium10";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Medium10.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskMedium15";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Medium15.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskMedium20";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Medium20.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskMedium25";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Medium25.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskMediumItalic05";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-MediumItalic05.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskMediumItalic10";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-MediumItalic10.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskMediumItalic15";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-MediumItalic15.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskMediumItalic20";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-MediumItalic20.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+/* * SemiBold------------------------------------------- */
+
+@font-face {
+  font-family: "SharpGroteskSemiBold05";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-SemiBold05.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskSemiBold10";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-SemiBold10.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskSemiBold15";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-SemiBold15.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskSemiBold20";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-SemiBold20.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskSemiBold25";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-SemiBold25.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskSemiBoldItalic05";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-SemiBoldItalic05.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskSemiBoldItalic10";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-SemiBoldItalic10.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskSemiBoldItalic15";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-SemiBoldItalic15.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskSemiBoldItalic20";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-SemiBoldItalic20.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+/* * Bold----------------------------------------- */
+
+@font-face {
+  font-family: "SharpGroteskBold05";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Bold05.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBold10";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Bold10.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBold15";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Bold15.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBold20";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Bold20.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBold25";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Bold25.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBoldItalic05";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-BoldItalic05.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBoldItalic10";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-BoldItalic10.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBoldItalic15";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-BoldItalic15.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBoldItalic20";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-BoldItalic20.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+/* *Black------------------------------------------------- */
+
+@font-face {
+  font-family: "SharpGroteskBlack05";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Black05.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBlack10";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Black10.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBlack15";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Black15.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBlack20";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Black20.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBlack25";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-Black25.otf")
+    format("opentype");
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBlackItalic05";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-BlackItalic05.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBlackItalic10";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-BlackItalic10.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBlackItalic15";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-BlackItalic15.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "SharpGroteskBlackItalic20";
+  src: url("../../fonts/sharpGrotesk/SharpGrotesk-BlackItalic20.otf")
+    format("opentype");
+  font-style: italic;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+
+/* Basement Grosteque font --------------------------- */
+
+@font-face {
+  font-family: "Basement Grotesque Norm";
+  src: url("../../fonts/basementGrotesque/BasementGrotesque-Regular.eot");
+  src: local("Basement Grotesque Regular"), local("BasementGrotesque-Regular"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Regular.woff2")
+      format("woff2"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Regular.woff")
+      format("woff"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Regular.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Basement Grotesque Norm";
+  src: url("../../fonts/basementGrotesque/BasementGrotesque-Bold.eot");
+  src: local("Basement Grotesque Bold"), local("BasementGrotesque-Bold"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Bold.woff2")
+      format("woff2"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Bold.woff")
+      format("woff"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Bold.ttf")
+      format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Basement Grotesque Norm";
+  src: url("../../fonts/basementGrotesque/BasementGrotesque-Black.eot");
+  src: local("Basement Grotesque Black"), local("BasementGrotesque-Black"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Black.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Black.woff2")
+      format("woff2"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Black.woff")
+      format("woff"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Black.ttf")
+      format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Basement Grotesque Norm Med";
+  src: url("../../fonts/basementGrotesque/BasementGrotesque-Medium.eot");
+  src: local("Basement Grotesque Medium"), local("BasementGrotesque-Medium"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Medium.woff2")
+      format("woff2"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Medium.woff")
+      format("woff"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-Medium.ttf")
+      format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Basement Grotesque Exp";
+  src: url("../../fonts/basementGrotesque/BasementGrotesque-RegularExpanded.eot");
+  src: local("Basement Grotesque Regular Expanded"),
+    local("BasementGrotesque-RegularExpanded"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-RegularExpanded.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-RegularExpanded.woff2")
+      format("woff2"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-RegularExpanded.woff")
+      format("woff"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-RegularExpanded.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Basement Grotesque Exp";
+  src: url("../../fonts/basementGrotesque/BasementGrotesque-BoldExpanded.eot");
+  src: local("Basement Grotesque Bold Expanded"),
+    local("BasementGrotesque-BoldExpanded"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BoldExpanded.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BoldExpanded.woff2")
+      format("woff2"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BoldExpanded.woff")
+      format("woff"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BoldExpanded.ttf")
+      format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Basement Grotesque Exp";
+  src: url("../../fonts/basementGrotesque/BasementGrotesque-BlackExpanded.eot");
+  src: local("Basement Grotesque Black Expanded"),
+    local("BasementGrotesque-BlackExpanded"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BlackExpanded.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BlackExpanded.woff2")
+      format("woff2"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BlackExpanded.woff")
+      format("woff"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BlackExpanded.ttf")
+      format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Basement Grotesque XCond";
+  src: url("../../fonts/basementGrotesque/BasementGrotesque-RegularExtraCondensed.eot");
+  src: local("Basement Grotesque Regular Extra Condensed"),
+    local("BasementGrotesque-RegularExtraCondensed"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-RegularExtraCondensed.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-RegularExtraCondensed.woff2")
+      format("woff2"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-RegularExtraCondensed.woff")
+      format("woff"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-RegularExtraCondensed.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Basement Grotesque XCond";
+  src: url("../../fonts/basementGrotesque/BasementGrotesque-BoldExtraCondensed.eot");
+  src: local("Basement Grotesque Bold Extra Condensed"),
+    local("BasementGrotesque-BoldExtraCondensed"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BoldExtraCondensed.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BoldExtraCondensed.woff2")
+      format("woff2"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BoldExtraCondensed.woff")
+      format("woff"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BoldExtraCondensed.ttf")
+      format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Basement Grotesque XCond";
+  src: url("../../fonts/basementGrotesque/BasementGrotesque-BlackExtraCondensed.eot");
+  src: local("Basement Grotesque Black Extra Condensed"),
+    local("BasementGrotesque-BlackExtraCondensed"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BlackExtraCondensed.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BlackExtraCondensed.woff2")
+      format("woff2"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BlackExtraCondensed.woff")
+      format("woff"),
+    url("../../fonts/basementGrotesque/BasementGrotesque-BlackExtraCondensed.ttf")
+      format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Aileron Font --------------------------------------------------------- */
+
+@font-face {
+  font-family: "Aileron UltraLight";
+  src: url("../../fonts/aileron/Aileron-UltraLight.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Aileron UltraLight Italic";
+  src: url("../../fonts/aileron/Aileron-UltraLightItalic.otf")
+    format("opentype");
+  font-weight: 200;
+  font-style: italic;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Aileron Thin";
+  src: url("../../fonts/aileron/Aileron-Thin.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Aileron Thin Italic";
+  src: url("../../fonts/aileron/Aileron-ThinItalic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Aileron SemiBold";
+  src: url("../../fonts/aileron/Aileron-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Aileron SemiBold Italic";
+  src: url("../../fonts/aileron/Aileron-SemiBoldItalic.otf") format("opentype");
+  font-weight: 600;
+  font-style: italic;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Aileron Regular";
+  src: url("../../fonts/aileron/Aileron-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Aileron Light";
+  src: url("../../fonts/aileron/Aileron-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Aileron Light Italic";
+  src: url("../../fonts/aileron/Aileron-LightItalic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Aileron Italic";
+  src: url("../../fonts/aileron/Aileron-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Aileron Heavy";
+  src: url("../../fonts/aileron/Aileron-Heavy.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Aileron Heavy Italic";
+  src: url("../../fonts/aileron/Aileron-HeavyItalic.otf") format("opentype");
+  font-weight: 800;
+  font-style: italic;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Aileron Bold";
+  src: url("../../fonts/aileron/Aileron-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Aileron Bold Italic";
+  src: url("../../fonts/aileron/Aileron-BoldItalic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Aileron Black";
+  src: url("../../fonts/aileron/Aileron-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: "Aileron Black Italic";
+  src: url("../../fonts/aileron/Aileron-BlackItalic.otf") format("opentype");
+  font-weight: 900;
+  font-style: italic;
+  text-rendering: optimizeLegibility;
+}
+/* pp Monument */
+
+@font-face {
+  font-family: "MonumentExtendedBlack";
+  src: url("../../fonts/monumentExtended/PPMonumentExtended-Black.otf")
+    format("opentype");
+  font-weight: 900; /* Black */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MonumentExtendedBlackIt";
+  src: url("../../fonts/monumentExtended/PPMonumentExtended-BlackItalic.otf")
+    format("opentype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "MonumentExtendedRegular";
+  src: url("../../fonts/monumentExtended/PPMonumentExtended-Regular.otf")
+    format("opentype");
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MonumentExtendedRegularIt";
+  src: url("../../fonts/monumentExtended/PPMonumentExtended-RegularItalic.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "MonumentExtendedLight";
+  src: url("../../fonts/monumentExtended/PPMonumentExtended-Light.otf")
+    format("opentype");
+  font-weight: 300; /* Light */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MonumentExtendedLightIt";
+  src: url("../../fonts/monumentExtended/PPMonumentExtended-LightItalic.otf")
+    format("opentype");
+  font-weight: 300;
+  font-style: italic;
+}

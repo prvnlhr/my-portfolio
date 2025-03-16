@@ -1,0 +1,83 @@
+.sectionWrapper {
+  width: 100%;
+  height: auto;
+  // border: 1px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  // border: 1px solid red;
+
+  .sectionHeadingWrapper {
+    width: calc(100% - 200px);
+    height: 100px;
+    // border: 1px solid white;
+    display: flex;
+
+    .headingDiv {
+      width: auto;
+      height: 100%;
+      // border: 1px solid orange;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      p {
+        font-family: "SharpGroteskBook20";
+        font-family: "SharpGroteskBook25";
+        font-size: 2rem;
+        margin-right: 15px;
+        z-index: 3;
+        color: #1b1c1e;
+        color: #fbfbfb;
+        position: relative;
+      }
+
+      .circle {
+        width: 50px;
+        aspect-ratio: 1/1;
+        border-radius: 100%;
+        background-color: white;
+        background-color: #a99ef0;
+        position: absolute;
+        transform: translate(-40%, 0%);
+        z-index: 1;
+      }
+    }
+  }
+}
+
+.content {
+  width: 100%;
+  height: auto;
+  // border: 1px solid orange;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+
+  &__inner {
+    width: 80%;
+    height: auto;
+    // border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__tech-stack {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid rgb(53, 57, 59);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 1;
+    &-text {
+      font-family: "SharpGroteskSemiBold25";
+      font-size: 3rem;
+      color: white;
+      z-index: 3;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+.heroSectionWrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .heroContentParentWrapper {
+    position: relative;
+    width: 50%;
+    height: 60%;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    display: grid;
+    place-items: center;
+    z-index: 1;
+    // border: 1px solid rgba(255, 255, 255, 0.359) ;
+  }
+}
+
+.nameText {
+  // font-family: "Basement Grotesque XCond";
+  font-family: "SharpGroteskBold20";
+  font-size: 8vw;
+  color: #fbfbfb;
+  font-weight: 800;
+}
+
+.fname {
+  position: absolute;
+  top: -10%;
+  left: -50px;
+  z-index: 1;
+  line-height: 1;
+  // border: 1px solid red;
+}
+
+.fname span {
+  display: block;
+  font-size: 1.2rem;
+  font-family: "SharpGroteskSemiBold25";
+  line-height: 1;
+  color: #fbfbfb;
+  // border: 1px solid red;
+
+  .andText {
+    color: #a99ef0;
+    display: inline;
+  }
+}
+
+.lname {
+  position: absolute;
+  bottom: -15%;
+  right: 0;
+  z-index: 3;
+  text-align: end;
+}

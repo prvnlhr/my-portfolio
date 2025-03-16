@@ -1,35 +1,95 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import styles from "./app.module.scss";
+import Logo from "./icons/Logo";
+import AboutMeSection from "./components/AboutMeSection/AboutMeSection";
+import HeroSection from "./components/HeroSection/HeroSection";
+import Lenis from "lenis";
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const cursorRef = useRef(null);
+  const cursorTailRef = useRef(null);
+  const scrollContainerRef = useRef(null);
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      wrapper: scrollContainerRef.current,
+      duration: 5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      lerp: 0.1,
+    });
+
+    lenis.on("scroll", ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    // Cleanup Lenis on unmount
+    return () => {
+      lenis.destroy();
+      gsap.ticker.remove((time) => {
+        lenis.raf(time * 1000);
+      });
+    };
+  }, []);
+
+  const { contextSafe } = useGSAP(() => {
+    const mouseMove = contextSafe((e) => {
+      const cursorPosition = {
+        left: e.clientX,
+        top: e.clientY,
+      };
+
+      gsap.to(cursorRef.current, {
+        left: cursorPosition.left,
+        top: cursorPosition.top,
+        duration: 0.5,
+        ease: "power2.out",
+      });
+
+      gsap.to(cursorTailRef.current, {
+        left: cursorPosition.left,
+        top: cursorPosition.top,
+        duration: 0.9,
+        ease: "power2.out",
+      });
+    });
+
+    window.addEventListener("mousemove", mouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", mouseMove);
+    };
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className={styles.appWrapper}>
+      {/* Cursor */}
+      <div className={styles.cursor} ref={cursorRef} />
+      <div className={styles.cursorTail} ref={cursorTailRef} />
 
-export default App
+      {/* Header */}
+      <div className={styles.headerBar}>
+        <div className={styles.logoWrapper}>
+          <Logo />
+        </div>
+      </div>
+
+      {/* Scrollable Content */}
+      <div className={styles.appScrollWrapper} ref={scrollContainerRef}>
+        <HeroSection scrollContainerRef={scrollContainerRef} />
+        <AboutMeSection scrollContainerRef={scrollContainerRef} />
+        <div
+          style={{ width: "100%", height: "150vh", border: "1px solid white" }}
+        ></div>
+      </div>
+    </div>
+  );
+};
+
+export default App;
