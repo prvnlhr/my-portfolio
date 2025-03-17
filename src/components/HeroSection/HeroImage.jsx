@@ -1,7 +1,5 @@
-import React, { useRef } from "react";
 import styles from "./styles/heroImage.module.scss";
-import myImg from "../../assets/portfolioImg.png";
-
+import myImg from "../../assets/porfolio_image.jpg";
 
 const HeroImage = ({ heroImageRef }) => {
   return (

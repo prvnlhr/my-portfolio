@@ -1,3 +1,4 @@
+@import "./styles/mixins.module";
 .appWrapper {
   position: relative;
   height: 100%;
@@ -16,7 +17,7 @@
     align-items: center;
     justify-content: flex-start;
     padding-left: 15px;
-    // border: 1px solid white;
+    // border: 1px solid salmon;
 
     .logoWrapper {
       height: 100%;
@@ -34,6 +35,7 @@
     overflow-y: scroll;
     // border: 1px solid white;
     box-sizing: border-box;
+    overflow-x: hidden;
   }
   .appScrollWrapper::-webkit-scrollbar {
     display: none;

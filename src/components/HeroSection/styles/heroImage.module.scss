@@ -1,10 +1,22 @@
+@import "../../../styles/mixins.module";
+
 .imageWrapper {
-  position: relative;
-  height: 100%;
+  position: absolute;
+  height: 95%;
   aspect-ratio: 1/1;
   display: flex;
   justify-content: center;
   align-items: center;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  @include small-device {
+    width: 90%;
+    height: unset;
+    aspect-ratio: 1/1;
+    // border: 1px solid salmon;
+    bottom: 10%;
+  }
   z-index: 2;
   img {
     object-fit: cover;
@@ -13,7 +25,7 @@
     filter: grayscale(100%);
   }
   .overlay {
-    bottom: -5px;
+    bottom: -2px;
     // border: 1px solid white;
     width: 100%;
     min-width: 100%;
@@ -23,7 +35,7 @@
       180deg,
       rgba(13, 9, 13, 0) 22.78%,
       rgba(13, 9, 13, 0.573182) 47.72%,
-      #0D0D0D 66.61%
+      #0d0d0d 66.61%
     );
   }
 }

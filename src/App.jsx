@@ -21,10 +21,10 @@ const App = () => {
   useEffect(() => {
     const lenis = new Lenis({
       wrapper: scrollContainerRef.current,
-      duration: 5,
+      duration: 2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      lerp: 0.1,
+      syncTouch: true,
     });
 
     lenis.on("scroll", ScrollTrigger.update);
@@ -83,6 +83,8 @@ const App = () => {
           <Logo />
         </div>
       </div>
+
+      
 
       {/* Scrollable Content */}
       <div className={styles.appScrollWrapper} ref={scrollContainerRef}>

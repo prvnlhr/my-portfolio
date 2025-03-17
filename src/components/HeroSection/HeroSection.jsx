@@ -7,10 +7,11 @@ import { useGSAP } from "@gsap/react";
 import { MouseParallax, ScrollParallax } from "react-just-parallax";
 
 const HeroSection = ({ scrollingContiner }) => {
-  const fnameRef = useRef();
-  const lnameRef = useRef();
-  const designationRef = useRef();
-  const subDesignationRef = useRef();
+  const prefixRef = useRef();
+  const nameRef = useRef();
+  const suffixRef = useRef();
+  const titleRef = useRef();
+  const subtitleRef = useRef();
   const heroImageRef = useRef();
   const parallaxContainer = useRef();
 
@@ -28,7 +29,7 @@ const HeroSection = ({ scrollingContiner }) => {
       delay: 1,
     })
       .from(
-        fnameRef.current,
+        prefixRef.current,
         {
           y: "20px",
           duration: 1,
@@ -39,7 +40,7 @@ const HeroSection = ({ scrollingContiner }) => {
         "-=0.8"
       )
       .from(
-        lnameRef.current,
+        nameRef.current,
         {
           y: "20px",
           duration: 1,
@@ -49,17 +50,17 @@ const HeroSection = ({ scrollingContiner }) => {
         "-=0.8"
       )
       .from(
-        designationRef.current,
+        suffixRef.current,
         {
           y: "20px",
           duration: 1,
           opacity: 0,
           ease: "elastic.out(2, 1)",
         },
-        "-=0.5"
+        "-=0.8"
       )
       .from(
-        subDesignationRef.current,
+        [titleRef.current, subtitleRef.current],
         {
           y: "20px",
           duration: 1,
@@ -69,10 +70,10 @@ const HeroSection = ({ scrollingContiner }) => {
         "-=0.5"
       );
 
-    gsap.to(fnameRef.current, {
+    gsap.to(prefixRef.current, {
       y: -50,
       scrollTrigger: {
-        trigger: fnameRef.current,
+        trigger: prefixRef.current,
         start: "top center",
         scrub: true,
       },
@@ -87,10 +88,10 @@ const HeroSection = ({ scrollingContiner }) => {
       },
     });
 
-    gsap.to(lnameRef.current, {
+    gsap.to(nameRef.current, {
       y: -50,
       scrollTrigger: {
-        trigger: lnameRef.current,
+        trigger: nameRef.current,
         start: "top center",
         scrub: true,
       },
@@ -99,57 +100,51 @@ const HeroSection = ({ scrollingContiner }) => {
 
   return (
     <div className={styles.heroSectionWrapper}>
-      <div className={styles.heroContentParentWrapper} ref={parallaxContainer}>
-        <ScrollParallax
-          zIndex={1}
-          isAbsolutelyPositioned
-          scrollContainerRef={scrollingContiner}
+      <div className={styles.headerDiv}>
+        <p
+          ref={prefixRef}
+          className={`${styles.name_text} ${styles.name_text__prefix}`}
         >
-          <MouseParallax
-            isAbsolutelyPositioned
-            strength={0.18}
-            zIndex={1}
-            parallaxContainerRef={parallaxContainer}
-            shouldResetPosition
-          >
-            <p className={`${styles.nameText} ${styles.fname}`} ref={fnameRef}>
-              PRAVEEN
-              <span ref={designationRef}>
-                WEB DEVELOPER
-                <span ref={subDesignationRef}>
-                  ENGINEER <span className={styles.andText}>&</span> LEARNER
-                </span>
-              </span>
-            </p>
-          </MouseParallax>
-        </ScrollParallax>
-        <div>
-          <MouseParallax
-            strength={0.1}
-            zIndex={2}
-            parallaxContainerRef={parallaxContainer}
-            shouldResetPosition
-          >
-            <HeroImage heroImageRef={heroImageRef} />
-          </MouseParallax>
+          IAM
+        </p>
+        <p ref={nameRef} className={`${styles.name_text} `}>
+          PRAVEEN LOHAR
+        </p>
+        <p
+          ref={suffixRef}
+          className={`${styles.name_text} ${styles.name_text__suffix}`}
+        >
+          / FROM INDIA
+        </p>
+      </div>
+      <div className={styles.innerContainer}>
+        <div
+          className={`${styles.title_text} ${styles.title_text__top}`}
+          ref={titleRef}
+        >
+          WEB DEVELOPER
+          <p className={styles.title_sub}>
+            ENGINEER<span> / </span>LEARNER
+          </p>
         </div>
-        <ScrollParallax
-          zIndex={3}
+        <MouseParallax
           isAbsolutelyPositioned
-          scrollContainerRef={scrollingContiner}
+          strength={0.05}
+          zIndex={2}
+          parallaxContainerRef={parallaxContainer}
+          shouldResetPosition
         >
-          <MouseParallax
-            isAbsolutelyPositioned
-            strength={0.18}
-            zIndex={3}
-            parallaxContainerRef={parallaxContainer}
-            shouldResetPosition
-          >
-            <p className={`${styles.nameText} ${styles.lname}`} ref={lnameRef}>
-              LOHAR
-            </p>
-          </MouseParallax>
-        </ScrollParallax>
+          <HeroImage heroImageRef={heroImageRef} />
+        </MouseParallax>
+        <div
+          className={`${styles.title_text} ${styles.title_text__bottom}`}
+          ref={subtitleRef}
+        >
+          WEB DEVELOPER
+          <p className={styles.title_sub}>
+            ENGINEER<span> / </span>LEARNER
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -1,58 +1,179 @@
+@import "../../../styles/mixins.module";
+
+// .heroSectionWrapper {
+//   width: 100%;
+//   height: 100vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   border: 1px solid white;
+
+//   .heroContentParentWrapper {
+//     position: relative;
+//     width: 50%;
+//     height: 60%;
+//     display: grid;
+//     place-items: center;
+//     z-index: 1;
+//     border: 1px solid white;
+//     @include small-device {
+//       width: 90%;
+//       height: 50%;
+//       border: 1px solid salmon;
+//     }
+//   }
+// }
+
+// .nameText {
+//   // font-family: "Basement Grotesque XCond";
+//   font-family: "SharpGroteskBold20";
+//   font-size: 8vw;
+//   color: #fbfbfb;
+//   font-weight: 800;
+// }
+
+// .fname {
+//   position: absolute;
+//   top: -10%;
+//   left: -50px;
+//   z-index: 1;
+//   line-height: 1;
+//   // border: 1px solid red;
+// }
+
+// .fname span {
+//   display: block;
+//   font-size: 1.2rem;
+//   font-family: "SharpGroteskSemiBold25";
+//   line-height: 1;
+//   color: #fbfbfb;
+//   // border: 1px solid red;
+
+//   .andText {
+//     color: #a99ef0;
+//     display: inline;
+//   }
+// }
+
+// .lname {
+//   position: absolute;
+//   bottom: -15%;
+//   right: 0;
+//   z-index: 3;
+//   text-align: end;
+// }
+
 .heroSectionWrapper {
+  position: relative;
   width: 100%;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  // border: 1px solid white;
 
-  .heroContentParentWrapper {
+  .headerDiv {
     position: relative;
-    width: 50%;
-    height: 60%;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    display: grid;
-    place-items: center;
-    z-index: 1;
+    width: 90%;
+    height: 80px;
+    // border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    .name_text {
+      font-family: "SharpGroteskSemiBold25";
+      font-size: 3vw;
+      font-weight: 800;
+      color: #fbfbfb;
+      z-index: 4;
+
+      &__prefix {
+        color: #ab9ef6;
+        font-size: 1.8vw;
+      }
+      &__suffix {
+        color: #212121;
+        font-size: 1.8vw;
+      }
+      @include small-device {
+        font-size: 8vw;
+
+        &__prefix {
+          color: #ab9ef6;
+          font-size: 5vw;
+        }
+        &__suffix {
+          color: #212121;
+          font-size: 5vw;
+        }
+      }
+    }
   }
-}
 
-.nameText {
-  // font-family: "Basement Grotesque XCond";
-  font-family: "SharpGroteskBold20";
-  font-size: 8vw;
-  color: #fbfbfb;
-  font-weight: 800;
-}
+  .innerContainer {
+    position: relative;
+    height: calc(80% - 80px);
+    width: 80%;
+    // aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border: 1px solid salmon;
+    text-align: center;
 
-.fname {
-  position: absolute;
-  top: -10%;
-  left: -50px;
-  z-index: 1;
-  line-height: 1;
-  // border: 1px solid red;
-}
+    @include small-device {
+      width: 90%;
+    }
 
-.fname span {
-  display: block;
-  font-size: 1.2rem;
-  font-family: "SharpGroteskSemiBold25";
-  line-height: 1;
-  color: #fbfbfb;
-  // border: 1px solid red;
-
-  .andText {
-    color: #a99ef0;
-    display: inline;
+    .title_text {
+      position: absolute;
+      font-family: "SharpGroteskSemiBold25";
+      font-size: 6vw;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+      @include small-device {
+        font-size: 8.2vw;
+        // bottom: 40%;
+        top: 10%;
+      }
+      &__top {
+        z-index: 1;
+        color: #fbfbfb;
+        @include small-device {
+          color: transparent;
+          -webkit-text-stroke: 1px #fbfbfb;
+          text-stroke: 1px #fbfbfb;
+        }
+      }
+      &__bottom {
+        z-index: 3;
+        color: transparent;
+        -webkit-text-stroke: 1px #fbfbfb;
+        text-stroke: 1px #fbfbfb;
+        @include small-device {
+          color: transparent;
+          -webkit-text-stroke: 1px #fbfbfb;
+          text-stroke: 1px #fbfbfb;
+        }
+      }
+      .title_sub {
+        font-family: "SharpGroteskSemiBold25";
+        display: block;
+        font-size: 4vw;
+        span {
+          color: #ab9ef6;
+          -webkit-text-stroke: 2px #fbfbfb00;
+          text-stroke: 2px #fbfbfb00;
+        }
+        @include small-device {
+          font-size: 6.2vw;
+          bottom: 60%;
+        }
+      }
+    }
   }
-}
-
-.lname {
-  position: absolute;
-  bottom: -15%;
-  right: 0;
-  z-index: 3;
-  text-align: end;
 }
