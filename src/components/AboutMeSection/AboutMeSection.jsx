@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styles from "./styles/aboutMeSection.module.scss";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { aboutMeContent } from "../../utils/textUtils.js";
+import { Textfit } from "react-textfit";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,18 +13,48 @@ const colorIndicesF = new Set([
   264, 265, 266, 267, 268, 269, 270, 271,
 ]);
 
-const AboutMeSection = ({ scrollContainerRef, calculatedFontSize }) => {
+const AboutMeSection = ({ scrollContainerRef }) => {
   const contentArr = aboutMeContent.split("");
   const sectionContainerRef = useRef(null);
   const headingRef = useRef(null);
   const circleRef = useRef(null);
   const contentRef = useRef(null);
   const lettersRef = useRef([]);
+  const hiddenTextRef = useRef(null);
+
+  const [fontLoaded, setFontLoaded] = useState(false);
+  const [calculatedFontSize, setCalculatedFontSize] = useState(null);
+
+  // Simulate font loading
+  useEffect(() => {
+    const font = new FontFace(
+      "SharpGroteskSemiBold25",
+      "url(../../../../../public/fonts/sharpGrotesk/SharpGrotesk-SemiBold25.otf)"
+    );
+
+    font.load().then(() => {
+      document.fonts.add(font);
+      setFontLoaded(true); // Set fontLoaded to true once the font is loaded
+    });
+  }, []);
+
+  // After font is loaded, calculate font size
+  useEffect(() => {
+    if (fontLoaded && hiddenTextRef.current) {
+      requestAnimationFrame(() => {
+        const computedStyle = window.getComputedStyle(
+          hiddenTextRef.current.querySelector("div")
+        ); // Select inner Textfit div
+        const fontSize = computedStyle.getPropertyValue("font-size");
+        console.log("Calculated Font Size:", fontSize);
+        setCalculatedFontSize(fontSize);
+      });
+    }
+  }, [fontLoaded]);
 
   // GSAP animations
   useEffect(() => {
     if (!calculatedFontSize) return;
-    console.log(" calculatedFontSize:", calculatedFontSize);
 
     const ctx = gsap.context(() => {
       const timeline = gsap.timeline({
@@ -85,8 +116,6 @@ const AboutMeSection = ({ scrollContainerRef, calculatedFontSize }) => {
             <p>About Me</p>
           </div>
         </div>
-
-        {/* Visible Text Container */}
         <div
           ref={contentRef}
           className={styles.aboutContentContainer}
@@ -108,6 +137,19 @@ const AboutMeSection = ({ scrollContainerRef, calculatedFontSize }) => {
             </span>
           ))}
           <span className={styles.dot}>.</span>
+
+          <div className={styles.textFitContainer} ref={hiddenTextRef}>
+            {/* <Textfit
+              mode="multi"
+              style={{
+                width: "100%",
+                height: "100%",
+                fontFamily: "SharpGroteskSemiBold25",
+              }}
+            >
+              {aboutMeContent}
+            </Textfit> */}
+          </div>
         </div>
       </div>
     </div>
