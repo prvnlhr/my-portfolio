@@ -11,7 +11,6 @@ import OtherWorkSection from "./components/OtherWorkSection/OtherWorkSection";
 import ExpertiseSection from "./components/WhatIDo/ExpertiseSection";
 import FooterSection from "./components/FooterSection/FooterSection";
 import Lenis from "lenis";
-
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const App = () => {
@@ -19,14 +18,13 @@ const App = () => {
   const cursorTailRef = useRef(null);
   const scrollContainerRef = useRef(null);
 
-  // Lenis smooth scrolling setup
   useEffect(() => {
     const lenis = new Lenis({
       wrapper: scrollContainerRef.current,
-      duration: 5,
+      duration: 2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      lerp: 0.1,
+      syncTouch: true,
     });
 
     lenis.on("scroll", ScrollTrigger.update);
@@ -44,7 +42,6 @@ const App = () => {
     };
   }, []);
 
-  // GSAP cursor animation
   const { contextSafe } = useGSAP(() => {
     const mouseMove = contextSafe((e) => {
       const cursorPosition = {

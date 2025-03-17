@@ -29,7 +29,7 @@ const AboutMeSection = ({ scrollContainerRef }) => {
   useEffect(() => {
     const font = new FontFace(
       "SharpGroteskSemiBold25",
-      "url(../../../../../public/fonts/sharpGrotesk/SharpGrotesk-SemiBold25.otf)"
+      `url(../../../../../public/fonts/sharpGrotesk/SharpGrotesk-SemiBold25.otf)`
     );
 
     font.load().then(() => {
@@ -43,8 +43,8 @@ const AboutMeSection = ({ scrollContainerRef }) => {
     if (fontLoaded && hiddenTextRef.current) {
       requestAnimationFrame(() => {
         const computedStyle = window.getComputedStyle(
-          hiddenTextRef.current.querySelector("div")
-        ); // Select inner Textfit div
+          document.querySelector("#textFitDiv")
+        );
         const fontSize = computedStyle.getPropertyValue("font-size");
         console.log("Calculated Font Size:", fontSize);
         setCalculatedFontSize(fontSize);
@@ -138,17 +138,19 @@ const AboutMeSection = ({ scrollContainerRef }) => {
           ))}
           <span className={styles.dot}>.</span>
 
-          <div className={styles.textFitContainer} ref={hiddenTextRef}>
-            {/* <Textfit
+          <div className={styles.textFitContainer}>
+            <Textfit
+              ref={hiddenTextRef}
+              id="textFitDiv"
               mode="multi"
               style={{
+                fontFamily: "SharpGroteskSemiBold25",
                 width: "100%",
                 height: "100%",
-                fontFamily: "SharpGroteskSemiBold25",
               }}
             >
               {aboutMeContent}
-            </Textfit> */}
+            </Textfit>
           </div>
         </div>
       </div>
