@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import styles from "./styles/otherWork.module.scss";
 import LinkIcon from "../../icons/LinkIcon";
 import GitHubIcon from "../../icons/GitHubIcon";
@@ -12,32 +12,60 @@ const otherProjects = [
   { title: "Custom Calculator", link: "" },
   { title: "Aesop Clone", link: "" },
 ];
+
 const OtherWorkSection = ({ scrollContainerRef }) => {
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
-
   const cardRefs = useRef([]);
 
-  // useGSAP(
-  //   () => {
-  //     const cards = gsap.utils.toArray(`.${styles.projectCard}`);
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
 
-  //     cards.forEach((card) => {
-  //       gsap.set(card, { scale: 0.9 });
+    const ctx = gsap.context(() => {
+      // Animation for the heading
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: headingRef.current,
+          scroller: scrollContainerRef.current,
+          start: "top 50%",
+          end: "100px 0px",
+        },
+      });
 
-  //       card.addEventListener("mouseenter", () => {
-  //         gsap.to(card, { scale: 1, duration: 0.3, ease: "power1.out" });
-  //       });
+      timeline.fromTo(
+        headingRef.current,
+        { y: 80, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power1" }
+      );
 
-  //       card.addEventListener("mouseleave", () => {
-  //         gsap.to(card, { scale: 0.9, duration: 0.3, ease: "power1.out" });
-  //       });
-  //     });
-  //   },
-  //   { scope: containerRef }
-  // );
+      // Animation for each card
+      cardRefs.current.forEach((card) => {
+        gsap.fromTo(
+          card,
+          {
+            scale: 0.85,
+            top: "70%",
+            borderRadius: "0px",
+          },
+          {
+            scale: 1,
+            top: "0%",
+            borderRadius: "10px",
+            scrollTrigger: {
+              trigger: card,
+              scroller: scrollContainerRef.current,
+              start: "-100% 100%",
+              end: "120% 90%",
+              scrub: true,
+              // markers: true,
+            },
+          }
+        );
+      });
+    }, sectionRef);
 
-  gsap.registerPlugin(ScrollTrigger);
+    return () => ctx.revert();
+  }, [scrollContainerRef]);
 
   const addRefs = (el, refArray) => {
     if (el && !refArray.current.includes(el)) {
