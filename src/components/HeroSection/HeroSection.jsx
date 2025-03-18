@@ -122,10 +122,18 @@ const HeroSection = ({ scrollingContiner }) => {
           className={`${styles.title_text} ${styles.title_text__top}`}
           ref={titleRef}
         >
-          WEB DEVELOPER
-          <p className={styles.title_sub}>
-            ENGINEER<span> / </span>LEARNER
-          </p>
+          <MouseParallax
+            isAbsolutelyPositioned
+            strength={0.09}
+            zIndex={1}
+            parallaxContainerRef={parallaxContainer}
+            shouldResetPosition
+          >
+            WEB DEVELOPER
+            <p className={styles.title_sub}>
+              ENGINEER<span> / </span>LEARNER
+            </p>
+          </MouseParallax>
         </div>
         <MouseParallax
           isAbsolutelyPositioned
@@ -140,10 +148,18 @@ const HeroSection = ({ scrollingContiner }) => {
           className={`${styles.title_text} ${styles.title_text__bottom}`}
           ref={subtitleRef}
         >
-          WEB DEVELOPER
-          <p className={styles.title_sub}>
-            ENGINEER<span> / </span>LEARNER
-          </p>
+          <MouseParallax
+            isAbsolutelyPositioned
+            strength={0.09}
+            zIndex={3}
+            parallaxContainerRef={parallaxContainer}
+            shouldResetPosition
+          >
+            WEB DEVELOPER
+            <p className={styles.title_sub}>
+              ENGINEER<span> / </span>LEARNER
+            </p>
+          </MouseParallax>
         </div>
       </div>
     </div>
