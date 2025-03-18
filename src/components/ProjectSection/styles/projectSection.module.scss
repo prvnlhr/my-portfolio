@@ -1,16 +1,22 @@
+@import "../../../styles/mixins.module";
+
 .projectSectionWrapper {
   width: 100%;
   height: 99%;
   position: relative;
   display: flex;
   justify-content: center;
-  // border: 1px solid #232529;
+  // border: 1px solid red;
   z-index: 1;
   margin-bottom: 100px;
   .innerWrapper {
     width: calc(100% - 200px);
     height: auto;
     // border: 1px solid white;
+
+    @include small-device {
+      width: 90%;
+    }
   }
 }
 
@@ -60,15 +66,24 @@
   height: calc(100% - 100px);
   display: flex;
   align-items: center;
-  padding: 2% 0%;
   padding: 0% 0%;
   position: relative;
-  // border: 1px solid white;
+  // border: 1px solid red;
+  @include small-device {
+    flex-direction: column;
+  }
 }
 
 .left_wrapper {
   width: 55%;
   height: 100%;
+  // border: 1px solid orange;
+
+  @include small-device {
+    width: 100%;
+    height: auto;
+    margin-bottom: 25px;
+  }
 
   .imageNumWrapper {
     width: 100%;
@@ -90,6 +105,10 @@
         span {
           color: #a99ef0;
           font-size: 2.5;
+        }
+
+        @include small-device {
+          font-size: 1.5rem;
         }
       }
     }
@@ -198,7 +217,14 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  // border: 1px solid greenyellow;
+  // border: 1px solid skyblue;
+
+  @include small-device {
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: 50%;
+  }
 
   .descGrid {
     width: 90%;
@@ -212,6 +238,11 @@
       "techStackCell"
       "linkCell";
     // border: 1px solid greenyellow;
+
+    @include small-device {
+      width: 100%;
+      height: 80%;
+    }
   }
 
   .titleCell {
@@ -219,6 +250,8 @@
     // border: 1px solid red;
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
     p {
       position: absolute;
       // font-family: "SharpGroteskMedium15";
@@ -227,6 +260,11 @@
       font-size: 2.3rem;
       font-size: 1.5rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+
+      @include small-device {
+        font-size: 1.2rem;
+        white-space: nowrap;
+      }
     }
   }
 
@@ -265,6 +303,7 @@
     // border: 1px solid orange;
     display: flex;
     align-items: center;
+    overflow: hidden;
 
     .techStackRow {
       display: flex;
@@ -273,6 +312,7 @@
       height: 80%;
       position: absolute;
       border-top: 1px solid rgba(255, 255, 255, 0.18);
+      // border: 1px solid red;
 
       span {
         margin-right: 8px;
@@ -282,6 +322,7 @@
         color: #e0e5eb;
         text-transform: uppercase;
         letter-spacing: 0.3px;
+        white-space: nowrap;
 
         &::first-letter {
           color: #a99ef0 !important;
@@ -323,14 +364,3 @@
     }
   }
 }
-
-// linear-gradient(180deg, #A399F2 0%, #D5CAEB 100%)
-//  radial-gradient(75.56% 75.56% at 50% 24.44%, #A399F2 0%, #E0E9F9 100%)
-
-// linear-gradient(180deg, #A99EF0 0%, #E0E9F9 100%)
-// radial-gradient(70% 70% at 50% 30%, #A99EF0 0%, #E0E9F9 100%)
-
-// linear-gradient(180deg, #ECC3E2 50%, rgba(237, 229, 235, 0.87) 115.48%)
-// radial-gradient(51.56% 51.56% at 50% 35.29%, #EDB6D2 0%, #F9EFF5 100%)
-
-// radial-gradient(49.08% 49.08% at 50% 36.67%, #FF762B 0%, #F9EFF5 100%);
