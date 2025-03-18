@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { aboutMeContent } from "../../utils/textUtils.js";
 import { Textfit } from "react-textfit";
+import FontFaceObserver from "fontfaceobserver";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,48 +15,72 @@ const colorIndicesF = new Set([
 ]);
 
 const AboutMeSection = ({ scrollContainerRef }) => {
+  const [isFontLoaded, setIsFontLoaded] = useState(false);
+  const [fontSize, setFontSize] = useState(null);
+
   const contentArr = aboutMeContent.split("");
   const sectionContainerRef = useRef(null);
   const headingRef = useRef(null);
   const circleRef = useRef(null);
   const contentRef = useRef(null);
   const lettersRef = useRef([]);
-  const hiddenTextRef = useRef(null);
+  const textfitRef = useRef(null);
 
-  const [fontLoaded, setFontLoaded] = useState(false);
-  const [calculatedFontSize, setCalculatedFontSize] = useState(null);
-
-  // Simulate font loading
   useEffect(() => {
-    const font = new FontFace(
-      "SharpGroteskSemiBold25",
-      `url(../../../../../public/fonts/sharpGrotesk/SharpGrotesk-SemiBold25.otf)`
-    );
-
-    font.load().then(() => {
-      document.fonts.add(font);
-      setFontLoaded(true); // Set fontLoaded to true once the font is loaded
-    });
+    const loadFont = async () => {
+      const font = new FontFaceObserver("SharpGroteskSemiBold25");
+      try {
+        await font.load();
+        setIsFontLoaded(true);
+      } catch (e) {
+        console.error("Font failed to load", e);
+      }
+    };
+    loadFont();
   }, []);
 
-  // After font is loaded, calculate font size
   useEffect(() => {
-    if (fontLoaded && hiddenTextRef.current) {
-      requestAnimationFrame(() => {
-        const computedStyle = window.getComputedStyle(
-          document.querySelector("#textFitDiv")
+    if (textfitRef.current && isFontLoaded) {
+      const calculateFontSize = () => {
+        const contentElement = textfitRef.current.querySelector(
+          "div > div:nth-child(1)"
         );
-        const fontSize = computedStyle.getPropertyValue("font-size");
-        console.log("Calculated Font Size:", fontSize);
-        setCalculatedFontSize(fontSize);
+        if (contentElement) {
+          const computedStyle = window.getComputedStyle(contentElement);
+          const currentFontSize = parseFloat(computedStyle.fontSize);
+          console.log("currentFontSize:", currentFontSize);
+          setFontSize(currentFontSize);
+        }
+      };
+
+      // Use MutationObserver to detect when the font size is applied
+      const observer = new MutationObserver((mutationsList, observer) => {
+        for (let mutation of mutationsList) {
+          if (
+            mutation.type === "attributes" &&
+            mutation.attributeName === "style"
+          ) {
+            calculateFontSize();
+            observer.disconnect();
+          }
+        }
       });
+
+      const contentElement = textfitRef.current.querySelector(
+        "div > div:nth-child(1)"
+      );
+      if (contentElement) {
+        observer.observe(contentElement, { attributes: true });
+      }
+
+      return () => {
+        observer.disconnect();
+      };
     }
-  }, [fontLoaded]);
+  }, [aboutMeContent, isFontLoaded]);
 
   // GSAP animations
   useEffect(() => {
-    if (!calculatedFontSize) return;
-
     const ctx = gsap.context(() => {
       const timeline = gsap.timeline({
         scrollTrigger: {
@@ -104,7 +129,7 @@ const AboutMeSection = ({ scrollContainerRef }) => {
     }, sectionContainerRef);
 
     return () => ctx.revert();
-  }, [scrollContainerRef, calculatedFontSize]);
+  }, [scrollContainerRef]);
 
   return (
     <div className={styles.aboutMeSectionWrapper} ref={sectionContainerRef}>
@@ -116,18 +141,12 @@ const AboutMeSection = ({ scrollContainerRef }) => {
             <p>About Me</p>
           </div>
         </div>
-        <div
-          ref={contentRef}
-          className={styles.aboutContentContainer}
-          style={{
-            fontSize: calculatedFontSize ? calculatedFontSize : "inherit",
-          }}
-        >
+        <div ref={contentRef} className={styles.aboutContentContainer}>
           {contentArr.map((letter, index) => (
             <span
               style={{
                 color: colorIndicesF.has(index) ? "#A99EF0" : "",
-                fontSize: calculatedFontSize ? calculatedFontSize : "inherit",
+                fontSize: fontSize ? `${fontSize}px` : "inherit",
               }}
               key={index}
               className={styles.letter}
@@ -138,13 +157,22 @@ const AboutMeSection = ({ scrollContainerRef }) => {
           ))}
           <span className={styles.dot}>.</span>
 
-          <div className={styles.textFitContainer}>
+          <div
+            ref={textfitRef}
+            style={{
+              position: "absolute",
+              top: "0px",
+              left: "0px",
+              width: "100%",
+              height: "100%",
+              border: "1px solid white",
+              fontFamily: "SharpGroteskSemiBold25",
+              opacity: 0,
+            }}
+          >
             <Textfit
-              ref={hiddenTextRef}
-              id="textFitDiv"
               mode="multi"
               style={{
-                fontFamily: "SharpGroteskSemiBold25",
                 width: "100%",
                 height: "100%",
               }}

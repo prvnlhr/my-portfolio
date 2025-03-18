@@ -1,5 +1,6 @@
 @import "../../../styles/mixins.module";
 
+
 .imageWrapper {
   position: absolute;
   height: 95%;
@@ -10,6 +11,7 @@
   left: 0;
   right: 0;
   margin: 0 auto;
+  z-index: 2;
   @include small-device {
     width: 90%;
     height: unset;
@@ -17,7 +19,6 @@
     // border: 1px solid salmon;
     bottom: 10%;
   }
-  z-index: 2;
   img {
     object-fit: cover;
     width: 100%;

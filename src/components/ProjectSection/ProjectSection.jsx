@@ -69,218 +69,218 @@ const ProjectSection = ({ scrollContainerRef }) => {
     }
   };
 
-  // useEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     // Animation for heading and circle
-  //     const t1 = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: headingRef.current,
-  //         scroller: scrollContainerRef.current,
-  //         start: "top 50%",
-  //         end: "100px 0px",
-  //         markers: true,
-  //       },
-  //     });
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Animation for heading and circle
+      const t1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: headingRef.current,
+          scroller: scrollContainerRef.current,
+          start: "top 50%",
+          end: "100px 0px",
+          // markers: true,
+        },
+      });
 
-  //     // Animate the heading and circle
-  //     t1.fromTo(
-  //       headingRef.current,
-  //       { y: 50, opacity: 0 }, // Initial state
-  //       { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" } // Final state
-  //     ).fromTo(
-  //       circleRef.current,
-  //       { opacity: 0 },
-  //       { opacity: 1, duration: 1, ease: "power2.out" },
-  //       "-=0.5" // Overlap with the previous animation
-  //     );
+      // Animate the heading and circle
+      t1.fromTo(
+        headingRef.current,
+        { y: 50, opacity: 0 }, // Initial state
+        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" } // Final state
+      ).fromTo(
+        circleRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 1, ease: "power2.out" },
+        "-=0.5" // Overlap with the previous animation
+      );
 
-  //     // Create a single scroll trigger for pinning the section
-  //     ScrollTrigger.create({
-  //       trigger: sectionRef.current,
-  //       scroller: scrollContainerRef.current,
-  //       start: "top 0px",
-  //       end: "bottom -50%",
-  //       scrub: true,
-  //       pin: true,
-  //       markers: { startColor: "salmon", endColor: "salmon" },
-  //     });
+      // Create a single scroll trigger for pinning the section
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        scroller: scrollContainerRef.current,
+        start: "top 0px",
+        end: "bottom -50%",
+        scrub: true,
+        pin: true,
+        // markers: { startColor: "salmon", endColor: "salmon" },
+      });
 
-  //     // Left and Desc Animation
-  //     const leftAndDescTimeline = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: sectionRef.current,
-  //         scroller: scrollContainerRef.current,
-  //         start: "top 50%",
-  //         end: "top top",
-  //         scrub: true,
-  //         markers: { startColor: "orange", endColor: "orange" },
-  //       },
-  //     });
+      // Left and Desc Animation
+      const leftAndDescTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          scroller: scrollContainerRef.current,
+          start: "top 50%",
+          end: "top top",
+          scrub: true,
+          // markers: { startColor: "orange", endColor: "orange" },
+        },
+      });
 
-  //     gsap.set(`.${styles.left_wrapper}`, { y: 100, x: -100, opacity: 0 });
-  //     gsap.set(`.${styles.descGrid}`, { y: 100, x: 100, opacity: 0 });
-  //     leftAndDescTimeline
-  //       .to(`.${styles.left_wrapper}`, {
-  //         x: 0,
-  //         y: 0,
-  //         opacity: 1,
-  //         duration: 1,
-  //         ease: "power2.out",
-  //       })
-  //       .to(
-  //         `.${styles.descGrid}`,
-  //         { x: 0, y: 0, opacity: 1, duration: 1, ease: "power2.out" },
-  //         "<"
-  //       );
+      gsap.set(`.${styles.left_wrapper}`, { y: 100, x: -100, opacity: 0 });
+      gsap.set(`.${styles.descGrid}`, { y: 100, x: 100, opacity: 0 });
+      leftAndDescTimeline
+        .to(`.${styles.left_wrapper}`, {
+          x: 0,
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power2.out",
+        })
+        .to(
+          `.${styles.descGrid}`,
+          { x: 0, y: 0, opacity: 1, duration: 1, ease: "power2.out" },
+          "<"
+        );
 
-  //     // Image Animation
-  //     const imageTimeline = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: sectionRef.current,
-  //         scroller: scrollContainerRef.current,
-  //         start: "top 0px",
-  //         end: "bottom -50%",
-  //         scrub: 2,
-  //       },
-  //     });
+      // Image Animation
+      const imageTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          scroller: scrollContainerRef.current,
+          start: "top 0px",
+          end: "bottom -50%",
+          scrub: 2,
+        },
+      });
 
-  //     gsap.set(imageRefs.current[0], {
-  //       clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-  //     });
+      gsap.set(imageRefs.current[0], {
+        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+      });
 
-  //     imageRefs.current.forEach((image, index) => {
-  //       if (index !== 0) {
-  //         imageTimeline.to(image, {
-  //           clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-  //           ease: "power2.inOut",
-  //           duration: 1,
-  //         });
-  //       }
-  //     });
+      imageRefs.current.forEach((image, index) => {
+        if (index !== 0) {
+          imageTimeline.to(image, {
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+            ease: "power2.inOut",
+            duration: 1,
+          });
+        }
+      });
 
-  //     // Description Animation
-  //     const descTimeline = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: sectionRef.current,
-  //         scroller: scrollContainerRef.current,
-  //         start: "top 0px",
-  //         end: "bottom -50%",
-  //         scrub: 2,
-  //       },
-  //     });
+      // Description Animation
+      const descTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          scroller: scrollContainerRef.current,
+          start: "top 0px",
+          end: "bottom -50%",
+          scrub: 2,
+        },
+      });
 
-  //     gsap.set(descRefs.current[0], { opacity: 1 });
-  //     descRefs.current.forEach((desc, index) => {
-  //       if (index !== 0) {
-  //         descTimeline
-  //           .to(
-  //             descRefs.current[index - 1],
-  //             { opacity: 0, duration: 0.5 },
-  //             index
-  //           )
-  //           .fromTo(
-  //             desc,
-  //             { opacity: 0 },
-  //             { opacity: 1, duration: 0.5, ease: "power2.inOut" },
-  //             index
-  //           );
-  //       }
-  //     });
+      gsap.set(descRefs.current[0], { opacity: 1 });
+      descRefs.current.forEach((desc, index) => {
+        if (index !== 0) {
+          descTimeline
+            .to(
+              descRefs.current[index - 1],
+              { opacity: 0, duration: 0.5 },
+              index
+            )
+            .fromTo(
+              desc,
+              { opacity: 0 },
+              { opacity: 1, duration: 0.5, ease: "power2.inOut" },
+              index
+            );
+        }
+      });
 
-  //     // Title Animation
-  //     const titleTimeline = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: sectionRef.current,
-  //         scroller: scrollContainerRef.current,
-  //         start: "top 0px",
-  //         end: "bottom -50%",
-  //         scrub: 2,
-  //       },
-  //     });
+      // Title Animation
+      const titleTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          scroller: scrollContainerRef.current,
+          start: "top 0px",
+          end: "bottom -50%",
+          scrub: 2,
+        },
+      });
 
-  //     gsap.set(titleRefs.current[0], { opacity: 1 });
-  //     titleRefs.current.forEach((title, index) => {
-  //       if (index !== 0) {
-  //         titleTimeline
-  //           .to(
-  //             titleRefs.current[index - 1],
-  //             { opacity: 0, duration: 0.5 },
-  //             index
-  //           )
-  //           .fromTo(
-  //             title,
-  //             { opacity: 0 },
-  //             { opacity: 1, duration: 0.5, ease: "power2.inOut" },
-  //             index
-  //           );
-  //       }
-  //     });
+      gsap.set(titleRefs.current[0], { opacity: 1 });
+      titleRefs.current.forEach((title, index) => {
+        if (index !== 0) {
+          titleTimeline
+            .to(
+              titleRefs.current[index - 1],
+              { opacity: 0, duration: 0.5 },
+              index
+            )
+            .fromTo(
+              title,
+              { opacity: 0 },
+              { opacity: 1, duration: 0.5, ease: "power2.inOut" },
+              index
+            );
+        }
+      });
 
-  //     // Number Animation
-  //     const numTimeline = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: sectionRef.current,
-  //         scroller: scrollContainerRef.current,
-  //         start: "top 0px",
-  //         end: "bottom -50%",
-  //         scrub: 2,
-  //       },
-  //     });
+      // Number Animation
+      const numTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          scroller: scrollContainerRef.current,
+          start: "top 0px",
+          end: "bottom -50%",
+          scrub: 2,
+        },
+      });
 
-  //     gsap.set(numRefs.current[0], { opacity: 1 });
-  //     numRefs.current.forEach((num, index) => {
-  //       if (index !== 0) {
-  //         numTimeline
-  //           .to(
-  //             numRefs.current[index - 1],
-  //             { opacity: 0, duration: 0.5 },
-  //             index
-  //           )
-  //           .fromTo(
-  //             num,
-  //             { opacity: 0 },
-  //             { opacity: 1, duration: 0.5, ease: "power2.inOut" },
-  //             index
-  //           );
-  //       }
-  //     });
+      gsap.set(numRefs.current[0], { opacity: 1 });
+      numRefs.current.forEach((num, index) => {
+        if (index !== 0) {
+          numTimeline
+            .to(
+              numRefs.current[index - 1],
+              { opacity: 0, duration: 0.5 },
+              index
+            )
+            .fromTo(
+              num,
+              { opacity: 0 },
+              { opacity: 1, duration: 0.5, ease: "power2.inOut" },
+              index
+            );
+        }
+      });
 
-  //     // Tech Stack Animation
-  //     const techStackTimeLine = gsap.timeline({
-  //       scrollTrigger: {
-  //         trigger: sectionRef.current,
-  //         scroller: scrollContainerRef.current,
-  //         start: "top 0px",
-  //         end: "bottom -50%",
-  //         scrub: 2,
-  //       },
-  //     });
+      // Tech Stack Animation
+      const techStackTimeLine = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          scroller: scrollContainerRef.current,
+          start: "top 0px",
+          end: "bottom -50%",
+          scrub: 2,
+        },
+      });
 
-  //     gsap.set(techStackRefs.current[0], { opacity: 1 });
-  //     techStackRefs.current.forEach((num, index) => {
-  //       if (index !== 0) {
-  //         techStackTimeLine
-  //           .to(
-  //             techStackRefs.current[index - 1],
-  //             { opacity: 0, duration: 0.5 },
-  //             index
-  //           )
-  //           .fromTo(
-  //             num,
-  //             { opacity: 0 },
-  //             { opacity: 1, duration: 0.5, ease: "power2.inOut" },
-  //             index
-  //           );
-  //       }
-  //     });
+      gsap.set(techStackRefs.current[0], { opacity: 1 });
+      techStackRefs.current.forEach((num, index) => {
+        if (index !== 0) {
+          techStackTimeLine
+            .to(
+              techStackRefs.current[index - 1],
+              { opacity: 0, duration: 0.5 },
+              index
+            )
+            .fromTo(
+              num,
+              { opacity: 0 },
+              { opacity: 1, duration: 0.5, ease: "power2.inOut" },
+              index
+            );
+        }
+      });
 
-  //     // Refresh ScrollTrigger
-  //     ScrollTrigger.refresh();
-  //   }, sectionRef); // Scope the context to the sectionRef
+      // Refresh ScrollTrigger
+      ScrollTrigger.refresh();
+    }, sectionRef); // Scope the context to the sectionRef
 
-  //   // Cleanup on unmount
-  //   return () => ctx.revert();
-  // }, []);
+    // Cleanup on unmount
+    return () => ctx.revert();
+  }, []);
 
   return (
     <div className={styles.projectSectionWrapper} ref={sectionRef}>
