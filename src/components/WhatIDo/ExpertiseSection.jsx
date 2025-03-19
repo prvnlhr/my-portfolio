@@ -40,12 +40,12 @@ const ExpertiseSection = ({ scrollContainerRef }) => {
       t1.fromTo(
         headingRef.current,
         { y: 50, opacity: 0 }, // Initial state
-        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" } // Final state
+        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }
       ).fromTo(
         circleRef.current,
         { opacity: 0 },
         { opacity: 1, duration: 1, ease: "power2.out" },
-        "-=0.5" // Overlap with the previous animation
+        "-=0.5"
       );
 
       // Set initial opacity of letters
@@ -83,10 +83,13 @@ const ExpertiseSection = ({ scrollContainerRef }) => {
         <div className={styles["content__inner"]} ref={contentRef}>
           {expertise.map((stack, rowIndex) => (
             <div key={rowIndex} className={styles["content__tech-stack"]}>
+              <span className={styles["content__tech-stack-num"]}>
+                {(rowIndex + 1).toString().padStart(2, 0)}
+              </span>
               {stack.map((letter, letterIndex) => (
                 <span
                   key={letterIndex}
-                  className={styles["content__tech-stack-text"]}
+                  className={styles["content__tech-stack-stackText"]}
                   ref={(el) => addToRefs(el)}
                 >
                   {letter}

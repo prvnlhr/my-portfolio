@@ -1,3 +1,4 @@
+@use "../../../styles/mixins.module" as mixins;
 .sectionWrapper {
   width: 100%;
   height: auto;
@@ -73,9 +74,20 @@
     align-items: center;
     justify-content: flex-start;
     z-index: 1;
-    &-text {
+    font-size: 3rem;
+    @include mixins.small-device {
+      font-size: 2rem;
+    }
+
+    &-num {
+      font-family: "SharpGroteskBook25";
+      color: #a99ef0;
+      margin-right: 25px;
+      z-index: 3;
+    }
+
+    &-stackText {
       font-family: "SharpGroteskSemiBold25";
-      font-size: 3rem;
       color: white;
       z-index: 3;
     }

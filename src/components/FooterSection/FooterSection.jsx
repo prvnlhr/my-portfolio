@@ -1,12 +1,29 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles/footerSectionStyles.module.scss";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import LinkIcon from "../../icons/LinkIcon";
 import DownloadIcon from "../../icons/DownloadIcon";
+import { Textfit } from "react-textfit";
+import FontFaceObserver from "fontfaceobserver";
 
 const FooterSection = ({ scrollContainerRef }) => {
+  const [isFontLoaded, setIsFontLoaded] = useState(false);
+
+  useEffect(() => {
+    const loadFont = async () => {
+      const font = new FontFaceObserver("SharpGroteskSemiBold25");
+      try {
+        await font.load();
+        setIsFontLoaded(true);
+      } catch (e) {
+        console.error("Font failed to load", e);
+      }
+    };
+    loadFont();
+  }, []);
+
   return (
     <div className={styles.footerSection}>
       <div className={styles.footerSection__inner}>
@@ -16,6 +33,21 @@ const FooterSection = ({ scrollContainerRef }) => {
             <p>Let's Connect</p>
           </div>
         </div>
+        <div className={styles.subContentSection}>
+          <Textfit
+            mode="multi"
+            style={{
+              width: "90%",
+              height: "100%",
+            }}
+          >
+            <p className={styles.subContentSection__upperText}>
+              CONNECTING WITH ME IS EASY AND ABSOLUTELY FREE
+            </p>
+            <p className={styles.subContentSection__lowerText}>LITERALLY!</p>
+          </Textfit>
+        </div>
+
         <div className={styles.content}>
           <div className={styles.content__emailContainer}>
             <p>
