@@ -48,7 +48,7 @@ const AboutMeSection = ({ scrollContainerRef }) => {
         if (contentElement) {
           const computedStyle = window.getComputedStyle(contentElement);
           const currentFontSize = parseFloat(computedStyle.fontSize);
-          console.log("currentFontSize:", currentFontSize);
+          // console.log("currentFontSize:", currentFontSize);
           setFontSize(currentFontSize);
         }
       };

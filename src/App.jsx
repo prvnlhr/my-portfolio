@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,6 +10,7 @@ import ProjectSection from "./components/ProjectSection/ProjectSection";
 import OtherWorkSection from "./components/OtherWorkSection/OtherWorkSection";
 import ExpertiseSection from "./components/WhatIDo/ExpertiseSection";
 import FooterSection from "./components/FooterSection/FooterSection";
+import Loading from "./components/Common/Loading/Loading";
 import Lenis from "lenis";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -17,31 +18,51 @@ const App = () => {
   const cursorRef = useRef(null);
   const cursorTailRef = useRef(null);
   const scrollContainerRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(true); // Controls loading visibility
 
+  // Handle resize event
   useEffect(() => {
-    const lenis = new Lenis({
-      wrapper: scrollContainerRef.current,
-      duration: 2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      syncTouch: true,
-    });
+    const handleResize = () => {
+      setIsLoading(true); // Reset loading state on resize
+      setIsVisible(true); // Show loading again on resize
+    };
 
-    lenis.on("scroll", ScrollTrigger.update);
+    window.addEventListener("resize", handleResize);
 
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
-    // Cleanup Lenis on unmount
     return () => {
-      lenis.destroy();
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000);
-      });
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
+  // Initialize Lenis and GSAP ScrollTrigger when loading is complete
+  useEffect(() => {
+    if (!isLoading && scrollContainerRef.current) {
+      const lenis = new Lenis({
+        wrapper: scrollContainerRef.current,
+        duration: 2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        syncTouch: true,
+      });
+
+      lenis.on("scroll", ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+
+      // Cleanup Lenis on unmount or when isLoading changes
+      return () => {
+        lenis.destroy();
+        gsap.ticker.remove((time) => {
+          lenis.raf(time * 1000);
+        });
+      };
+    }
+  }, [isLoading]);
+
+  // GSAP cursor animation
   const { contextSafe } = useGSAP(() => {
     const mouseMove = contextSafe((e) => {
       const cursorPosition = {
@@ -73,26 +94,31 @@ const App = () => {
 
   return (
     <div className={styles.appWrapper}>
-      {/* Cursor */}
-      <div className={styles.cursor} ref={cursorRef} />
-      <div className={styles.cursorTail} ref={cursorTailRef} />
+      {/* Conditionally render Loading component */}
+      {isVisible && (
+        <Loading setIsLoading={setIsLoading} setIsVisible={setIsVisible} />
+      )}
+      {!isLoading && (
+        <>
+          <div className={styles.cursor} ref={cursorRef} />
+          <div className={styles.cursorTail} ref={cursorTailRef} />
 
-      {/* Header */}
-      <div className={styles.headerBar}>
-        <div className={styles.logoWrapper}>
-          <Logo />
-        </div>
-      </div>
+          <div className={styles.headerBar}>
+            <div className={styles.logoWrapper}>
+              <Logo />
+            </div>
+          </div>
 
-      {/* Scrollable Content */}
-      <div className={styles.appScrollWrapper} ref={scrollContainerRef}>
-        <HeroSection scrollContainerRef={scrollContainerRef} />
-        <AboutMeSection scrollContainerRef={scrollContainerRef} />
-        <ProjectSection scrollContainerRef={scrollContainerRef} />
-        <OtherWorkSection scrollContainerRef={scrollContainerRef} />
-        <ExpertiseSection scrollContainerRef={scrollContainerRef} />
-        <FooterSection scrollContainerRef={scrollContainerRef} />
-      </div>
+          <div className={styles.appScrollWrapper} ref={scrollContainerRef}>
+            <HeroSection scrollContainerRef={scrollContainerRef} />
+            <AboutMeSection scrollContainerRef={scrollContainerRef} />
+            <ProjectSection scrollContainerRef={scrollContainerRef} />
+            <OtherWorkSection scrollContainerRef={scrollContainerRef} />
+            <ExpertiseSection scrollContainerRef={scrollContainerRef} />
+            <FooterSection scrollContainerRef={scrollContainerRef} />
+          </div>
+        </>
+      )}
     </div>
   );
 };

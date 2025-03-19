@@ -1,4 +1,4 @@
-@import "../../../styles/mixins.module";
+@use "../../../styles/mixins.module" as mixins;
 
 .imageWrapper {
   position: absolute;
@@ -11,7 +11,7 @@
   right: 0;
   margin: 0 auto;
   z-index: 2;
-  @include small-device {
+  @include mixins.small-device {
     width: 90%;
     height: unset;
     aspect-ratio: 1/1;
