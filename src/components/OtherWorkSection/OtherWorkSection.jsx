@@ -4,6 +4,7 @@ import LinkIcon from "../../icons/LinkIcon";
 import GitHubIcon from "../../icons/GitHubIcon";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import LinkBtn from "../Common/Button/LinkBtn";
 
 const otherProjects = [
   { title: "Date Picker", link: "" },
@@ -85,7 +86,7 @@ const OtherWorkSection = ({ scrollContainerRef }) => {
         <div className={styles.contentWrapper}>
           <div className={styles.projectsGrid}>
             <div className={styles.allWorksBtn}>
-              <p>All Work</p>
+              <LinkBtn height={50} label={"All Works"} />
             </div>
             {otherProjects.map((project, index) => (
               <div

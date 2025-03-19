@@ -333,35 +333,19 @@
   }
   .linkCell {
     grid-area: linkCell;
-    // border: 1px solid blue;
+    // border: 1px solid skyblue;
     width: 100%;
     height: 100%;
-    button {
-      height: 60%;
-      aspect-ratio: 2/0.7;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      background-color: transparent;
-      border-radius: 3px;
-      color: #fbfbfb;
+    display: flex;
+    align-items: center;
+
+    .linkBtnContainer {
+      width: 120px;
+      height: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
-
-      &:hover {
-        border: 2px solid #a99ef0;
-      }
-      p {
-        font-family: "SharpGroteskBook20";
-        font-size: 0.8rem;
-      }
-      .iconDiv {
-        height: 30%;
-        aspect-ratio: 1/1;
-        // border: 1px solid red;
-        display: grid;
-        place-items: center;
-        margin-left: 8px;
-      }
+      // border: 1px solid red;
     }
   }
 }

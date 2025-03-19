@@ -7,7 +7,8 @@ import project2 from "../../assets/cloude.png";
 import project3 from "../../assets/ecrypt.png";
 import project4 from "../../assets/chords.png";
 import LinkIcon from "../../icons/LinkIcon";
-
+import { Icon } from "@iconify/react/dist/iconify.js";
+import LinkBtn from "../Common/Button/LinkBtn";
 const projectImagesArr = [project1, project2, project3, project4];
 
 const projectDescData = [
@@ -380,12 +381,9 @@ const ProjectSection = ({ scrollContainerRef }) => {
                 ))}
               </div>
               <div className={styles.linkCell}>
-                <button>
-                  Link
-                  <div className={styles.iconDiv}>
-                    <LinkIcon />
-                  </div>
-                </button>
+                <div className={styles.linkBtnContainer}>
+                  <LinkBtn height={40} label={"Link"} />
+                </div>
               </div>
             </div>
           </div>
