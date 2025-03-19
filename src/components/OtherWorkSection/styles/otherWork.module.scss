@@ -1,4 +1,6 @@
-@import "../../../styles/mixins.module";
+// @import "../../../styles/mixins.module";
+@use "../../../styles/mixins.module" as mixins;
+
 .sectionWrapper {
   width: 100%;
   height: auto;
@@ -12,7 +14,7 @@
     width: calc(100% - 200px);
     height: 90%;
     // border: 1px solid red;
-    @include small-device {
+    @include mixins.small-device {
       width: 95%;
     }
   }
@@ -82,7 +84,7 @@
     "project5 project6";
   position: relative;
 
-  @include small-device {
+  @include mixins.small-device {
     width: 100%;
     grid-template-columns: 100%;
     // grid-template-rows: repeat(5, 40vh);

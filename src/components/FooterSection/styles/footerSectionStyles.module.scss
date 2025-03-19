@@ -1,3 +1,5 @@
+@use "../../../styles/mixins.module" as mixins;
+
 .footerSection {
   width: 99.9%;
   height: 90vh;
@@ -44,11 +46,15 @@
       font-family: "SharpGroteskBook20";
       font-family: "SharpGroteskBook25";
       font-size: 2rem;
+      white-space: nowrap;
       margin-right: 15px;
       z-index: 3;
       color: #1b1c1e;
       color: #fbfbfb;
       position: relative;
+      @include mixins.small-device {
+        font-size: 1.5rem;
+      }
     }
   }
 }
@@ -75,6 +81,9 @@
       font-family: "SharpGroteskSemiBold25";
       font-size: 3rem;
       color: white;
+      @include mixins.small-device {
+        font-size: 1.2rem;
+      }
       span {
         color: #a99ef0;
       }

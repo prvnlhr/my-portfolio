@@ -1,4 +1,5 @@
-@import "../../../styles/mixins.module";
+// @import "../../../styles/mixins.module";
+@use "../../../styles/mixins.module" as mixins;
 
 .projectSectionWrapper {
   width: 100%;
@@ -14,7 +15,7 @@
     height: auto;
     // border: 1px solid white;
 
-    @include small-device {
+    @include mixins.small-device {
       width: 90%;
     }
   }
@@ -69,7 +70,7 @@
   padding: 0% 0%;
   position: relative;
   // border: 1px solid red;
-  @include small-device {
+  @include mixins.small-device {
     flex-direction: column;
   }
 }
@@ -79,7 +80,7 @@
   height: 100%;
   // border: 1px solid orange;
 
-  @include small-device {
+  @include mixins.small-device {
     width: 100%;
     height: auto;
     margin-bottom: 25px;
@@ -107,7 +108,7 @@
           font-size: 2.5;
         }
 
-        @include small-device {
+        @include mixins.small-device {
           font-size: 1.5rem;
         }
       }
@@ -219,7 +220,7 @@
   justify-content: flex-end;
   // border: 1px solid skyblue;
 
-  @include small-device {
+  @include mixins.small-device {
     align-items: flex-start;
     justify-content: flex-start;
     width: 100%;
@@ -239,7 +240,7 @@
       "linkCell";
     // border: 1px solid greenyellow;
 
-    @include small-device {
+    @include mixins.small-device {
       width: 100%;
       height: 80%;
     }
@@ -261,7 +262,7 @@
       font-size: 1.5rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 
-      @include small-device {
+      @include mixins.small-device {
         font-size: 1.2rem;
         white-space: nowrap;
       }

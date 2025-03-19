@@ -1,4 +1,5 @@
-@import "../../../styles/mixins.module";
+// @import "../../../styles/mixins.module";
+@use "../../../styles/mixins.module" as mixins;
 
 // .heroSectionWrapper {
 //   width: 100%;
@@ -16,7 +17,7 @@
 //     place-items: center;
 //     z-index: 1;
 //     border: 1px solid white;
-//     @include small-device {
+//     @include mixins.small-device {
 //       width: 90%;
 //       height: 50%;
 //       border: 1px solid salmon;
@@ -98,7 +99,7 @@
         color: #212121;
         font-size: 1.8vw;
       }
-      @include small-device {
+      @include mixins.small-device {
         font-size: 8vw;
 
         &__prefix {
@@ -124,7 +125,7 @@
     // border: 1px solid salmon;
     text-align: center;
 
-    @include small-device {
+    @include mixins.small-device {
       width: 90%;
     }
 
@@ -138,7 +139,7 @@
       left: 0;
       right: 0;
       margin: 0 auto;
-      @include small-device {
+      @include mixins.small-device {
         font-size: 8.2vw;
         // bottom: 40%;
         top: 10%;
@@ -146,7 +147,7 @@
       &__top {
         z-index: 1;
         color: #fbfbfb;
-        @include small-device {
+        @include mixins.small-device {
           color: transparent;
           -webkit-text-stroke: 1px #fbfbfb;
           text-stroke: 1px #fbfbfb;
@@ -157,7 +158,7 @@
         color: transparent;
         -webkit-text-stroke: 1px #fbfbfb;
         text-stroke: 1px #fbfbfb;
-        @include small-device {
+        @include mixins.small-device {
           color: transparent;
           -webkit-text-stroke: 1px #fbfbfb;
           text-stroke: 1px #fbfbfb;
@@ -172,7 +173,7 @@
           -webkit-text-stroke: 2px #fbfbfb00;
           text-stroke: 2px #fbfbfb00;
         }
-        @include small-device {
+        @include mixins.small-device {
           font-size: 6.2vw;
           bottom: 60%;
         }
