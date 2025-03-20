@@ -2,14 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles/footerSectionStyles.module.scss";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import LinkIcon from "../../icons/LinkIcon";
 import DownloadIcon from "../../icons/DownloadIcon";
 import { Textfit } from "react-textfit";
 import FontFaceObserver from "fontfaceobserver";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
-const FooterSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
+const FooterSection = ({ scrollContainerRef }) => {
   const [isFontLoaded, setIsFontLoaded] = useState(false);
   const sectionContainerRef = useRef(null);
   const headingRef = useRef(null);
@@ -82,20 +81,6 @@ const FooterSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
       duration: 0.2,
       ease: "power1.inOut",
     });
-
-    if (cursorRef.current && cursorTailRef.current) {
-      gsap.to(cursorRef.current, {
-        opacity: 0,
-        duration: 0.2,
-        ease: "power1.inOut",
-      });
-
-      gsap.to(cursorTailRef.current, {
-        scale: 10,
-        duration: 0.2,
-        ease: "power1.inOut",
-      });
-    }
   };
 
   const handleMouseLeave = (iconRef) => {
@@ -105,20 +90,6 @@ const FooterSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
       duration: 0.2,
       ease: "power1.inOut",
     });
-
-    if (cursorRef.current && cursorTailRef.current) {
-      gsap.to(cursorRef.current, {
-        opacity: 1,
-        duration: 0.2,
-        ease: "power1.inOut",
-      });
-
-      gsap.to(cursorTailRef.current, {
-        scale: 1,
-        duration: 0.2,
-        ease: "power1.inOut",
-      });
-    }
   };
 
   return (
