@@ -7,9 +7,19 @@ import LinkIcon from "../../icons/LinkIcon";
 import DownloadIcon from "../../icons/DownloadIcon";
 import { Textfit } from "react-textfit";
 import FontFaceObserver from "fontfaceobserver";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
-const FooterSection = ({ scrollContainerRef }) => {
+const FooterSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
   const [isFontLoaded, setIsFontLoaded] = useState(false);
+  const sectionContainerRef = useRef(null);
+  const headingRef = useRef(null);
+  const circleRef = useRef(null);
+  const subContentRef = useRef(null);
+  const emailRef = useRef(null);
+  const linkRef = useRef(null);
+
+  const linkedInIconRef = useRef(null);
+  const resumeIconRef = useRef(null);
 
   useEffect(() => {
     const loadFont = async () => {
@@ -24,16 +34,103 @@ const FooterSection = ({ scrollContainerRef }) => {
     loadFont();
   }, []);
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: headingRef.current,
+          scroller: scrollContainerRef.current,
+          start: "top 50%",
+          end: "100px 0px",
+        },
+      });
+
+      timeline
+        .fromTo(
+          headingRef.current,
+          { y: 80, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.3, ease: "power1" }
+        )
+        .fromTo(
+          circleRef.current,
+          { opacity: 0, scale: 0 },
+          { opacity: 1, scale: 1, duration: 0.3, ease: "power1" }
+        )
+        .fromTo(
+          subContentRef.current,
+          { y: 70, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.3, ease: "power1" }
+        )
+        .fromTo(
+          emailRef.current,
+          { y: 70, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.3, ease: "power1" }
+        )
+        .fromTo(
+          linkRef.current,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.3, ease: "power1" }
+        );
+    }, sectionContainerRef);
+    return () => ctx.revert();
+  }, [scrollContainerRef]);
+
+  const handleMouseEnter = (iconRef, x, y) => {
+    gsap.to(iconRef.current, {
+      x: x,
+      y: y,
+      duration: 0.2,
+      ease: "power1.inOut",
+    });
+
+    if (cursorRef.current && cursorTailRef.current) {
+      gsap.to(cursorRef.current, {
+        opacity: 0,
+        duration: 0.2,
+        ease: "power1.inOut",
+      });
+
+      gsap.to(cursorTailRef.current, {
+        scale: 10,
+        duration: 0.2,
+        ease: "power1.inOut",
+      });
+    }
+  };
+
+  const handleMouseLeave = (iconRef) => {
+    gsap.to(iconRef.current, {
+      x: 0,
+      y: 0,
+      duration: 0.2,
+      ease: "power1.inOut",
+    });
+
+    if (cursorRef.current && cursorTailRef.current) {
+      gsap.to(cursorRef.current, {
+        opacity: 1,
+        duration: 0.2,
+        ease: "power1.inOut",
+      });
+
+      gsap.to(cursorTailRef.current, {
+        scale: 1,
+        duration: 0.2,
+        ease: "power1.inOut",
+      });
+    }
+  };
+
   return (
-    <div className={styles.footerSection}>
+    <div className={styles.footerSection} ref={sectionContainerRef}>
       <div className={styles.footerSection__inner}>
         <div className={styles.sectionHeading}>
-          <div className={styles.heading}>
-            <div className={styles.heading__circle}></div>
+          <div className={styles.heading} ref={headingRef}>
+            <div className={styles.heading__circle} ref={circleRef}></div>
             <p>Let's Connect</p>
           </div>
         </div>
-        <div className={styles.subContentSection}>
+        <div className={styles.subContentSection} ref={subContentRef}>
           <Textfit
             mode="multi"
             style={{
@@ -49,24 +146,39 @@ const FooterSection = ({ scrollContainerRef }) => {
         </div>
 
         <div className={styles.content}>
-          <div className={styles.content__emailContainer}>
+          <div className={styles.content__emailContainer} ref={emailRef}>
             <p>
               praveenlohar.in<span>@</span>gmail.com
             </p>
           </div>
-          <div className={styles.content__linksRow}>
-            <button className={styles.linkButton}>
+          <div className={styles.content__linksRow} ref={linkRef}>
+            <button
+              className={styles.linkButton}
+              onMouseEnter={() => handleMouseEnter(linkedInIconRef, 5, -5)}
+              onMouseLeave={() => handleMouseLeave(linkedInIconRef)}
+            >
               <div className={styles.linkButton__textDiv}>
                 <p>LinkedIn</p>
               </div>
-              <div className={styles.linkButton__iconDiv}>
-                <LinkIcon />
+              <div className={styles.linkButton__iconDiv} ref={linkedInIconRef}>
+                <Icon
+                  icon="gravity-ui:arrow-down"
+                  style={{ transform: "rotate(-135deg)" }}
+                  className={styles.linkIcon}
+                />
               </div>
             </button>
-            <button className={styles.linkButton}>
+            <button
+              className={styles.linkButton}
+              onMouseEnter={() => handleMouseEnter(resumeIconRef, 0, 5)}
+              onMouseLeave={() => handleMouseLeave(resumeIconRef)}
+            >
               <div className={styles.linkButton__textDiv}>Resume</div>
-              <div className={styles.linkButton__iconDiv}>
-                <DownloadIcon />
+              <div className={styles.linkButton__iconDiv} ref={resumeIconRef}>
+                <Icon
+                  icon="gravity-ui:arrow-down"
+                  className={styles.linkIcon}
+                />
               </div>
             </button>
           </div>

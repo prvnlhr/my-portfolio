@@ -100,8 +100,8 @@ const AboutMeSection = ({ scrollContainerRef }) => {
         )
         .fromTo(
           circleRef.current,
-          { opacity: 0 },
-          { opacity: 1, duration: 1, ease: "power1" }
+          { opacity: 0, scale: 0 },
+          { opacity: 1, scale: 1, duration: 0.5, ease: "power1" }
         )
         .fromTo(
           contentRef.current,

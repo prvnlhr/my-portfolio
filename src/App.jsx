@@ -115,7 +115,11 @@ const App = () => {
             <ProjectSection scrollContainerRef={scrollContainerRef} />
             <OtherWorkSection scrollContainerRef={scrollContainerRef} />
             <ExpertiseSection scrollContainerRef={scrollContainerRef} />
-            <FooterSection scrollContainerRef={scrollContainerRef} />
+            <FooterSection
+              scrollContainerRef={scrollContainerRef}
+              cursorRef={cursorRef}
+              cursorTailRef={cursorTailRef}
+            />
           </div>
         </>
       )}

@@ -143,6 +143,7 @@
   background-color: transparent;
   outline: none;
   border: none;
+  // border: 1px solid white;
 
   &:nth-child(1) {
     margin-right: 10px;
@@ -166,8 +167,17 @@
   &__iconDiv {
     height: 100%;
     aspect-ratio: 1/2;
-    padding: 5%;
     display: flex;
-    place-content: center;
+    justify-content: center;
+    align-items: center;
+    // border: 1px solid white;
+    // padding: 0px 8px;
+
+    .linkIcon {
+      color: #a99ef0;
+      font-size: 1.2rem;
+      margin: 0;
+      padding: 0;
+    }
   }
 }
