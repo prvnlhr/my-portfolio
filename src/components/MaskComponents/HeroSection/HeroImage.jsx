@@ -1,5 +1,5 @@
 import styles from "./styles/heroImage.module.scss";
-import myImg from "../../assets/portfolio_image_grayscale.png";
+import myImg from "../../../assets/portfolio_image_colored.png";
 
 const HeroImage = ({ heroImageRef }) => {
   return (

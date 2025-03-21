@@ -1,5 +1,68 @@
 // @import "../../../styles/mixins.module";
-@use "../../../styles/mixins.module" as mixins;
+@use "../../../../styles/mixins.module" as mixins;
+
+// .heroSectionWrapper {
+//   width: 100%;
+//   height: 100vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   border: 1px solid white;
+
+//   .heroContentParentWrapper {
+//     position: relative;
+//     width: 50%;
+//     height: 60%;
+//     display: grid;
+//     place-items: center;
+//     z-index: 1;
+//     border: 1px solid white;
+//     @include mixins.small-device {
+//       width: 90%;
+//       height: 50%;
+//       border: 1px solid salmon;
+//     }
+//   }
+// }
+
+// .nameText {
+//   // font-family: "Basement Grotesque XCond";
+//   font-family: "SharpGroteskBold20";
+//   font-size: 8vw;
+//   color: #fbfbfb;
+//   font-weight: 800;
+// }
+
+// .fname {
+//   position: absolute;
+//   top: -10%;
+//   left: -50px;
+//   z-index: 1;
+//   line-height: 1;
+//   // border: 1px solid red;
+// }
+
+// .fname span {
+//   display: block;
+//   font-size: 1.2rem;
+//   font-family: "SharpGroteskSemiBold25";
+//   line-height: 1;
+//   color: #fbfbfb;
+//   // border: 1px solid red;
+
+//   .andText {
+//     color: #a99ef0;
+//     display: inline;
+//   }
+// }
+
+// .lname {
+//   position: absolute;
+//   bottom: -15%;
+//   right: 0;
+//   z-index: 3;
+//   text-align: end;
+// }
 
 .heroSectionWrapper {
   position: relative;
@@ -25,7 +88,7 @@
       font-size: 3vw;
       font-weight: 800;
       color: #fbfbfb;
-      // z-index: 4;
+      z-index: 4;
 
       &__prefix {
         color: #ab9ef6;
@@ -81,7 +144,7 @@
         top: 10%;
       }
       &__top {
-        // z-index: 1;
+        z-index: 1;
         color: #fbfbfb;
         @include mixins.small-device {
           color: transparent;
@@ -90,7 +153,7 @@
         }
       }
       &__bottom {
-        // z-index: 3;
+        z-index: 3;
         color: transparent;
         -webkit-text-stroke: 1px #fbfbfb;
         text-stroke: 1px #fbfbfb;

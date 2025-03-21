@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { MouseParallax } from "react-just-parallax";
 
-const HeroSection = () => {
+const MaskedHeroSection = () => {
   const prefixRef = useRef();
   const nameRef = useRef();
   const suffixRef = useRef();
@@ -166,4 +166,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default MaskedHeroSection;
