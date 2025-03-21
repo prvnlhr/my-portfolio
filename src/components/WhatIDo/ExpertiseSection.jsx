@@ -1,14 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import styles from "./styles/expertiseSection.module.scss";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const expertise = [
-  ["M", "E", "R", "N"],
-  ["N", "e", "x", "t"],
-  ["U", "I", "/", "U", "X"],
-  ["A", "l", "g", "o", "r", "i", "t", "h", "m"],
-];
+import portfolioData from "../../utils/portfolioData";
 
 const ExpertiseSection = ({ scrollContainerRef }) => {
   const contentRef = useRef();
@@ -81,12 +75,12 @@ const ExpertiseSection = ({ scrollContainerRef }) => {
       </div>
       <div className={styles["content"]}>
         <div className={styles["content__inner"]} ref={contentRef}>
-          {expertise.map((stack, rowIndex) => (
+          {portfolioData.expertise.map((stack, rowIndex) => (
             <div key={rowIndex} className={styles["content__tech-stack"]}>
               <span className={styles["content__tech-stack-num"]}>
                 {(rowIndex + 1).toString().padStart(2, 0)}
               </span>
-              {stack.map((letter, letterIndex) => (
+              {stack.label.map((letter, letterIndex) => (
                 <span
                   key={letterIndex}
                   className={styles["content__tech-stack-stackText"]}

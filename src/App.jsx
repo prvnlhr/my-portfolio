@@ -70,14 +70,14 @@ const App = () => {
         top: e.clientY,
       };
 
-      gsap.to(cursorRef.current, {
+      gsap.to(cursorRef?.current, {
         left: cursorPosition.left,
         top: cursorPosition.top,
         duration: 0.5,
         ease: "power2.out",
       });
 
-      gsap.to(cursorTailRef.current, {
+      gsap.to(cursorTailRef?.current, {
         left: cursorPosition.left,
         top: cursorPosition.top,
         duration: 0.9,

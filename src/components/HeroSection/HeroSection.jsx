@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { MouseParallax } from "react-just-parallax";
 
-const HeroSection = ({ scrollingContiner }) => {
+const HeroSection = () => {
   const prefixRef = useRef();
   const nameRef = useRef();
   const suffixRef = useRef();

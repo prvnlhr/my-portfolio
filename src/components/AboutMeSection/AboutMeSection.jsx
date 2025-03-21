@@ -2,9 +2,9 @@ import React, { useRef, useEffect, useState } from "react";
 import styles from "./styles/aboutMeSection.module.scss";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { aboutMeContent } from "../../utils/textUtils.js";
 import { Textfit } from "react-textfit";
 import FontFaceObserver from "fontfaceobserver";
+import portfolioData from "../../utils/portfolioData.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +17,7 @@ const colorIndicesF = new Set([
 const AboutMeSection = ({ scrollContainerRef }) => {
   const [isFontLoaded, setIsFontLoaded] = useState(false);
   const [fontSize, setFontSize] = useState(null);
+  const { aboutMeContent } = portfolioData.aboutMe;
 
   const contentArr = aboutMeContent.split("");
   const sectionContainerRef = useRef(null);
@@ -48,12 +49,10 @@ const AboutMeSection = ({ scrollContainerRef }) => {
         if (contentElement) {
           const computedStyle = window.getComputedStyle(contentElement);
           const currentFontSize = parseFloat(computedStyle.fontSize);
-          // console.log("currentFontSize:", currentFontSize);
           setFontSize(currentFontSize);
         }
       };
 
-      // Use MutationObserver to detect when the font size is applied
       const observer = new MutationObserver((mutationsList, observer) => {
         for (let mutation of mutationsList) {
           if (

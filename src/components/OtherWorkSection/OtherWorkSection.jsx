@@ -5,19 +5,14 @@ import GitHubIcon from "../../icons/GitHubIcon";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LinkBtn from "../Common/Button/LinkBtn";
-
-const otherProjects = [
-  { title: "Date Picker", link: "" },
-  { title: "Ipod - Virtual simulator", link: "" },
-  { title: "Shopping Cart", link: "" },
-  { title: "Custom Calculator", link: "" },
-  { title: "Aesop Clone", link: "" },
-];
+import portfolioData from "../../utils/portfolioData";
 
 const OtherWorkSection = ({ scrollContainerRef }) => {
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const cardRefs = useRef([]);
+
+  const otherProjects = portfolioData.otherWork;
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -101,13 +96,7 @@ const OtherWorkSection = ({ scrollContainerRef }) => {
                     <GitHubIcon />
                   </div>
                   <div className={styles.descContainer}>
-                    <p>
-                      A sleek and intuitive custom date picker component built
-                      with Next.js, React, and Sass, enabling users to easily
-                      add and manage events. It leverages Moment.js for seamless
-                      date handling and integration, offering a smooth user
-                      experience for scheduling and event management.
-                    </p>
+                    <p>{project.description}</p>
                   </div>
                   <div className={styles.footerContainer}>
                     <div className={styles.projectTitleDiv}>

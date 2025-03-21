@@ -1,16 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./styles/footerSectionStyles.module.scss";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import LinkIcon from "../../icons/LinkIcon";
-import DownloadIcon from "../../icons/DownloadIcon";
 import { Textfit } from "react-textfit";
-import FontFaceObserver from "fontfaceobserver";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import portfolioData from "../../utils/portfolioData";
 
 const FooterSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
-  const [isFontLoaded, setIsFontLoaded] = useState(false);
   const sectionContainerRef = useRef(null);
   const headingRef = useRef(null);
   const circleRef = useRef(null);
@@ -21,18 +16,8 @@ const FooterSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
   const linkedInIconRef = useRef(null);
   const resumeIconRef = useRef(null);
 
-  useEffect(() => {
-    const loadFont = async () => {
-      const font = new FontFaceObserver("SharpGroteskSemiBold25");
-      try {
-        await font.load();
-        setIsFontLoaded(true);
-      } catch (e) {
-        console.error("Font failed to load", e);
-      }
-    };
-    loadFont();
-  }, []);
+  const contactData = portfolioData.contact;
+  const [username, domain] = contactData.email.split("@");
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -148,7 +133,9 @@ const FooterSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
         <div className={styles.content}>
           <div className={styles.content__emailContainer} ref={emailRef}>
             <p>
-              praveenlohar.in<span>@</span>gmail.com
+              {username}
+              <span>@</span>
+              {domain}
             </p>
           </div>
           <div className={styles.content__linksRow} ref={linkRef}>
