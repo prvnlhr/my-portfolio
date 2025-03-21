@@ -1,4 +1,8 @@
 // src/lib/data/portfolioData.js
+import doerImg from "../assets/doer.png";
+import cloudeImg from "../assets/cloude.png";
+import ecryptImg from "../assets/ecrypt.png";
+import chordsImg from "../assets/chords.png";
 
 const portfolioData = {
   aboutMe: {
@@ -7,8 +11,10 @@ const portfolioData = {
 
   projects: [
     {
+      id: 1,
       title: "Doer - E Learning",
       desc: "Doer is a full-stack e-learning PWA built with Next.js, offering a variety of courses managed in MongoDB. It features secure email/OTP authentication with NextAuth v5, media management via Cloudinary, and SASS for styling. Key functionalities include universal search, progress tracking, and a comprehensive admin panel for content management.",
+      imageSrc: doerImg,
       techStack: [
         "Next",
         "MongoDB",
@@ -17,10 +23,13 @@ const portfolioData = {
         "Cloudinary",
         "SASS",
       ],
+      link: "https://github.com/prvnlhr/Doer_NextJS",
     },
     {
+      id: 2,
       title: "Cloude - Cloud Storage",
       desc: "Cloude is a modern cloud storage solution built with a seamless and intuitive interface. Users can easily upload, organize, and manage their files securely in the cloud. With real-time access and sharing features, Cloude ensures smooth collaboration and file management. Leveraging Supabase for backend, authentication, and storage, along with a clean Tailwind-powered UI, Cloude offers a fast, reliable, and user-friendly experience, similar to popular platforms like Google Drive.",
+      imageSrc: cloudeImg,
       techStack: [
         "Next",
         "Supabase",
@@ -28,16 +37,23 @@ const portfolioData = {
         "Tailwind",
         "Supabase Storage",
       ],
+      link: "https://github.com/prvnlhr/cloude_next",
     },
     {
+      id: 3,
       title: "Ecrypt  - Digital Vault",
       desc: "Ecrypt is a secure digital vault PWA built using the MERN stack (MongoDB, Express.js, React, Node.js), offering full CRUD operations and seamless state management via Redux Toolkit. The app features secure JWT-based authentication and authorization, including email verification and OAuth support. Additional functionalities include a password generator, search feature, date picker, and dynamic animations crafted using Framer Motion to enhance the user experience.",
+      imageSrc: ecryptImg,
       techStack: ["React", "MongoDB", "NodeJS", "Express", "Redux", "Framer"],
+      link: "https://github.com/prvnlhr/ecrypt_mern_pwa",
     },
     {
+      id: 4,
       title: "Chords - Music Player",
+      imageSrc: chordsImg,
       desc: "Chords is a fully-featured music player built with JavaScript, HTML, and CSS, delivering an intuitive and engaging interface. The app allows users to seamlessly search for songs, albums, and artists, ensuring a smooth music discovery experience. Efficiently managed state and data persistence using the Web Storage API, Chords ensures reliable performance, offering users a consistent and enjoyable listening journey.",
       techStack: ["Javascript", "HTML", "CSS", "WEB-STORAGE", "CSS"],
+      link: "https://github.com/prvnlhr/Chords_music_player",
     },
   ],
 
@@ -47,35 +63,35 @@ const portfolioData = {
       title: "Date Picker",
       description:
         "A sleek and intuitive custom date picker component built with Next.js, React, and Sass, enabling users to easily add and manage events. It leverages Moment.js for seamless date handling and integration, offering a smooth user experience for scheduling and event management.",
-      link: "",
+      link: "https://github.com/prvnlhr/Date_Picker_nextJS",
     },
     {
       id: 2,
       title: "Ipod - Virtual simulator",
       description:
         "A virtual iPod simulator that replicates the original iPod interface using React and CSS animations. It includes features such as menu navigation, music playback, and settings adjustments. The click-wheel functionality is fully simulated, offering an engaging and nostalgic user experience.",
-      link: "",
+      link: "https://github.com/prvnlhr/Ipod_simulator_react",
     },
     {
       id: 3,
       title: "Shopping Cart",
       description:
         "A feature-rich shopping cart application developed using Next.js and Redux Toolkit. It allows users to browse products, add items to the cart, and update quantities seamlessly. The cart dynamically updates the total amount and applies relevant discounts in real time for a smooth e-commerce experience.",
-      link: "",
+      link: "https://github.com/prvnlhr/shope.fy",
     },
     {
       id: 4,
       title: "Custom Calculator",
       description:
         "A highly customizable calculator built with React and Tailwind CSS, supporting basic and advanced operations. It includes percentage calculations, memory functions, and keyboard support. The responsive design ensures optimal usability across devices, enhancing the overall user experience.",
-      link: "",
+      link: "https://github.com/prvnlhr/JS_Calculator",
     },
     {
       id: 5,
       title: "Aesop Clone",
       description:
         "A pixel-perfect clone of the Aesop website crafted using Next.js, Tailwind CSS, and Framer Motion for smooth animations. It replicates the original product listing, checkout flow, and interactive UI components, ensuring a visually engaging and responsive browsing experience.",
-      link: "",
+      link: "https://github.com/prvnlhr/aesop_clone_react",
     },
   ],
 
@@ -98,12 +114,15 @@ const portfolioData = {
     },
   ],
   contact: {
-    email: "praveenlohar.in@gamil.com",
+    firstName: "Praveen",
+    lastName: "Lohar",
+    email: "praveenlohar.in@gmail.com",
     phone: "7230904343",
     links: {
-      github: "https://github.com/yourname",
-      linkedin: "https://linkedin.com/in/yourname",
-      resume: "https://twitter.com/yourhandle",
+      github: "https://github.com/prvnlhr",
+      linkedin: "https://www.linkedin.com/in/praveen-lohar/",
+      resume:
+        "https://drive.google.com/file/d/1-F7YQB1VbjKthEjJke9JjrLUOacxEmsQ/view?usp=sharing",
     },
   },
 

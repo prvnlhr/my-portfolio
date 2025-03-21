@@ -2,56 +2,16 @@ import React, { useRef, useEffect } from "react";
 import styles from "./styles/projectSection.module.scss";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import project1 from "../../assets/doer.png";
-import project2 from "../../assets/cloude.png";
-import project3 from "../../assets/ecrypt.png";
-import project4 from "../../assets/chords.png";
-import LinkIcon from "../../icons/LinkIcon";
-import { Icon } from "@iconify/react/dist/iconify.js";
 import LinkBtn from "../Common/Button/LinkBtn";
-const projectImagesArr = [project1, project2, project3, project4];
-
-const projectDescData = [
-  {
-    title: "Doer - E Learning",
-    desc: "Doer is a full-stack e-learning PWA built with Next.js, offering a variety of courses managed in MongoDB. It features secure email/OTP authentication with NextAuth v5, media management via Cloudinary, and SASS for styling. Key functionalities include universal search, progress tracking, and a comprehensive admin panel for content management.",
-    techStack: [
-      "Next",
-      "MongoDB",
-      "NextAuth",
-      "Nodemailer",
-      "Cloudinary",
-      "SASS",
-    ],
-  },
-  {
-    title: "Cloude - Cloud Storage",
-    desc: "Cloude is a modern cloud storage solution built with a seamless and intuitive interface. Users can easily upload, organize, and manage their files securely in the cloud. With real-time access and sharing features, Cloude ensures smooth collaboration and file management. Leveraging Supabase for backend, authentication, and storage, along with a clean Tailwind-powered UI, Cloude offers a fast, reliable, and user-friendly experience, similar to popular platforms like Google Drive.",
-    techStack: [
-      "Next",
-      "Supabase",
-      "Supabase Authentication",
-      "Tailwind",
-      "Supabase Storage",
-    ],
-  },
-  {
-    title: "Ecrypt  - Digital Vault",
-    desc: "Ecrypt is a secure digital vault PWA built using the MERN stack (MongoDB, Express.js, React, Node.js), offering full CRUD operations and seamless state management via Redux Toolkit. The app features secure JWT-based authentication and authorization, including email verification and OAuth support. Additional functionalities include a password generator, search feature, date picker, and dynamic animations crafted using Framer Motion to enhance the user experience.",
-    techStack: ["React", "MongoDB", "NodeJS", "Express", "Redux", "Framer"],
-  },
-  {
-    title: "Chords - Music Player",
-    desc: "Chords is a fully-featured music player built with JavaScript, HTML, and CSS, delivering an intuitive and engaging interface. The app allows users to seamlessly search for songs, albums, and artists, ensuring a smooth music discovery experience. Efficiently managed state and data persistence using the Web Storage API, Chords ensures reliable performance, offering users a consistent and enjoyable listening journey.",
-    techStack: ["Javascript", "HTML", "CSS", "WEB-STORAGE", "CSS"],
-  },
-];
+import portfolioData from "../../utils/portfolioData";
 
 const ProjectSection = ({ scrollContainerRef }) => {
+  const projects = portfolioData.projects;
   const sectionRef = useRef(null);
   const mainWrapperRef = useRef();
   const imageRefs = useRef([]);
   const descRefs = useRef([]);
+  const linkRefs = useRef([]);
   const titleRefs = useRef([]);
   const numRefs = useRef([]);
   const techStackRefs = useRef([]);
@@ -60,6 +20,7 @@ const ProjectSection = ({ scrollContainerRef }) => {
 
   imageRefs.current = [];
   descRefs.current = [];
+  linkRefs.current = [];
   titleRefs.current = [];
   numRefs.current = [];
   techStackRefs.current = [];
@@ -246,6 +207,35 @@ const ProjectSection = ({ scrollContainerRef }) => {
         }
       });
 
+      // Link Animation
+      const linkTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          scroller: scrollContainerRef.current,
+          start: "top 0px",
+          end: "bottom -50%",
+          scrub: 2,
+        },
+      });
+
+      gsap.set(linkRefs.current[0], { opacity: 1 });
+      linkRefs.current.forEach((num, index) => {
+        if (index !== 0) {
+          linkTimeline
+            .to(
+              linkRefs.current[index - 1],
+              { opacity: 0, duration: 0.5 },
+              index
+            )
+            .fromTo(
+              num,
+              { opacity: 0 },
+              { opacity: 1, duration: 0.5, ease: "power2.inOut" },
+              index
+            );
+        }
+      });
+
       // Tech Stack Animation
       const techStackTimeLine = gsap.timeline({
         scrollTrigger: {
@@ -324,7 +314,7 @@ const ProjectSection = ({ scrollContainerRef }) => {
                 <div className={styles.fakeTabIcon}></div>
               </div>
               <div className={styles.imageWindowRapper}>
-                {projectImagesArr.map((image, index) => (
+                {projects.map((image, index) => (
                   <div
                     className={styles.projectImageDiv}
                     key={index}
@@ -336,7 +326,7 @@ const ProjectSection = ({ scrollContainerRef }) => {
                           : "polygon(0 0, 100% 0, 100% 0, 0 0)",
                     }}
                   >
-                    <img src={image} alt={`Project${index + 1}`} />
+                    <img src={image.imageSrc} alt={`Project${index + 1}`} />
                   </div>
                 ))}
               </div>
@@ -345,7 +335,7 @@ const ProjectSection = ({ scrollContainerRef }) => {
           <div className={styles.right_wrapper}>
             <div className={styles.descGrid}>
               <div className={styles.titleCell}>
-                {projectDescData.map((item, iIndx) => (
+                {projects.map((item, iIndx) => (
                   <p
                     key={iIndx}
                     ref={(el) => addToRefs(el, titleRefs)}
@@ -356,7 +346,7 @@ const ProjectSection = ({ scrollContainerRef }) => {
                 ))}
               </div>
               <div className={styles.descCell}>
-                {projectDescData.map((item, jIndx) => (
+                {projects.map((item, jIndx) => (
                   <p
                     key={jIndx}
                     ref={(el) => addToRefs(el, descRefs)}
@@ -367,7 +357,7 @@ const ProjectSection = ({ scrollContainerRef }) => {
                 ))}
               </div>
               <div className={styles.techStackCell}>
-                {projectDescData.map((item, kIndx) => (
+                {projects.map((item, kIndx) => (
                   <div
                     className={styles.techStackRow}
                     key={kIndx}
@@ -381,9 +371,21 @@ const ProjectSection = ({ scrollContainerRef }) => {
                 ))}
               </div>
               <div className={styles.linkCell}>
-                <div className={styles.linkBtnContainer}>
-                  <LinkBtn height={40} label={"Link"} />
-                </div>
+                {projects.map((item, lIndex) => (
+                  <div
+                    key={lIndex}
+                    className={styles.linkBtnContainer}
+                    ref={(el) => addToRefs(el, linkRefs)}
+                    style={{ opacity: lIndex === 0 ? 1 : 0 }}
+                  >
+                    <LinkBtn
+                      key={item.id}
+                      height={40}
+                      linkHref={item.link}
+                      label={"Try Now"}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>

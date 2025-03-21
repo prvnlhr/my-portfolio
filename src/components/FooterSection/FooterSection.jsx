@@ -15,6 +15,7 @@ const FooterSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
 
   const linkedInIconRef = useRef(null);
   const resumeIconRef = useRef(null);
+  const githubIconRef = useRef(null);
 
   const contactData = portfolioData.contact;
   const [username, domain] = contactData.email.split("@");
@@ -77,6 +78,7 @@ const FooterSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
 
       gsap.to(cursorTailRef.current, {
         scale: 10,
+        opacity: 0.2,
         duration: 0.2,
         ease: "power1.inOut",
       });
@@ -100,6 +102,7 @@ const FooterSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
 
       gsap.to(cursorTailRef.current, {
         scale: 1,
+        opacity: 1,
         duration: 0.2,
         ease: "power1.inOut",
       });
@@ -132,42 +135,80 @@ const FooterSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
 
         <div className={styles.content}>
           <div className={styles.content__emailContainer} ref={emailRef}>
-            <p>
+            <a
+              href={`mailto:${contactData.email}?subject=Exciting%20Job%20Opportunity&body=Hi%20${contactData.firstName},%0D%0A%0D%0AI%20am%20interested%20in%20discussing%20a%20potential%20job%20opportunity%20with%20you.%20Your%20portfolio%20reflects%20the%20skills%20we%20are%20looking%20for!%0D%0A%0D%0AWhen%20would%20be%20a%20good%20time%20to%20connect%3F%0D%0A%0D%0AThanks!%0D%0A%5BYour%20Name%5D`}
+            >
               {username}
               <span>@</span>
               {domain}
-            </p>
+            </a>
           </div>
           <div className={styles.content__linksRow} ref={linkRef}>
-            <button
+            <div className={styles.socialLinkRow}>
+              {/* LinkedIn */}
+              <a
+                href={contactData.links.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.linkButton}
+                onMouseEnter={() => handleMouseEnter(linkedInIconRef, 5, -5)}
+                onMouseLeave={() => handleMouseLeave(linkedInIconRef)}
+              >
+                <div className={styles.linkButton__textDiv}>
+                  <p>LinkedIn</p>
+                </div>
+                <div
+                  className={styles.linkButton__iconDiv}
+                  ref={linkedInIconRef}
+                >
+                  <Icon
+                    icon="gravity-ui:arrow-down"
+                    style={{ transform: "rotate(-135deg)" }}
+                    className={styles.linkIcon}
+                  />
+                </div>
+              </a>
+
+              {/* Github */}
+              <a
+                href={contactData.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.linkButton}
+                onMouseEnter={() => handleMouseEnter(githubIconRef, 5, -5)}
+                onMouseLeave={() => handleMouseLeave(githubIconRef)}
+              >
+                <div className={styles.linkButton__textDiv}>
+                  <p>Github</p>
+                </div>
+                <div className={styles.linkButton__iconDiv} ref={githubIconRef}>
+                  <Icon
+                    icon="gravity-ui:arrow-down"
+                    style={{ transform: "rotate(-135deg)" }}
+                    className={styles.linkIcon}
+                  />
+                </div>
+              </a>
+            </div>
+
+            {/* Resume */}
+            <a
+              href={contactData.links.resume}
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.linkButton}
-              onMouseEnter={() => handleMouseEnter(linkedInIconRef, 5, -5)}
-              onMouseLeave={() => handleMouseLeave(linkedInIconRef)}
-            >
-              <div className={styles.linkButton__textDiv}>
-                <p>LinkedIn</p>
-              </div>
-              <div className={styles.linkButton__iconDiv} ref={linkedInIconRef}>
-                <Icon
-                  icon="gravity-ui:arrow-down"
-                  style={{ transform: "rotate(-135deg)" }}
-                  className={styles.linkIcon}
-                />
-              </div>
-            </button>
-            <button
-              className={styles.linkButton}
-              onMouseEnter={() => handleMouseEnter(resumeIconRef, 0, 5)}
+              onMouseEnter={() => handleMouseEnter(resumeIconRef, 5, -5)}
               onMouseLeave={() => handleMouseLeave(resumeIconRef)}
             >
               <div className={styles.linkButton__textDiv}>Resume</div>
               <div className={styles.linkButton__iconDiv} ref={resumeIconRef}>
                 <Icon
                   icon="gravity-ui:arrow-down"
+                  style={{ transform: "rotate(-135deg)" }}
                   className={styles.linkIcon}
                 />
               </div>
-            </button>
+            </a>
           </div>
         </div>
       </div>

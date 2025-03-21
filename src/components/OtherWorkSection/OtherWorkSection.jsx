@@ -81,7 +81,11 @@ const OtherWorkSection = ({ scrollContainerRef }) => {
         <div className={styles.contentWrapper}>
           <div className={styles.projectsGrid}>
             <div className={styles.allWorksBtn}>
-              <LinkBtn height={50} label={"All Works"} />
+              <LinkBtn
+                height={50}
+                label={"All Works"}
+                linkHref={"https://github.com/prvnlhr?tab=repositories"}
+              />
             </div>
             {otherProjects.map((project, index) => (
               <div
@@ -102,12 +106,17 @@ const OtherWorkSection = ({ scrollContainerRef }) => {
                     <div className={styles.projectTitleDiv}>
                       <p>{project.title} </p>
                     </div>
-                    <div className={styles.projectLinkDiv}>
+                    <a
+                      href={project.link || "/"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.projectLinkDiv}
+                    >
                       <p>Explore</p>
                       <span>
                         <LinkIcon />
                       </span>
-                    </div>
+                    </a>
                   </div>
                 </div>
               </div>
