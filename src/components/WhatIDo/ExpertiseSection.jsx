@@ -1,16 +1,75 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styles from "./styles/expertiseSection.module.scss";
 import gsap from "gsap";
 
 import portfolioData from "../../utils/portfolioData";
+import SectionHeading from "../Common/SectionHeading/SectionHeading";
+import FontFaceObserver from "fontfaceobserver";
+import { Textfit } from "react-textfit";
 
-const ExpertiseSection = ({ scrollContainerRef }) => {
+const ExpertiseSection = ({ scrollContainerRef, updateHeaderBgColor }) => {
   const contentRef = useRef();
   const headingRef = useRef();
-  const circleRef = useRef();
-  const sectionContainerRef = useRef();
 
+  const sectionContainerRef = useRef();
   const lettersRef = useRef([]);
+  const textfitRef = useRef(null);
+
+  const [isFontLoaded, setIsFontLoaded] = useState(false);
+  const [fontSize, setFontSize] = useState(null);
+
+  const contentStack = portfolioData.expertise[0].label.join("");
+
+  useEffect(() => {
+    const loadFont = async () => {
+      const font = new FontFaceObserver("SharpGroteskSemiBold25");
+      try {
+        await font.load();
+        setIsFontLoaded(true);
+      } catch (e) {
+        console.error("Font failed to load", e);
+      }
+    };
+    loadFont();
+  }, []);
+
+  useEffect(() => {
+    if (textfitRef.current && isFontLoaded) {
+      const calculateFontSize = () => {
+        const contentElement = textfitRef.current.querySelector(
+          "div > div:nth-child(1)"
+        );
+        if (contentElement) {
+          const computedStyle = window.getComputedStyle(contentElement);
+          const currentFontSize = parseFloat(computedStyle.fontSize);
+          setFontSize(currentFontSize);
+        }
+      };
+
+      const observer = new MutationObserver((mutationsList, observer) => {
+        for (let mutation of mutationsList) {
+          if (
+            mutation.type === "attributes" &&
+            mutation.attributeName === "style"
+          ) {
+            calculateFontSize();
+            observer.disconnect();
+          }
+        }
+      });
+
+      const contentElement = textfitRef.current.querySelector(
+        "div > div:nth-child(1)"
+      );
+      if (contentElement) {
+        observer.observe(contentElement, { attributes: true });
+      }
+
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, [contentStack, isFontLoaded]);
 
   const addToRefs = (el) => {
     if (el && !lettersRef.current.includes(el)) {
@@ -20,29 +79,6 @@ const ExpertiseSection = ({ scrollContainerRef }) => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animation for heading and circle
-      const t1 = gsap.timeline({
-        scrollTrigger: {
-          trigger: headingRef.current,
-          scroller: scrollContainerRef.current,
-          start: "top 50%",
-          end: "100px 0px",
-        },
-      });
-
-      // Animate the heading and circle
-      t1.fromTo(
-        headingRef.current,
-        { y: 50, opacity: 0 }, // Initial state
-        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" }
-      ).fromTo(
-        circleRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1, ease: "power2.out" },
-        "-=0.5"
-      );
-
-      // Set initial opacity of letters
       gsap.set(lettersRef.current, { opacity: 0.1 });
 
       // Animate letters on scroll
@@ -53,7 +89,8 @@ const ExpertiseSection = ({ scrollContainerRef }) => {
         scrollTrigger: {
           trigger: contentRef.current,
           scroller: scrollContainerRef.current,
-          start: `top ${headingRef.current.offsetHeight + 50}`,
+          // start: `top ${headingRef.current.offsetHeight + 50}`,
+          start: `top ${headingRef.current.offsetHeight + 70}px`,
           end: "bottom -100vh",
           scrub: 1,
           pin: sectionContainerRef.current,
@@ -67,30 +104,51 @@ const ExpertiseSection = ({ scrollContainerRef }) => {
 
   return (
     <div className={styles.sectionWrapper} ref={sectionContainerRef}>
-      <div className={styles.sectionHeadingWrapper} ref={headingRef}>
-        <div className={styles.headingDiv}>
-          <div className={styles.circle} ref={circleRef}></div>
-          <p>Expertise</p>
+      <div className={styles.innerWrapper}>
+        <div className={styles.sectionHeadingContainer} ref={headingRef}>
+          <SectionHeading upperText={"MY"} lowerText={"EXPERTISE"} />
         </div>
-      </div>
-      <div className={styles["content"]}>
-        <div className={styles["content__inner"]} ref={contentRef}>
-          {portfolioData.expertise.map((stack, rowIndex) => (
-            <div key={rowIndex} className={styles["content__tech-stack"]}>
-              <span className={styles["content__tech-stack-num"]}>
-                {(rowIndex + 1).toString().padStart(2, 0)}
-              </span>
-              {stack.label.map((letter, letterIndex) => (
+        <div className={styles.contentWrapper} ref={contentRef}>
+          {portfolioData.expertise.map((expertiseItem, rowIndex) => (
+            <div key={rowIndex} className={styles.expertiseRow}>
+              {expertiseItem.label.map((letter, letterIndex) => (
                 <span
                   key={letterIndex}
-                  className={styles["content__tech-stack-stackText"]}
+                  className={styles.expertiseRow__letter}
                   ref={(el) => addToRefs(el)}
+                  style={{
+                    fontSize: fontSize ? `${fontSize}px` : "inherit",
+                  }}
                 >
                   {letter}
                 </span>
               ))}
             </div>
           ))}
+
+          <div
+            ref={textfitRef}
+            style={{
+              position: "absolute",
+              top: "0px",
+              left: "0px",
+              width: "100%",
+              height: "20%",
+              border: "1px solid orange",
+              fontFamily: "SharpGroteskSemiBold25",
+              opacity: 0,
+              visibility: "hidden",
+            }}
+          >
+            <Textfit
+              style={{
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              {contentStack}
+            </Textfit>
+          </div>
         </div>
       </div>
     </div>

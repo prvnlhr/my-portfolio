@@ -1,69 +1,6 @@
 // @import "../../../styles/mixins.module";
 @use "../../../styles/mixins.module" as mixins;
 
-// .heroSectionWrapper {
-//   width: 100%;
-//   height: 100vh;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   border: 1px solid white;
-
-//   .heroContentParentWrapper {
-//     position: relative;
-//     width: 50%;
-//     height: 60%;
-//     display: grid;
-//     place-items: center;
-//     z-index: 1;
-//     border: 1px solid white;
-//     @include mixins.small-device {
-//       width: 90%;
-//       height: 50%;
-//       border: 1px solid salmon;
-//     }
-//   }
-// }
-
-// .nameText {
-//   // font-family: "Basement Grotesque XCond";
-//   font-family: "SharpGroteskBold20";
-//   font-size: 8vw;
-//   color: #fbfbfb;
-//   font-weight: 800;
-// }
-
-// .fname {
-//   position: absolute;
-//   top: -10%;
-//   left: -50px;
-//   z-index: 1;
-//   line-height: 1;
-//   // border: 1px solid red;
-// }
-
-// .fname span {
-//   display: block;
-//   font-size: 1.2rem;
-//   font-family: "SharpGroteskSemiBold25";
-//   line-height: 1;
-//   color: #fbfbfb;
-//   // border: 1px solid red;
-
-//   .andText {
-//     color: #a99ef0;
-//     display: inline;
-//   }
-// }
-
-// .lname {
-//   position: absolute;
-//   bottom: -15%;
-//   right: 0;
-//   z-index: 3;
-//   text-align: end;
-// }
-
 .heroSectionWrapper {
   position: relative;
   width: 100%;
@@ -72,6 +9,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  // background-color: #EBECEE ;
+  // border: 1px solid red;
+
+  -webkit-mask-image: linear-gradient(
+    to top,
+    rgba(245, 245, 243, 0) 0%,
+    rgba(245, 245, 243, 0.2) 10%,
+    rgba(245, 245, 243, 0.6) 20%,
+    rgba(245, 245, 243, 1) 30%
+  );
+  mask-image: linear-gradient(
+    to top,
+    rgba(245, 245, 243, 0) 0%,
+    rgba(245, 245, 243, 0.2) 10%,
+    rgba(245, 245, 243, 0.6) 20%,
+    rgba(245, 245, 243, 1) 30%
+  );
 
   .headerDiv {
     position: relative;
@@ -115,17 +69,17 @@
 
   .innerContainer {
     position: relative;
-    height: calc(80% - 80px);
     width: 80%;
-    // aspect-ratio: 1/1;
+    height: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
     // border: 1px solid salmon;
-    text-align: center;
 
     @include mixins.small-device {
-      width: 90%;
+      width: 100%;
+      // border: 1px solid green;
+      align-items: flex-start;
     }
 
     .title_text {

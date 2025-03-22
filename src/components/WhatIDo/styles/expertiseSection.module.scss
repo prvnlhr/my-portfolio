@@ -1,95 +1,60 @@
 @use "../../../styles/mixins.module" as mixins;
 .sectionWrapper {
   width: 100%;
-  height: auto;
-  // border: 1px solid red;
+  height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  // border: 1px solid red;
 
-  .sectionHeadingWrapper {
+  .innerWrapper {
+    display: none;
     width: calc(100% - 200px);
-    height: 100px;
-    // border: 1px solid white;
+    height: 100%;
+    min-height: 100%;
     display: flex;
-
-    .headingDiv {
-      width: auto;
+    flex-direction: column;
+    padding-top: 70px;
+    @include mixins.small-device {
       height: 100%;
-      // border: 1px solid orange;
-      position: relative;
-      display: flex;
-      align-items: center;
-
-      p {
-        font-family: "SharpGroteskBook20";
-        font-family: "SharpGroteskBook25";
-        font-size: 2rem;
-        margin-right: 15px;
-        z-index: 3;
-        color: #1b1c1e;
-        color: #fbfbfb;
-        position: relative;
-      }
-
-      .circle {
-        width: 50px;
-        aspect-ratio: 1/1;
-        border-radius: 100%;
-        background-color: white;
-        background-color: #a99ef0;
-        position: absolute;
-        transform: translate(-40%, 0%);
-        z-index: 1;
-      }
+      width: 85%;
     }
   }
 }
 
-.content {
+.sectionHeadingContainer {
   width: 100%;
-  height: auto;
-  // border: 1px solid orange;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  // border: 1px solid green;
+}
+.contentWrapper {
+  position: relative;
+  width: 100%;
+  height: calc(80% - 100px);
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 50px;
+  align-items: flex-start;
+  flex-direction: column;
 
-  &__inner {
-    width: 80%;
-    height: auto;
-    // border: 1px solid red;
-    display: flex;
-    flex-direction: column;
+  @include mixins.small-device {
+    height: calc(70% - 100px);
+    // border: 1px solid blue;
   }
 
-  &__tech-stack {
+  .expertiseRow {
     position: relative;
     width: 100%;
-    height: auto;
-    border-bottom: 1px solid rgb(53, 57, 59);
+    height: 20%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     z-index: 1;
-    font-size: 3rem;
-    @include mixins.small-device {
-      font-size: 2rem;
-    }
 
-    &-num {
-      font-family: "SharpGroteskBook25";
-      color: #a99ef0;
-      margin-right: 25px;
-      z-index: 3;
-    }
-
-    &-stackText {
+    &__letter {
       font-family: "SharpGroteskSemiBold25";
-      color: white;
-      z-index: 3;
+      color: #363b45;
     }
   }
 }

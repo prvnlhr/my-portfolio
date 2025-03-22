@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Textfit } from "react-textfit";
 import FontFaceObserver from "fontfaceobserver";
 import portfolioData from "../../utils/portfolioData.js";
+import SectionHeading from "../Common/SectionHeading/SectionHeading.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,7 +15,7 @@ const colorIndicesF = new Set([
   264, 265, 266, 267, 268, 269, 270, 271,
 ]);
 
-const AboutMeSection = ({ scrollContainerRef }) => {
+const AboutMeSection = ({ scrollContainerRef, updateHeaderBgColor }) => {
   const [isFontLoaded, setIsFontLoaded] = useState(false);
   const [fontSize, setFontSize] = useState(null);
   const { aboutMeContent } = portfolioData.aboutMe;
@@ -22,7 +23,6 @@ const AboutMeSection = ({ scrollContainerRef }) => {
   const contentArr = aboutMeContent.split("");
   const sectionContainerRef = useRef(null);
   const headingRef = useRef(null);
-  const circleRef = useRef(null);
   const contentRef = useRef(null);
   const lettersRef = useRef([]);
   const textfitRef = useRef(null);
@@ -81,45 +81,16 @@ const AboutMeSection = ({ scrollContainerRef }) => {
   // GSAP animations
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: headingRef.current,
-          scroller: scrollContainerRef.current,
-          start: "top 50%",
-          end: "100px 0px",
-        },
-      });
-
-      // Animation sequence
-      timeline
-        .fromTo(
-          headingRef.current,
-          { y: 80, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.5, ease: "power1" }
-        )
-        .fromTo(
-          circleRef.current,
-          { opacity: 0, scale: 0 },
-          { opacity: 1, scale: 1, duration: 0.5, ease: "power1" }
-        )
-        .fromTo(
-          contentRef.current,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.5, ease: "power1" },
-          "-=1"
-        );
-
-      // Letter stagger animation
       gsap.set(lettersRef.current, { opacity: 0.1 });
-
       gsap.to(lettersRef.current, {
         opacity: 1,
+        color: "#363B45",
         stagger: 0.05,
         ease: "power1.inOut",
         scrollTrigger: {
           trigger: contentRef.current,
           scroller: scrollContainerRef.current,
-          start: `top ${headingRef.current.offsetHeight + 25}`,
+          start: `top ${headingRef.current.offsetHeight + 70}px`,
           end: "bottom -200vh",
           scrub: 1,
           pin: sectionContainerRef.current,
@@ -133,29 +104,24 @@ const AboutMeSection = ({ scrollContainerRef }) => {
   return (
     <div className={styles.aboutMeSectionWrapper} ref={sectionContainerRef}>
       <div className={styles.innerWrapper}>
-        {/* Section Heading */}
         <div className={styles.sectionHeadingContainer} ref={headingRef}>
-          <div className={styles.headingDiv}>
-            <div className={styles.circle} ref={circleRef}></div>
-            <p>About Me</p>
-          </div>
+          <SectionHeading upperText={"ABOUT"} lowerText={"ME"} />
         </div>
         <div ref={contentRef} className={styles.aboutContentContainer}>
           {contentArr.map((letter, index) => (
             <span
+              className={`${styles.contentText} ${
+                colorIndicesF.has(index) && styles.contentText__highlight
+              } ${index === contentArr.length - 1 && styles.dotColor}`}
               style={{
-                color: colorIndicesF.has(index) ? "#A99EF0" : "",
                 fontSize: fontSize ? `${fontSize}px` : "inherit",
               }}
               key={index}
-              className={styles.letter}
               ref={(el) => (lettersRef.current[index] = el)}
             >
               {letter}
             </span>
           ))}
-          <span className={styles.dot}>.</span>
-
           <div
             ref={textfitRef}
             style={{

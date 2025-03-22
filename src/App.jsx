@@ -18,6 +18,7 @@ const App = () => {
   const cursorRef = useRef(null);
   const cursorTailRef = useRef(null);
   const scrollContainerRef = useRef(null);
+  const headerRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(true); // Controls loading visibility
 
@@ -94,7 +95,6 @@ const App = () => {
 
   return (
     <div className={styles.appWrapper}>
-      {/* Conditionally render Loading component */}
       {isVisible && (
         <Loading setIsLoading={setIsLoading} setIsVisible={setIsVisible} />
       )}
@@ -103,7 +103,7 @@ const App = () => {
           <div className={styles.cursor} ref={cursorRef} />
           <div className={styles.cursorTail} ref={cursorTailRef} />
 
-          <div className={styles.headerBar}>
+          <div className={styles.headerBar} ref={headerRef}>
             <div className={styles.logoWrapper}>
               <Logo />
             </div>

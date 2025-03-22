@@ -6,8 +6,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LinkBtn from "../Common/Button/LinkBtn";
 import portfolioData from "../../utils/portfolioData";
-
-const OtherWorkSection = ({ scrollContainerRef }) => {
+import SectionHeading from "../Common/SectionHeading/SectionHeading";
+const OtherWorkSection = ({ scrollContainerRef, updateHeaderBgColor }) => {
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const cardRefs = useRef([]);
@@ -19,20 +19,20 @@ const OtherWorkSection = ({ scrollContainerRef }) => {
 
     const ctx = gsap.context(() => {
       // Animation for the heading
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: headingRef.current,
-          scroller: scrollContainerRef.current,
-          start: "top 50%",
-          end: "100px 0px",
-        },
-      });
+      // const timeline = gsap.timeline({
+      //   scrollTrigger: {
+      //     trigger: headingRef.current,
+      //     scroller: scrollContainerRef.current,
+      //     start: "top 50%",
+      //     end: "100px 0px",
+      //   },
+      // });
 
-      timeline.fromTo(
-        headingRef.current,
-        { y: 80, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5, ease: "power1" }
-      );
+      // timeline.fromTo(
+      //   headingRef.current,
+      //   { y: 80, opacity: 0 },
+      //   { y: 0, opacity: 1, duration: 0.5, ease: "power1" }
+      // );
 
       // Animation for each card
       cardRefs.current.forEach((card) => {
@@ -73,10 +73,7 @@ const OtherWorkSection = ({ scrollContainerRef }) => {
     <div className={styles.sectionWrapper} ref={sectionRef}>
       <div className={styles.innerWrapper}>
         <div className={styles.sectionHeadingContainer} ref={headingRef}>
-          <div className={styles.headingDiv}>
-            <div className={styles.circle}></div>
-            <p>Other work</p>
-          </div>
+          <SectionHeading upperText={"OTHER"} lowerText={"WORK"} />
         </div>
         <div className={styles.contentWrapper}>
           <div className={styles.projectsGrid}>

@@ -10,7 +10,7 @@ body,
 #root {
   height: 100vh;
   height: 100dvh;
-  background-color: #0d090d;
+  background-color: transparent;
 }
 
 html {

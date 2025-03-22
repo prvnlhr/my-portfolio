@@ -4,6 +4,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LinkBtn from "../Common/Button/LinkBtn";
 import portfolioData from "../../utils/portfolioData";
+import SectionHeading from "../Common/SectionHeading/SectionHeading";
+import { Textfit } from "react-textfit";
 
 const ProjectSection = ({ scrollContainerRef }) => {
   const projects = portfolioData.projects;
@@ -16,7 +18,6 @@ const ProjectSection = ({ scrollContainerRef }) => {
   const numRefs = useRef([]);
   const techStackRefs = useRef([]);
   const headingRef = useRef();
-  const circleRef = useRef();
 
   imageRefs.current = [];
   descRefs.current = [];
@@ -33,29 +34,6 @@ const ProjectSection = ({ scrollContainerRef }) => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animation for heading and circle
-      const t1 = gsap.timeline({
-        scrollTrigger: {
-          trigger: headingRef.current,
-          scroller: scrollContainerRef.current,
-          start: "top 50%",
-          end: "100px 0px",
-          // markers: true,
-        },
-      });
-
-      // Animate the heading and circle
-      t1.fromTo(
-        headingRef.current,
-        { y: 50, opacity: 0 }, // Initial state
-        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" } // Final state
-      ).fromTo(
-        circleRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1, ease: "power2.out" },
-        "-=0.5" // Overlap with the previous animation
-      );
-
       // Create a single scroll trigger for pinning the section
       ScrollTrigger.create({
         trigger: sectionRef.current,
@@ -79,8 +57,10 @@ const ProjectSection = ({ scrollContainerRef }) => {
         },
       });
 
-      gsap.set(`.${styles.left_wrapper}`, { y: 100, x: -100, opacity: 0 });
-      gsap.set(`.${styles.descGrid}`, { y: 100, x: 100, opacity: 0 });
+      // gsap.set(`.${styles.left_wrapper}`, { y: 100, x: -100, opacity: 0 });
+      gsap.set(`.${styles.left_wrapper}`, { y: 100, opacity: 0 });
+      // gsap.set(`.${styles.descGrid}`, { y: 100, x: 100, opacity: 0 });
+      gsap.set(`.${styles.descGrid}`, { x: 100, opacity: 0 });
       leftAndDescTimeline
         .to(`.${styles.left_wrapper}`, {
           x: 0,
@@ -277,10 +257,7 @@ const ProjectSection = ({ scrollContainerRef }) => {
     <div className={styles.projectSectionWrapper} ref={sectionRef}>
       <div className={styles.innerWrapper}>
         <div className={styles.sectionHeadingContainer} ref={headingRef}>
-          <div className={styles.headingDiv}>
-            <div className={styles.circle} ref={circleRef}></div>
-            <p>Projects</p>
-          </div>
+          <SectionHeading upperText={"PROJECTS"} lowerText={"I MADE"} />
         </div>
         <div className={styles.mainWrapper} ref={mainWrapperRef}>
           <div className={styles.left_wrapper}>
@@ -298,38 +275,21 @@ const ProjectSection = ({ scrollContainerRef }) => {
               </div>
             </div>
             <div className={styles.imageDisplayWrapper}>
-              <div className={styles.imageTabWrapper}>
-                <div className={styles.fakeBtnContainer}>
-                  <div
-                    className={`${styles.fakeBtn} ${styles["fakeBtn--btn1"]}`}
-                  ></div>
-                  <div
-                    className={`${styles.fakeBtn} ${styles["fakeBtn--btn2"]}`}
-                  ></div>
-                  <div
-                    className={`${styles.fakeBtn} ${styles["fakeBtn--btn3"]}`}
-                  ></div>
+              {projects.map((image, index) => (
+                <div
+                  className={styles.projectImageDiv}
+                  key={index}
+                  ref={(el) => addToRefs(el, imageRefs)}
+                  style={{
+                    clipPath:
+                      index === 0
+                        ? "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
+                        : "polygon(0 0, 100% 0, 100% 0, 0 0)",
+                  }}
+                >
+                  <img src={image.imageSrc} alt={`Project${index + 1}`} />
                 </div>
-                <div className={styles.fakeTab}></div>
-                <div className={styles.fakeTabIcon}></div>
-              </div>
-              <div className={styles.imageWindowRapper}>
-                {projects.map((image, index) => (
-                  <div
-                    className={styles.projectImageDiv}
-                    key={index}
-                    ref={(el) => addToRefs(el, imageRefs)}
-                    style={{
-                      clipPath:
-                        index === 0
-                          ? "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
-                          : "polygon(0 0, 100% 0, 100% 0, 0 0)",
-                    }}
-                  >
-                    <img src={image.imageSrc} alt={`Project${index + 1}`} />
-                  </div>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
           <div className={styles.right_wrapper}>
@@ -352,7 +312,17 @@ const ProjectSection = ({ scrollContainerRef }) => {
                     ref={(el) => addToRefs(el, descRefs)}
                     style={{ opacity: jIndx === 0 ? 1 : 0 }}
                   >
-                    {item.desc}
+                    <Textfit
+                      mode="multi"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        // border: "1px solid blue",
+                        fontFamily: "SharpGroteskBook20",
+                      }}
+                    >
+                      {item.desc}
+                    </Textfit>
                   </p>
                 ))}
               </div>

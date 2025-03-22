@@ -4,8 +4,14 @@ import gsap from "gsap";
 import { Textfit } from "react-textfit";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import portfolioData from "../../utils/portfolioData";
+import SectionHeading from "../Common/SectionHeading/SectionHeading";
 
-const FooterSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
+const FooterSection = ({
+  scrollContainerRef,
+  cursorRef,
+  cursorTailRef,
+  updateHeaderBgColor,
+}) => {
   const sectionContainerRef = useRef(null);
   const headingRef = useRef(null);
   const circleRef = useRef(null);
@@ -32,16 +38,16 @@ const FooterSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
       });
 
       timeline
-        .fromTo(
-          headingRef.current,
-          { y: 80, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.3, ease: "power1" }
-        )
-        .fromTo(
-          circleRef.current,
-          { opacity: 0, scale: 0 },
-          { opacity: 1, scale: 1, duration: 0.3, ease: "power1" }
-        )
+        // .fromTo(
+        //   headingRef.current,
+        //   { y: 80, opacity: 0 },
+        //   { y: 0, opacity: 1, duration: 0.3, ease: "power1" }
+        // )
+        // .fromTo(
+        //   circleRef.current,
+        //   { opacity: 0, scale: 0 },
+        //   { opacity: 1, scale: 1, duration: 0.3, ease: "power1" }
+        // )
         .fromTo(
           subContentRef.current,
           { y: 70, opacity: 0 },
@@ -112,11 +118,8 @@ const FooterSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
   return (
     <div className={styles.footerSection} ref={sectionContainerRef}>
       <div className={styles.footerSection__inner}>
-        <div className={styles.sectionHeading}>
-          <div className={styles.heading} ref={headingRef}>
-            <div className={styles.heading__circle} ref={circleRef}></div>
-            <p>Let's Connect</p>
-          </div>
+        <div className={styles.sectionHeadingWrapper}>
+          <SectionHeading upperText={"LET'S"} lowerText={"CONNECT"} />
         </div>
         <div className={styles.subContentSection} ref={subContentRef}>
           <Textfit

@@ -5,7 +5,6 @@ const HeroImage = ({ heroImageRef }) => {
   return (
     <div className={styles.imageWrapper} ref={heroImageRef}>
       <img src={myImg} />
-      <div className={styles.overlay}></div>
     </div>
   );
 };

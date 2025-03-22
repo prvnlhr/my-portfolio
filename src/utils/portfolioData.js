@@ -6,14 +6,14 @@ import chordsImg from "../assets/chords.png";
 
 const portfolioData = {
   aboutMe: {
-    aboutMeContent: `I'm a no-nonsense developer who writes code that works - most of the time. Fullstack by trade, but my real love is crafting slick, high performing UIs. Always learning, coding, and breaking things—just to fix them better. Ready for any challenge that sharpens my frontend skills and sense of humor`,
+    aboutMeContent: `I'm a no-nonsense developer who writes code that works - most of the time. Fullstack by trade, but my real love is crafting slick, high performing UIs. Always learning, coding, and breaking things—just to fix them better. Ready for any challenge that sharpens my frontend skills and sense of humor.`,
   },
 
   projects: [
     {
       id: 1,
       title: "Doer - E Learning",
-      desc: "Doer is a full-stack e-learning PWA built with Next.js, offering a variety of courses managed in MongoDB. It features secure email/OTP authentication with NextAuth v5, media management via Cloudinary, and SASS for styling. Key functionalities include universal search, progress tracking, and a comprehensive admin panel for content management.",
+      desc: "Doer is a full-stack e-learning PWA built with Next.js, offering courses managed in MongoDB. It features secure email/OTP authentication with NextAuth v5, media management via Cloudinary, and SASS for styling. Key functionalities include universal search, progress tracking, and a comprehensive admin panel.",
       imageSrc: doerImg,
       techStack: [
         "Next",
@@ -28,7 +28,7 @@ const portfolioData = {
     {
       id: 2,
       title: "Cloude - Cloud Storage",
-      desc: "Cloude is a modern cloud storage solution built with a seamless and intuitive interface. Users can easily upload, organize, and manage their files securely in the cloud. With real-time access and sharing features, Cloude ensures smooth collaboration and file management. Leveraging Supabase for backend, authentication, and storage, along with a clean Tailwind-powered UI, Cloude offers a fast, reliable, and user-friendly experience, similar to popular platforms like Google Drive.",
+      desc: "Cloude is a modern cloud storage solution with a seamless interface. Users can upload, organize, and manage files securely. It features real-time access, sharing, and collaboration. Built with Supabase for backend, authentication, and storage, and styled with Tailwind for a clean, user-friendly experience.",
       imageSrc: cloudeImg,
       techStack: [
         "Next",
@@ -41,8 +41,8 @@ const portfolioData = {
     },
     {
       id: 3,
-      title: "Ecrypt  - Digital Vault",
-      desc: "Ecrypt is a secure digital vault PWA built using the MERN stack (MongoDB, Express.js, React, Node.js), offering full CRUD operations and seamless state management via Redux Toolkit. The app features secure JWT-based authentication and authorization, including email verification and OAuth support. Additional functionalities include a password generator, search feature, date picker, and dynamic animations crafted using Framer Motion to enhance the user experience.",
+      title: "Ecrypt - Digital Vault",
+      desc: "Ecrypt is a secure digital vault PWA built using the MERN stack. It offers full CRUD operations and state management via Redux Toolkit. Features include JWT-based authentication, email verification, OAuth support, a password generator, search, date picker, and Framer Motion animations.",
       imageSrc: ecryptImg,
       techStack: ["React", "MongoDB", "NodeJS", "Express", "Redux", "Framer"],
       link: "https://github.com/prvnlhr/ecrypt_mern_pwa",
@@ -50,8 +50,8 @@ const portfolioData = {
     {
       id: 4,
       title: "Chords - Music Player",
+      desc: "Chords is a fully-featured music player built with JavaScript, HTML, and CSS. It offers an intuitive interface for searching songs, albums, and artists. The app ensures smooth music discovery and playback, with state and data persistence managed using the Web Storage API.",
       imageSrc: chordsImg,
-      desc: "Chords is a fully-featured music player built with JavaScript, HTML, and CSS, delivering an intuitive and engaging interface. The app allows users to seamlessly search for songs, albums, and artists, ensuring a smooth music discovery experience. Efficiently managed state and data persistence using the Web Storage API, Chords ensures reliable performance, offering users a consistent and enjoyable listening journey.",
       techStack: ["Javascript", "HTML", "CSS", "WEB-STORAGE", "CSS"],
       link: "https://github.com/prvnlhr/Chords_music_player",
     },
@@ -96,22 +96,11 @@ const portfolioData = {
   ],
 
   expertise: [
-    {
-      id: 1,
-      label: ["M", "E", "R", "N"],
-    },
-    {
-      id: 2,
-      label: ["N", "e", "x", "t"],
-    },
-    {
-      id: 3,
-      label: ["U", "I", "/", "U", "X"],
-    },
-    {
-      id: 4,
-      label: ["A", "l", "g", "o", "r", "i", "t", "h", "m"],
-    },
+    { id: 1, label: ["F", "R", "O", "N", "T", "E", "N", "D"] }, // FRONTEND
+    { id: 2, label: ["B", "A", "C", "K", "E", "N", "D"] }, // BACKEND
+    { id: 3, label: ["D", "E", "S", "I", "G", "N"] }, // DESIGN
+    { id: 4, label: ["R", "E", "S", "T"] }, // REST
+    { id: 5, label: ["C", "O", "D", "I", "N", "G"] }, // CODING
   ],
   contact: {
     firstName: "Praveen",

@@ -1,22 +1,28 @@
 // @import "../../../styles/mixins.module";
 @use "../../../styles/mixins.module" as mixins;
 
+:root {
+  --text-color: #363b45;
+}
 .projectSectionWrapper {
   width: 100%;
-  height: 99%;
+  height: 100%;
   position: relative;
   display: flex;
   justify-content: center;
-  // border: 1px solid red;
+  // background-color: #77adf9;
+  background-color: var(--theme-color);
+  background-color: #77adf9;
   z-index: 1;
-  margin-bottom: 100px;
+
+  // margin-bottom: 100px;
   .innerWrapper {
     width: calc(100% - 200px);
     height: auto;
-    // border: 1px solid white;
-
+    padding-top: 70px;
     @include mixins.small-device {
       width: 90%;
+      // border: 1px solid red;
     }
   }
 }
@@ -26,40 +32,7 @@
   height: 100px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  // position: relative;
-  // border: 1px solid red;
-
-  .headingDiv {
-    width: auto;
-    height: 100%;
-    // border: 1px solid orange;
-    position: relative;
-    display: flex;
-    align-items: center;
-
-    .circle {
-      width: 50px;
-      aspect-ratio: 1/1;
-      border-radius: 100%;
-      background-color: white;
-      background-color: #a99ef0;
-      position: absolute;
-      transform: translate(-40%, 0%);
-      z-index: 1;
-    }
-
-    p {
-      font-family: "SharpGroteskBook20";
-      font-family: "SharpGroteskBook25";
-      font-size: 2rem;
-      margin-right: 15px;
-      z-index: 3;
-      color: #1b1c1e;
-      color: #fbfbfb;
-      position: relative;
-    }
-  }
+  justify-content: flex-start;
 }
 
 .mainWrapper {
@@ -69,9 +42,10 @@
   align-items: center;
   padding: 0% 0%;
   position: relative;
-  // border: 1px solid red;
+  // background-color: salmon;
   @include mixins.small-device {
     flex-direction: column;
+    width: 100%;
   }
 }
 
@@ -101,10 +75,13 @@
         font-family: "SharpGroteskMedium10";
         font-family: "SharpGroteskBook20";
         color: #1b1c1e;
-        color: #fbfbfb;
+        // color: #fbfbfb;
+        color: #363b45;
+        color: #24262e;
+        color: var(--text-color);
         font-size: 1.2rem;
         span {
-          color: #a99ef0;
+          color: white;
           font-size: 1.2rem;
         }
 
@@ -118,94 +95,27 @@
   .imageDisplayWrapper {
     position: relative;
     width: 100%;
-    height: auto;
-    border: 1px solid #24262e;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border: 1px solid rgb(53, 57, 59);
-    border-radius: 8px;
+    aspect-ratio: 137/77;
     overflow: hidden;
-
-    .imageTabWrapper {
+    border-radius: 8px;
+    border: 3px solid white;
+    will-change: transform;
+    backface-visibility: hidden;
+    box-shadow: 0px 0.85px 34px rgba(0, 0, 0, 0.36);
+    .projectImageDiv {
+      position: absolute;
       width: 100%;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      align-items: flex-end;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-
-      .fakeBtnContainer {
-        width: 70px;
-        height: 75%;
-        // border: 1px solid red;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-
-        .fakeBtn {
-          width: 8px;
-          aspect-ratio: 1/1;
-          border-radius: 100%;
-          &--btn1 {
-            background-color: #e7625e;
-          }
-          &--btn2 {
-            background-color: #f0c748;
-          }
-          &--btn3 {
-            background-color: #66b069;
-          }
-        }
-      }
-      .fakeTab {
-        width: 85px;
-        height: 65%;
-        border-top: 1px solid rgba(255, 255, 255, 0.18);
-        border-left: 1px solid rgba(255, 255, 255, 0.18);
-        border-right: 1px solid rgba(255, 255, 255, 0.18);
-        border-radius: 5px 5px 0px 0px;
-        display: none;
-      }
-
-      .fakeTabIcon {
-        display: none;
-        position: relative;
-        height: 40%;
-        aspect-ratio: 1/1;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        border-radius: 2px;
-        margin-left: auto;
-        margin-right: 8px;
-        &::after {
-          position: absolute;
-          content: "";
-          border: 1px solid rgba(255, 255, 255, 0.18);
-          height: 100%;
-          width: 100%;
-          left: -4px;
-          bottom: -4px;
-          border-radius: inherit;
-          background-color: #0d0d0d;
-        }
-      }
-    }
-
-    .imageWindowRapper {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 137/77;
-      .projectImageDiv {
-        position: absolute;
+      height: 100%;
+      top: 0px;
+      left: 0px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      backface-visibility: hidden;
+      img {
         width: 100%;
         height: 100%;
-        top: 0px;
-        left: 0px;
-        display: grid;
-        place-items: center;
-        img {
-          width: 100%;
-          height: 100%;
-        }
+        backface-visibility: hidden;
       }
     }
   }
@@ -218,20 +128,21 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  // border: 1px solid skyblue;
+  // border: 1px solid blue;
 
   @include mixins.small-device {
     align-items: flex-start;
     justify-content: flex-start;
     width: 100%;
-    height: 50%;
+    flex-grow: 1;
+    height: 100%;
   }
 
   .descGrid {
     width: 90%;
     height: 50%;
     display: grid;
-    grid-template-rows: 50px minmax(0, 1fr) 40px 50px;
+    grid-template-rows: 50px minmax(0, 1fr) 50px 50px;
     grid-template-columns: 100%;
     grid-template-areas:
       "titleCell"
@@ -239,10 +150,9 @@
       "techStackCell"
       "linkCell";
     // border: 1px solid greenyellow;
-
     @include mixins.small-device {
       width: 100%;
-      height: 80%;
+      height: 90%;
     }
   }
 
@@ -258,10 +168,13 @@
       font-family: "SharpGroteskBook25";
       font-family: "SharpGroteskSemiBold25";
       color: #fbfbfb;
+      color: #363b45;
+      color: #24262e;
+      color: var(--text-color);
       font-size: 2.3rem;
       font-size: 1.5rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-
+      // border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      // border: 1px solid red;
       @include mixins.small-device {
         font-size: 1.2rem;
         white-space: nowrap;
@@ -275,24 +188,24 @@
     // border: 1px solid green;
     width: 100%;
     height: 100%;
+    min-height: 100%;
     display: flex;
     align-items: center;
     p {
       width: 90%;
-      height: 90%;
+      height: 100%;
       position: absolute;
       font-family: "SharpGroteskBook20";
-      font-size: 0.8rem;
-      color: #1b1c1e;
-      color: #fbfbfb;
-      letter-spacing: 0.3px;
+      // font-size: 0.8rem;
+      color: var(--text-color);
+      // letter-spacing: 0.3px;
       line-height: 1.7;
       text-align: justify;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 6;
+      // display: -webkit-box;
+      // -webkit-box-orient: vertical;
+      // -webkit-line-clamp: 6;
       overflow: hidden;
-      max-height: calc(6 * 1.7em);
+      // max-height: calc(6 * 1.7em);
     }
   }
 
@@ -312,7 +225,7 @@
       width: auto;
       height: 80%;
       position: absolute;
-      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      // border-top: 1px solid rgba(255, 255, 255, 0.18);
       // border: 1px solid red;
 
       span {
@@ -321,12 +234,18 @@
         font-size: 0.7rem;
         color: #aaacb3;
         color: #e0e5eb;
+        color: #363b45;
+        color: #24262e;
+        // color: white;
+        color: var(--text-color);
+
         text-transform: uppercase;
         letter-spacing: 0.3px;
         white-space: nowrap;
 
         &::first-letter {
-          color: #a99ef0 !important;
+          // color: #a99ef0 !important;
+          // color: white !important;
         }
       }
     }
