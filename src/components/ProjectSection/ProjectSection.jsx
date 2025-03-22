@@ -257,7 +257,7 @@ const ProjectSection = ({ scrollContainerRef }) => {
     <div className={styles.projectSectionWrapper} ref={sectionRef}>
       <div className={styles.innerWrapper}>
         <div className={styles.sectionHeadingContainer} ref={headingRef}>
-          <SectionHeading upperText={"PROJECTS"} lowerText={"I MADE"} />
+          <SectionHeading upperText={"SELECTED"} lowerText={"WORK"} />
         </div>
         <div className={styles.mainWrapper} ref={mainWrapperRef}>
           <div className={styles.left_wrapper}>
@@ -307,7 +307,7 @@ const ProjectSection = ({ scrollContainerRef }) => {
               </div>
               <div className={styles.descCell}>
                 {projects.map((item, jIndx) => (
-                  <p
+                  <div
                     key={jIndx}
                     ref={(el) => addToRefs(el, descRefs)}
                     style={{ opacity: jIndx === 0 ? 1 : 0 }}
@@ -323,7 +323,7 @@ const ProjectSection = ({ scrollContainerRef }) => {
                     >
                       {item.desc}
                     </Textfit>
-                  </p>
+                  </div>
                 ))}
               </div>
               <div className={styles.techStackCell}>

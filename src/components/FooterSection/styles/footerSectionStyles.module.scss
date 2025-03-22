@@ -68,21 +68,20 @@
 .subContentSection {
   width: 100%;
   height: 0px;
-  min-height: 200px;
+  min-height: 180px;
   // border: 1px solid blue;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   font-family: "SharpGroteskSemiBold25";
-  font-size: 2.5rem;
   margin-top: 30px;
+
   @include mixins.small-device {
     font-size: 1rem;
   }
   &__upperText {
-    color: white;
+    color: #4d5360;
   }
   &__lowerText {
     color: #a99ef0;
@@ -91,17 +90,14 @@
 
 .content {
   width: 100%;
-  // height: calc(100% - 200px);
   height: auto;
-  // border: 1px solid red;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  // border-top: 1px solid rgb(53, 57, 59);
+  // border-bottom: 1px solid rgb(53, 57, 59);
   // border: 1px solid green;
-  border-top: 1px solid rgb(53, 57, 59);
-  border-bottom: 1px solid rgb(53, 57, 59);
-  margin-top: 50px;
 
   &__emailContainer {
     width: 100%;
@@ -109,27 +105,52 @@
     // border: 1px solid goldenrod;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 20px 0px;
 
     a {
+      position: relative;
       font-family: "SharpGroteskSemiBold25";
-      font-size: 1.5rem;
-      color: white;
+      font-size: 2rem;
+      color: #4d5360;
       @include mixins.small-device {
         font-size: 1.2rem;
       }
       span {
-        color: #a99ef0;
+        color: #4d5360;
       }
 
       &:hover span {
-        color: white;
+        color: #a99ef0;
       }
     }
+    .emailLinkIcon {
+      font-size: 1.5rem;
+      margin-left: 5px;
+      color: #a99ef0;
+    }
   }
+
+  .content__emailContainer a::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: -3px;
+    width: 5%;
+    height: 1px;
+    background-color: #888c94;
+    transition: width 0.3s ease-in-out;
+    z-index: 999;
+  }
+
+  .content__emailContainer:hover a::after {
+    width: 100%;
+    transition: width 0.3s ease-in-out;
+  }
+
   &__linksRow {
     display: flex;
+    display: none;
     width: 100%;
     height: auto;
     // border: 1px solid lightgreen;

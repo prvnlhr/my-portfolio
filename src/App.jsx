@@ -113,7 +113,11 @@ const App = () => {
             <HeroSection scrollContainerRef={scrollContainerRef} />
             <AboutMeSection scrollContainerRef={scrollContainerRef} />
             <ProjectSection scrollContainerRef={scrollContainerRef} />
-            <OtherWorkSection scrollContainerRef={scrollContainerRef} />
+            <OtherWorkSection
+              scrollContainerRef={scrollContainerRef}
+              cursorRef={cursorRef}
+              cursorTailRef={cursorTailRef}
+            />
             <ExpertiseSection scrollContainerRef={scrollContainerRef} />
             <FooterSection
               scrollContainerRef={scrollContainerRef}

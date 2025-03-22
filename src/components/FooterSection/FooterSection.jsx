@@ -6,15 +6,9 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import portfolioData from "../../utils/portfolioData";
 import SectionHeading from "../Common/SectionHeading/SectionHeading";
 
-const FooterSection = ({
-  scrollContainerRef,
-  cursorRef,
-  cursorTailRef,
-  updateHeaderBgColor,
-}) => {
+const FooterSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
   const sectionContainerRef = useRef(null);
   const headingRef = useRef(null);
-  const circleRef = useRef(null);
   const subContentRef = useRef(null);
   const emailRef = useRef(null);
   const linkRef = useRef(null);
@@ -26,46 +20,36 @@ const FooterSection = ({
   const contactData = portfolioData.contact;
   const [username, domain] = contactData.email.split("@");
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: headingRef.current,
-          scroller: scrollContainerRef.current,
-          start: "top 50%",
-          end: "100px 0px",
-        },
-      });
+  // useEffect(() => {
+  //   const ctx = gsap.context(() => {
+  //     const timeline = gsap.timeline({
+  //       scrollTrigger: {
+  //         trigger: headingRef.current,
+  //         scroller: scrollContainerRef.current,
+  //         start: "top 50%",
+  //         end: "100px 0px",
+  //       },
+  //     });
 
-      timeline
-        // .fromTo(
-        //   headingRef.current,
-        //   { y: 80, opacity: 0 },
-        //   { y: 0, opacity: 1, duration: 0.3, ease: "power1" }
-        // )
-        // .fromTo(
-        //   circleRef.current,
-        //   { opacity: 0, scale: 0 },
-        //   { opacity: 1, scale: 1, duration: 0.3, ease: "power1" }
-        // )
-        .fromTo(
-          subContentRef.current,
-          { y: 70, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.3, ease: "power1" }
-        )
-        .fromTo(
-          emailRef.current,
-          { y: 70, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.3, ease: "power1" }
-        )
-        .fromTo(
-          linkRef.current,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.3, ease: "power1" }
-        );
-    }, sectionContainerRef);
-    return () => ctx.revert();
-  }, [scrollContainerRef]);
+  //     timeline
+  //       .fromTo(
+  //         subContentRef.current,
+  //         { y: 70, opacity: 0 },
+  //         { y: 0, opacity: 1, duration: 0.3, ease: "power1" }
+  //       )
+  //       .fromTo(
+  //         emailRef.current,
+  //         { y: 70, opacity: 0 },
+  //         { y: 0, opacity: 1, duration: 0.3, ease: "power1" }
+  //       )
+  //       .fromTo(
+  //         linkRef.current,
+  //         { opacity: 0 },
+  //         { opacity: 1, duration: 0.3, ease: "power1" }
+  //       );
+  //   }, sectionContainerRef);
+  //   return () => ctx.revert();
+  // }, [scrollContainerRef]);
 
   const handleMouseEnter = (iconRef, x, y) => {
     gsap.to(iconRef.current, {
@@ -145,6 +129,12 @@ const FooterSection = ({
               <span>@</span>
               {domain}
             </a>
+
+            <Icon
+              icon="gravity-ui:arrow-down"
+              style={{ transform: "rotate(-135deg)" }}
+              className={styles.emailLinkIcon}
+            />
           </div>
           <div className={styles.content__linksRow} ref={linkRef}>
             <div className={styles.socialLinkRow}>

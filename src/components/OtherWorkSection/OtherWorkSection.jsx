@@ -7,10 +7,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import LinkBtn from "../Common/Button/LinkBtn";
 import portfolioData from "../../utils/portfolioData";
 import SectionHeading from "../Common/SectionHeading/SectionHeading";
-const OtherWorkSection = ({ scrollContainerRef, updateHeaderBgColor }) => {
+import { Icon } from "@iconify/react/dist/iconify.js";
+const OtherWorkSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const cardRefs = useRef([]);
+  const iconRefs = useRef([]);
+
+  const linkRefs = useRef([]);
 
   const otherProjects = portfolioData.otherWork;
 
@@ -69,11 +73,88 @@ const OtherWorkSection = ({ scrollContainerRef, updateHeaderBgColor }) => {
     }
   };
 
+  const handleLinkMouseEnter = (cardIndex) => {
+    if (cursorRef.current && cursorTailRef.current) {
+      gsap.to(cursorRef.current, {
+        opacity: 0,
+        duration: 0.2,
+        ease: "power1.inOut",
+      });
+
+      gsap.to(cursorTailRef.current, {
+        scale: 10,
+        opacity: 0.2,
+        duration: 0.2,
+        ease: "power1.inOut",
+      });
+    }
+
+    if (linkRefs.current[cardIndex]) {
+      gsap.to(linkRefs.current[cardIndex], {
+        fontWeight: 700,
+        duration: 0.2,
+        color: "#A79EEA",
+        ease: "power1.inOut",
+      });
+    }
+  };
+
+  const handleLinkMouseLeave = (cardIndex) => {
+    if (cursorRef.current && cursorTailRef.current) {
+      gsap.to(cursorRef.current, {
+        opacity: 1,
+        duration: 0.2,
+        ease: "power1.inOut",
+      });
+
+      gsap.to(cursorTailRef.current, {
+        scale: 1,
+        opacity: 0.2,
+        duration: 0.2,
+        ease: "power1.inOut",
+      });
+    }
+
+    if (linkRefs.current[cardIndex]) {
+      gsap.to(linkRefs.current[cardIndex], {
+        fontWeight: 400,
+        duration: 0.2,
+        color: "#A79EEA",
+        ease: "power1.inOut",
+      });
+    }
+  };
+  const handleCardMouseEnter = (cardIndex) => {
+    if (iconRefs.current[cardIndex]) {
+      gsap.to(iconRefs.current[cardIndex], {
+        scale: 1.3,
+        duration: 0.2,
+        color: "#A79EEA",
+        ease: "power1.inOut",
+      });
+    }
+  };
+
+  const handleCardMouseLeave = (cardIndex) => {
+    if (iconRefs.current[cardIndex]) {
+      gsap.to(iconRefs.current[cardIndex], {
+        scale: 1.2,
+        duration: 0.2,
+        color: "#fbfbfb",
+        ease: "power1.inOut",
+      });
+    }
+  };
+
   return (
     <div className={styles.sectionWrapper} ref={sectionRef}>
       <div className={styles.innerWrapper}>
         <div className={styles.sectionHeadingContainer} ref={headingRef}>
-          <SectionHeading upperText={"OTHER"} lowerText={"WORK"} />
+          <SectionHeading
+            upperText={"OTHER"}
+            lowerText={"WORK"}
+            textColor={"#FBFBFB"}
+          />
         </div>
         <div className={styles.contentWrapper}>
           <div className={styles.projectsGrid}>
@@ -92,9 +173,15 @@ const OtherWorkSection = ({ scrollContainerRef, updateHeaderBgColor }) => {
                 <div
                   className={styles.projectCard}
                   ref={(el) => addRefs(el, cardRefs)}
+                  onMouseEnter={() => handleCardMouseEnter(index)}
+                  onMouseLeave={() => handleCardMouseLeave(index)}
                 >
-                  <div className={styles.gitLogoDiv}>
-                    <GitHubIcon />
+                  <div className={styles.bgDiv}></div>
+                  <div
+                    className={styles.gitLogoDiv}
+                    ref={(el) => addRefs(el, iconRefs)}
+                  >
+                    <Icon icon="ri:github-fill" />
                   </div>
                   <div className={styles.descContainer}>
                     <p>{project.description}</p>
@@ -108,6 +195,9 @@ const OtherWorkSection = ({ scrollContainerRef, updateHeaderBgColor }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={styles.projectLinkDiv}
+                      ref={(el) => addRefs(el, linkRefs)}
+                      onMouseEnter={() => handleLinkMouseEnter(index)}
+                      onMouseLeave={() => handleLinkMouseLeave(index)}
                     >
                       <p>Explore</p>
                       <span>
