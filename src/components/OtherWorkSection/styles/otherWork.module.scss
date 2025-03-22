@@ -82,6 +82,7 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: repeat(3, 50vh);
   border: 1px solid rgb(53, 57, 59);
+  border: 1px solid #ffffff0d;
   grid-template-areas:
     "project1 project2"
     "project3 project4"
@@ -113,18 +114,20 @@
 }
 
 .projectsGrid > .projectContainer:nth-child(2n) {
-  border-right: 1px solid rgb(53, 57, 59);
+  border-right: 1px solid #ffffff0d;
 }
 
 .projectsGrid > .projectContainer:not(:nth-last-child(-n + 2)) {
-  border-bottom: 1px solid rgb(53, 57, 59);
+  // border-bottom: 1px solid rgb(53, 57, 59);
+  border-bottom: 1px solid #ffffff0d;
 }
 
 .projectCard {
   width: 90%;
   height: 90%;
-  border: 4px solid rgb(53, 57, 59);
-  border: 1px solid rgb(53, 57, 59);
+  // border: 4px solid rgb(53, 57, 59);
+  // border: 1px solid rgb(53, 57, 59);
+  border: 1px solid #ffffff0d;
   border-radius: inherit;
   // border-radius: 10px;
   position: relative;

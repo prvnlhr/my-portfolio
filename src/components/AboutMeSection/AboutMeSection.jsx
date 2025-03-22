@@ -15,7 +15,7 @@ const colorIndicesF = new Set([
   264, 265, 266, 267, 268, 269, 270, 271,
 ]);
 
-const AboutMeSection = ({ scrollContainerRef, updateHeaderBgColor }) => {
+const AboutMeSection = ({ scrollContainerRef }) => {
   const [isFontLoaded, setIsFontLoaded] = useState(false);
   const [fontSize, setFontSize] = useState(null);
   const { aboutMeContent } = portfolioData.aboutMe;
