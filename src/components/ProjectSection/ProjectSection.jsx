@@ -6,6 +6,7 @@ import LinkBtn from "../Common/Button/LinkBtn";
 import portfolioData from "../../utils/portfolioData";
 import SectionHeading from "../Common/SectionHeading/SectionHeading";
 import { Textfit } from "react-textfit";
+import { useCursor } from "../../context/useCursor";
 
 const ProjectSection = ({ scrollContainerRef }) => {
   const projects = portfolioData.projects;
@@ -18,6 +19,8 @@ const ProjectSection = ({ scrollContainerRef }) => {
   const numRefs = useRef([]);
   const techStackRefs = useRef([]);
   const headingRef = useRef();
+
+  const { handleMouseEnter, handleMouseLeave, cursorTailRef } = useCursor();
 
   imageRefs.current = [];
   descRefs.current = [];
@@ -253,6 +256,17 @@ const ProjectSection = ({ scrollContainerRef }) => {
     return () => ctx.revert();
   }, []);
 
+  const onEnterCallback = () => {
+    gsap.to(cursorTailRef.current, {
+      backgroundColor: "white",
+    });
+  };
+  const onLeaveCallback = () => {
+    gsap.to(cursorTailRef.current, {
+      backgroundColor: "#907aea",
+    });
+  };
+
   return (
     <div className={styles.projectSectionWrapper} ref={sectionRef}>
       <div className={styles.innerWrapper}>
@@ -347,6 +361,12 @@ const ProjectSection = ({ scrollContainerRef }) => {
                     className={styles.linkBtnContainer}
                     ref={(el) => addToRefs(el, linkRefs)}
                     style={{ opacity: lIndex === 0 ? 1 : 0 }}
+                    onMouseEnter={() => {
+                      handleMouseEnter(onEnterCallback);
+                    }}
+                    onMouseLeave={() => {
+                      handleMouseLeave(onLeaveCallback);
+                    }}
                   >
                     <LinkBtn
                       key={item.id}

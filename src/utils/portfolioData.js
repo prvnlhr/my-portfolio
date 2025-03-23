@@ -107,12 +107,39 @@ const portfolioData = {
     lastName: "Lohar",
     email: "praveenlohar.in@gmail.com",
     phone: "7230904343",
-    links: {
-      github: "https://github.com/prvnlhr",
-      linkedin: "https://www.linkedin.com/in/praveen-lohar/",
-      resume:
-        "https://drive.google.com/file/d/1-F7YQB1VbjKthEjJke9JjrLUOacxEmsQ/view?usp=sharing",
-    },
+    socialLinks: [
+      {
+        id: 1,
+        label: "Linkedin",
+        linkUrl: "https://www.linkedin.com/in/praveen-lohar/",
+      },
+      {
+        id: 2,
+        label: "Github",
+        linkUrl: "https://github.com/prvnlhr",
+      },
+      {
+        id: 3,
+        label: "Leetcode",
+        linkUrl: "https://leetcode.com/u/praveen_lhr/",
+      },
+      {
+        id: 4,
+        label: "Instagram",
+        linkUrl: "https://www.instagram.com/iamlohar/",
+      },
+      {
+        id: 5,
+        label: "Twitter/X",
+        linkUrl: "https://x.com/praveen_lhr",
+      },
+      {
+        id: 6,
+        label: "Resume",
+        linkUrl:
+          "https://drive.google.com/file/d/1-F7YQB1VbjKthEjJke9JjrLUOacxEmsQ/view?usp=sharing",
+      },
+    ],
   },
 
   footer: {

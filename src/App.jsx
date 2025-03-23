@@ -12,21 +12,22 @@ import ExpertiseSection from "./components/WhatIDo/ExpertiseSection";
 import FooterSection from "./components/FooterSection/FooterSection";
 import Loading from "./components/Common/Loading/Loading";
 import Lenis from "lenis";
+import Cursor from "./components/Common/Cursor/Cursor";
+import { CursorProvider } from "./context/CursorProvider";
+
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const App = () => {
-  const cursorRef = useRef(null);
-  const cursorTailRef = useRef(null);
   const scrollContainerRef = useRef(null);
   const headerRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isVisible, setIsVisible] = useState(true); // Controls loading visibility
+  const [isVisible, setIsVisible] = useState(true);
 
   // Handle resize event
   useEffect(() => {
     const handleResize = () => {
-      setIsLoading(true); // Reset loading state on resize
-      setIsVisible(true); // Show loading again on resize
+      setIsLoading(true);
+      setIsVisible(true);
     };
 
     window.addEventListener("resize", handleResize);
@@ -36,7 +37,6 @@ const App = () => {
     };
   }, []);
 
-  // Initialize Lenis and GSAP ScrollTrigger when loading is complete
   useEffect(() => {
     if (!isLoading && scrollContainerRef.current) {
       const lenis = new Lenis({
@@ -64,70 +64,37 @@ const App = () => {
   }, [isLoading]);
 
   // GSAP cursor animation
-  const { contextSafe } = useGSAP(() => {
-    const mouseMove = contextSafe((e) => {
-      const cursorPosition = {
-        left: e.clientX,
-        top: e.clientY,
-      };
-
-      gsap.to(cursorRef?.current, {
-        left: cursorPosition.left,
-        top: cursorPosition.top,
-        duration: 0.5,
-        ease: "power2.out",
-      });
-
-      gsap.to(cursorTailRef?.current, {
-        left: cursorPosition.left,
-        top: cursorPosition.top,
-        duration: 0.9,
-        ease: "power2.out",
-      });
-    });
-
-    window.addEventListener("mousemove", mouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", mouseMove);
-    };
-  }, []);
 
   return (
-    <div className={styles.appWrapper}>
-      {isVisible && (
-        <Loading setIsLoading={setIsLoading} setIsVisible={setIsVisible} />
-      )}
-      {!isLoading && (
-        <>
-          <div className={styles.cursor} ref={cursorRef} />
-          <div className={styles.cursorTail} ref={cursorTailRef} />
-
-          <div className={styles.headerBar} ref={headerRef}>
-            <div className={styles.logoWrapper}>
-              <Logo />
+    <CursorProvider>
+      <div className={styles.appWrapper}>
+        {isVisible && (
+          <Loading setIsLoading={setIsLoading} setIsVisible={setIsVisible} />
+        )}
+        {!isLoading && (
+          <>
+            <Cursor />
+            <div className={styles.headerBar} ref={headerRef}>
+              <div className={styles.logoWrapper}>
+                <Logo />
+              </div>
             </div>
-          </div>
 
-          <div className={styles.appScrollWrapper} ref={scrollContainerRef}>
-            <HeroSection scrollContainerRef={scrollContainerRef} />
-            <AboutMeSection scrollContainerRef={scrollContainerRef} />
-            <ProjectSection scrollContainerRef={scrollContainerRef} />
-            <OtherWorkSection
-              scrollContainerRef={scrollContainerRef}
-              cursorRef={cursorRef}
-              cursorTailRef={cursorTailRef}
-            />
-            <ExpertiseSection scrollContainerRef={scrollContainerRef} />
-            <FooterSection
-              scrollContainerRef={scrollContainerRef}
-              cursorRef={cursorRef}
-              cursorTailRef={cursorTailRef}
-            />
-          </div>
-        </>
-      )}
-    </div>
+            <div className={styles.appScrollWrapper} ref={scrollContainerRef}>
+              <HeroSection
+                scrollContainerRef={scrollContainerRef}
+                isLoading={isLoading}
+              />
+              <AboutMeSection scrollContainerRef={scrollContainerRef} />
+              <ProjectSection scrollContainerRef={scrollContainerRef} />
+              <OtherWorkSection scrollContainerRef={scrollContainerRef} />
+              <ExpertiseSection scrollContainerRef={scrollContainerRef} />
+              <FooterSection scrollContainerRef={scrollContainerRef} />
+            </div>
+          </>
+        )}
+      </div>
+    </CursorProvider>
   );
 };
 

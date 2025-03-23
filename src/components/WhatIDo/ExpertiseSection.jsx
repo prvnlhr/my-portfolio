@@ -7,13 +7,15 @@ import SectionHeading from "../Common/SectionHeading/SectionHeading";
 import FontFaceObserver from "fontfaceobserver";
 import { Textfit } from "react-textfit";
 
-const ExpertiseSection = ({ scrollContainerRef, updateHeaderBgColor }) => {
+const ExpertiseSection = ({ scrollContainerRef }) => {
   const contentRef = useRef();
   const headingRef = useRef();
 
   const sectionContainerRef = useRef();
   const lettersRef = useRef([]);
   const textfitRef = useRef(null);
+
+  const expertiseRefs = useRef([]);
 
   const [isFontLoaded, setIsFontLoaded] = useState(false);
   const [fontSize, setFontSize] = useState(null);
@@ -79,8 +81,28 @@ const ExpertiseSection = ({ scrollContainerRef, updateHeaderBgColor }) => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.set(lettersRef.current, { opacity: 0.1 });
+      gsap.set(expertiseRefs.current, {
+        y: 100,
+        opacity: 0,
+      });
 
+      // Slide expertise rows up one by one with scroll
+      gsap.to(expertiseRefs.current, {
+        y: 0,
+        opacity: 1,
+        ease: "power2.out",
+        stagger: 0.2, // Animate one by one
+        scrollTrigger: {
+          trigger: sectionContainerRef.current,
+          scroller: scrollContainerRef.current,
+          start: "top 80%", // Start animating when section is 80% from top
+          end: "bottom 50%", // End animation when bottom is 50%
+          scrub: true, // Smooth transition with scroll
+          markers: false, // Set to true for debugging
+        },
+      });
+      // -------------------------------------------------------------------------
+      gsap.set(lettersRef.current, { opacity: 0.1 });
       // Animate letters on scroll
       gsap.to(lettersRef.current, {
         opacity: 1,
@@ -110,7 +132,11 @@ const ExpertiseSection = ({ scrollContainerRef, updateHeaderBgColor }) => {
         </div>
         <div className={styles.contentWrapper} ref={contentRef}>
           {portfolioData.expertise.map((expertiseItem, rowIndex) => (
-            <div key={rowIndex} className={styles.expertiseRow}>
+            <div
+              key={rowIndex}
+              className={styles.expertiseRow}
+              ref={(el) => (expertiseRefs.current[rowIndex] = el)}
+            >
               {expertiseItem.label.map((letter, letterIndex) => (
                 <span
                   key={letterIndex}

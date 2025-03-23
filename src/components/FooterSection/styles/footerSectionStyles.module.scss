@@ -17,7 +17,8 @@
     flex-direction: column;
 
     @include mixins.small-device {
-      width: 95%;
+      width: 90%;
+      // border: 1px solid red;
     }
   }
 }
@@ -30,6 +31,9 @@
   justify-content: center;
   // position: relative;
   // border: 1px solid red;
+  @include mixins.small-device {
+    justify-content: flex-start;
+  }
 
   .heading {
     width: auto;
@@ -95,124 +99,158 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  // border-top: 1px solid rgb(53, 57, 59);
-  // border-bottom: 1px solid rgb(53, 57, 59);
-  // border: 1px solid green;
 
-  &__emailContainer {
+  &__emailWrapper {
     width: 100%;
     height: auto;
     // border: 1px solid goldenrod;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
     justify-content: flex-start;
-    padding: 20px 0px;
+    // padding: 20px 0px;
+    margin-top: 50px;
 
-    a {
-      position: relative;
-      font-family: "SharpGroteskSemiBold25";
-      font-size: 2rem;
-      color: #4d5360;
-      @include mixins.small-device {
-        font-size: 1.2rem;
+    .emailLabelRow {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      // border: 1px solid red;
+      padding: 10px 0px;
+      p {
+        font-family: "SharpGroteskMedium25";
+        font-size: 0.8rem;
+        color: #a9acb3;
       }
-      span {
+    }
+
+    .emialIdLinkRow {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      a {
+        position: relative;
+        font-family: "SharpGroteskSemiBold25";
+        font-size: 2rem;
         color: #4d5360;
-      }
+        @include mixins.small-device {
+          font-size: 1rem;
+        }
+        span {
+          color: #4d5360;
+        }
 
-      &:hover span {
+        &:hover span {
+          color: #a99ef0;
+        }
+      }
+      .emailLinkIcon {
+        font-size: 1.5rem;
+        margin-left: 5px;
         color: #a99ef0;
       }
     }
-    .emailLinkIcon {
-      font-size: 1.5rem;
-      margin-left: 5px;
-      color: #a99ef0;
-    }
   }
 
-  .content__emailContainer a::after {
+  .content__emailWrapper a::after {
     position: absolute;
     content: "";
     left: 0;
     bottom: -3px;
     width: 5%;
-    height: 1px;
+    height: 0.05rem;
     background-color: #888c94;
     transition: width 0.3s ease-in-out;
     z-index: 999;
   }
 
-  .content__emailContainer:hover a::after {
+  .content__emailWrapper:hover a::after {
     width: 100%;
     transition: width 0.3s ease-in-out;
   }
 
-  &__linksRow {
+  &__socialLinksWrapper {
     display: flex;
-    display: none;
     width: 100%;
     height: auto;
     // border: 1px solid lightgreen;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-direction: column;
+    margin-top: 40px;
 
-    .socialLinkRow {
+    .socialLabelDiv {
       width: 100%;
       height: auto;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       // border: 1px solid red;
+      padding: 10px 0px;
+      p {
+        font-family: "SharpGroteskMedium25";
+        font-size: 0.8rem;
+        color: #a9acb3;
+      }
+    }
+    .socialLinksGrid {
+      width: auto;
+      height: auto;
+      display: grid;
+      grid-template-columns: auto auto auto;
+      grid-template-rows: auto auto;
+
+      @include mixins.small-device {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 10px;
+      }
     }
   }
 }
 
-.linkButton {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+.socialLinkContainer {
   width: auto;
-  height: 50px;
-  background-color: transparent;
-  outline: none;
-  border: none;
-  // border: 1px solid white;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px 0px;
+  margin-right: 20px;
+  // border: 1px solid red;
 
-  &:nth-child(1) {
-    margin-right: 10px;
+  @include mixins.small-device {
+    margin: 0;
   }
 
-  &:nth-child(2) {
-    margin-left: 10px;
+  .socialLinkText {
+    position: relative;
+    font-family: "SharpGroteskMedium25";
+    font-size: 1rem;
+    color: #4d5360;
+  }
+  .socialLinkIcon {
+    font-size: 0.8rem;
+    color: #a99ef0 !important;
+    margin-left: 3px;
   }
 
-  &__textDiv {
-    display: flex;
-    align-items: center;
-    width: auto;
-    height: 100%;
-    font-family: "SharpGroteskSemiBold25";
-    color: white;
-    font-size: 1.2rem;
-    // border: 1px solid white;
+  .socialLinkText::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: -3px;
+    width: 25%;
+    height: 1px;
+    background-color: #888c94;
+    transition: width 0.3s ease-in-out;
+    z-index: 999;
   }
-
-  &__iconDiv {
-    height: 100%;
-    aspect-ratio: 1/2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // border: 1px solid white;
-    // padding: 0px 8px;
-
-    .linkIcon {
-      color: #a99ef0;
-      font-size: 1.2rem;
-      margin: 0;
-      padding: 0;
-    }
-  }
+}
+.socialLinkContainer:hover .socialLinkText::after {
+  width: 100%;
+  transition: width 0.3s ease-in-out;
 }

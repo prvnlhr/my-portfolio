@@ -8,36 +8,22 @@ import LinkBtn from "../Common/Button/LinkBtn";
 import portfolioData from "../../utils/portfolioData";
 import SectionHeading from "../Common/SectionHeading/SectionHeading";
 import { Icon } from "@iconify/react/dist/iconify.js";
-const OtherWorkSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
+import { useCursor } from "../../context/useCursor";
+const OtherWorkSection = ({ scrollContainerRef }) => {
+  const otherProjects = portfolioData.otherWork;
+
+  const { handleMouseEnter, handleMouseLeave, cursorTailRef } = useCursor();
+
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const cardRefs = useRef([]);
   const iconRefs = useRef([]);
-
   const linkRefs = useRef([]);
-
-  const otherProjects = portfolioData.otherWork;
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      // Animation for the heading
-      // const timeline = gsap.timeline({
-      //   scrollTrigger: {
-      //     trigger: headingRef.current,
-      //     scroller: scrollContainerRef.current,
-      //     start: "top 50%",
-      //     end: "100px 0px",
-      //   },
-      // });
-
-      // timeline.fromTo(
-      //   headingRef.current,
-      //   { y: 80, opacity: 0 },
-      //   { y: 0, opacity: 1, duration: 0.5, ease: "power1" }
-      // );
-
       // Animation for each card
       cardRefs.current.forEach((card) => {
         gsap.fromTo(
@@ -73,57 +59,6 @@ const OtherWorkSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
     }
   };
 
-  const handleLinkMouseEnter = (cardIndex) => {
-    if (cursorRef.current && cursorTailRef.current) {
-      gsap.to(cursorRef.current, {
-        opacity: 0,
-        duration: 0.2,
-        ease: "power1.inOut",
-      });
-
-      gsap.to(cursorTailRef.current, {
-        scale: 10,
-        opacity: 0.2,
-        duration: 0.2,
-        ease: "power1.inOut",
-      });
-    }
-
-    if (linkRefs.current[cardIndex]) {
-      gsap.to(linkRefs.current[cardIndex], {
-        fontWeight: 700,
-        duration: 0.2,
-        color: "#A79EEA",
-        ease: "power1.inOut",
-      });
-    }
-  };
-
-  const handleLinkMouseLeave = (cardIndex) => {
-    if (cursorRef.current && cursorTailRef.current) {
-      gsap.to(cursorRef.current, {
-        opacity: 1,
-        duration: 0.2,
-        ease: "power1.inOut",
-      });
-
-      gsap.to(cursorTailRef.current, {
-        scale: 1,
-        opacity: 0.2,
-        duration: 0.2,
-        ease: "power1.inOut",
-      });
-    }
-
-    if (linkRefs.current[cardIndex]) {
-      gsap.to(linkRefs.current[cardIndex], {
-        fontWeight: 400,
-        duration: 0.2,
-        color: "#A79EEA",
-        ease: "power1.inOut",
-      });
-    }
-  };
   const handleCardMouseEnter = (cardIndex) => {
     if (iconRefs.current[cardIndex]) {
       gsap.to(iconRefs.current[cardIndex], {
@@ -146,6 +81,17 @@ const OtherWorkSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
     }
   };
 
+  const onEnterCallback = () => {
+    gsap.to(cursorTailRef.current, {
+      backgroundColor: "white",
+    });
+  };
+  const onLeaveCallback = () => {
+    gsap.to(cursorTailRef.current, {
+      backgroundColor: "#907aea",
+    });
+  };
+
   return (
     <div className={styles.sectionWrapper} ref={sectionRef}>
       <div className={styles.innerWrapper}>
@@ -158,7 +104,11 @@ const OtherWorkSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
         </div>
         <div className={styles.contentWrapper}>
           <div className={styles.projectsGrid}>
-            <div className={styles.allWorksBtn}>
+            <div
+              className={styles.allWorksBtn}
+              onMouseEnter={() => handleMouseEnter(onEnterCallback)}
+              onMouseLeave={() => handleMouseLeave(onLeaveCallback)}
+            >
               <LinkBtn
                 height={50}
                 label={"All Works"}
@@ -173,8 +123,8 @@ const OtherWorkSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
                 <div
                   className={styles.projectCard}
                   ref={(el) => addRefs(el, cardRefs)}
-                  onMouseEnter={() => handleCardMouseEnter(index)}
-                  onMouseLeave={() => handleCardMouseLeave(index)}
+                  onMouseEnter={() => handleCardMouseEnter()}
+                  onMouseLeave={() => handleCardMouseLeave()}
                 >
                   <div className={styles.bgDiv}></div>
                   <div
@@ -196,8 +146,12 @@ const OtherWorkSection = ({ scrollContainerRef, cursorRef, cursorTailRef }) => {
                       rel="noopener noreferrer"
                       className={styles.projectLinkDiv}
                       ref={(el) => addRefs(el, linkRefs)}
-                      onMouseEnter={() => handleLinkMouseEnter(index)}
-                      onMouseLeave={() => handleLinkMouseLeave(index)}
+                      onMouseEnter={() => {
+                        handleMouseEnter();
+                      }}
+                      onMouseLeave={() => {
+                        handleMouseLeave();
+                      }}
                     >
                       <p>Explore</p>
                       <span>

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import styles from "./styles/heroSection.module.scss";
 import HeroImage from "./HeroImage";
 import gsap from "gsap";
@@ -7,14 +7,31 @@ import { useGSAP } from "@gsap/react";
 import { MouseParallax } from "react-just-parallax";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Textfit } from "react-textfit";
+import { useCursor } from "../../context/useCursor";
 
 const links = [
-  { id: 1, label: "Linkedin", linkUrl: "/" },
-  { id: 2, label: "Github", linkUrl: "/" },
-  { id: 3, label: "Leetcode", linkUrl: "/" },
+  {
+    id: 1,
+    label: "Linkedin",
+    linkUrl: "https://www.linkedin.com/in/praveen-lohar/",
+    icon: "uil:linkedin",
+  },
+  {
+    id: 2,
+    label: "Github",
+    linkUrl: "https://github.com/prvnlhr",
+    icon: "uil:github",
+  },
+  {
+    id: 3,
+    label: "Resume",
+    linkUrl:
+      "https://drive.google.com/file/d/1-F7YQB1VbjKthEjJke9JjrLUOacxEmsQ/view?usp=sharing",
+    icon: "basil:document-solid",
+  },
 ];
 
-const HeroSection = () => {
+const HeroSection = ({ isLoading }) => {
   const prefixRef = useRef();
   const nameRef = useRef();
   const suffixRef = useRef();
@@ -22,89 +39,68 @@ const HeroSection = () => {
   const subtitleRef = useRef();
   const heroImageRef = useRef();
   const parallaxContainer = useRef();
+  const linkRefs = useRef([]);
 
-  // Register ScrollTrigger plugin with GSAP
-  gsap.registerPlugin(ScrollTrigger);
+  const { handleMouseEnter, handleMouseLeave, setCursorContent } = useCursor();
 
-  // GSAP animations for initial load and scroll effects
+  const addRefs = (el, refArray) => {
+    if (el && !refArray.current.includes(el)) {
+      refArray.current.push(el);
+    }
+  };
+
   useGSAP(() => {
-    // Initial animation timeline
-    const tl = gsap.timeline();
-    tl.from(heroImageRef.current, {
-      y: "-30px",
-      duration: 0.5,
-      opacity: 0,
-      delay: 1,
-    })
-      .from(
-        prefixRef.current,
-        {
-          y: "20px",
-          duration: 1,
-          delay: 0.5,
-          opacity: 0,
-          ease: "elastic.out(2, 1)",
-        },
-        "-=0.8"
-      )
-      .from(
-        nameRef.current,
-        {
-          y: "20px",
-          duration: 1,
-          opacity: 0,
-          ease: "elastic.out(2, 1)",
-        },
-        "-=0.8"
-      )
-      .from(
-        suffixRef.current,
-        {
-          y: "20px",
-          duration: 1,
-          opacity: 0,
-          ease: "elastic.out(2, 1)",
-        },
-        "-=0.8"
-      )
-      .from(
+    if (!isLoading) {
+      const tl = gsap.timeline({
+        delay: 0.8,
+      });
+
+      // Slide hero image down smoothly
+      tl.from(heroImageRef.current, {
+        y: "-50px",
+        opacity: 0,
+        duration: 1.5,
+        ease: "power2.out",
+      });
+
+      // Animate title and subtitle
+      tl.from(
         [titleRef.current, subtitleRef.current],
         {
-          y: "20px",
-          duration: 1,
+          y: "30px",
           opacity: 0,
-          ease: "elastic.out(2, 1)",
+          duration: 0.8,
+          ease: "power2.out",
         },
-        "-=0.5"
+        "-=0.8"
       );
 
-    gsap.to(prefixRef.current, {
-      y: -50,
-      scrollTrigger: {
-        trigger: prefixRef.current,
-        start: "top center",
-        scrub: true,
-      },
-    });
+      // Animate prefix, name, and suffix
+      tl.from(
+        [prefixRef.current, nameRef.current, suffixRef.current],
+        {
+          y: "30px",
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          stagger: 0.1,
+        },
+        "-=0.4"
+      );
 
-    gsap.to(heroImageRef.current, {
-      y: -100,
-      scrollTrigger: {
-        trigger: heroImageRef.current,
-        start: "top center",
-        scrub: true,
-      },
-    });
-
-    gsap.to(nameRef.current, {
-      y: -50,
-      scrollTrigger: {
-        trigger: nameRef.current,
-        start: "top center",
-        scrub: true,
-      },
-    });
-  }, []);
+      tl.from(
+        linkRefs.current,
+        {
+          y: "30px",
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+          stagger: 0.1,
+        },
+        "-=0.6"
+      );
+    }
+  }, [isLoading]);
 
   return (
     <div className={styles.heroSectionWrapper}>
@@ -243,7 +239,22 @@ const HeroSection = () => {
 
         <div className={styles.socialLinksContainer}>
           {links.map((link) => (
-            <div className={styles.linkContainer} key={link.id}>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={link.linkUrl}
+              className={styles.linkContainer}
+              key={link.id}
+              ref={(el) => addRefs(el, linkRefs)}
+              onMouseEnter={() => {
+                handleMouseEnter();
+                setCursorContent(<Icon icon={link.icon} />);
+              }}
+              onMouseLeave={() => {
+                handleMouseLeave();
+                setCursorContent(null);
+              }}
+            >
               <div className={styles.linkContainer__linkTextDiv}>
                 <p>{link.label}</p>
               </div>
@@ -254,7 +265,7 @@ const HeroSection = () => {
                   className={styles.linkIcon}
                 />
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
