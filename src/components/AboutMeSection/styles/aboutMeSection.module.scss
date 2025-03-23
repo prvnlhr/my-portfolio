@@ -45,6 +45,7 @@
   @include mixins.small-device {
     width: 100%;
     padding: 0;
+    margin-bottom: 30px;
   }
 
   .contentText {
@@ -57,6 +58,7 @@
       // color: #907aea !important;
       // color: #2ea8ff !important;
       color: var(--theme-color) !important;
+      line-height: 1.2;
     }
   }
   .dotColor {
