@@ -52,7 +52,7 @@ const HeroSection = ({ scrollContainerRef, isLoading }) => {
   useGSAP(() => {
     if (!isLoading) {
       const tl = gsap.timeline({
-        delay: 0.8,
+        delay: 0.8, // Add a slight delay after loading completes
       });
 
       // Slide hero image down smoothly

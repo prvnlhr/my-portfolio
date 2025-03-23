@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styles from "./styles/loading.module.scss";
 import { gsap } from "gsap";
 
-const Loading = ({ setIsLoading, setIsVisible }) => {
+const Loading = ({ setIsLoading, countingSpeed = 1.5 }) => {
   const loadingRef = useRef(null);
   const countWrapperRef = useRef(null);
 
@@ -20,29 +20,23 @@ const Loading = ({ setIsLoading, setIsVisible }) => {
       const tl = gsap.timeline({
         onComplete: () => {
           setIsLoading(false);
-          setTimeout(() => {
-            setIsVisible(false);
-          }, 500);
         },
       });
 
-      // Animate number spindle
       tl.to(countWrapperRef.current, {
         y: "-10000%",
-        duration: 1.5,
+        duration: countingSpeed,
         ease: "power2.out",
       });
 
-      // Slide loading component out of view
       tl.to(loadingRef.current, {
         y: "-100%",
-        duration: 0.05,
-        ease: "none",
+        ease: "power4.out",
       });
     }, loadingRef);
 
     return () => ctx.revert();
-  }, [setIsLoading, setIsVisible]);
+  }, [setIsLoading, countingSpeed]);
 
   return (
     <div ref={loadingRef} className={styles.loadingWrapper}>
