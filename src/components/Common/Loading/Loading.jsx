@@ -19,10 +19,10 @@ const Loading = ({ setIsLoading, setIsVisible }) => {
 
       const tl = gsap.timeline({
         onComplete: () => {
-          setIsLoading(false); // Set loading to false
+          setIsLoading(false);
           setTimeout(() => {
-            setIsVisible(false); // Delay unmounting after slide-out
-          }, 500); // Wait for slide-out to complete
+            setIsVisible(false);
+          }, 500);
         },
       });
 
@@ -36,7 +36,7 @@ const Loading = ({ setIsLoading, setIsVisible }) => {
       // Slide loading component out of view
       tl.to(loadingRef.current, {
         y: "-100%",
-        duration: 0.01,
+        duration: 0.05,
         ease: "none",
       });
     }, loadingRef);
