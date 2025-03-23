@@ -42,11 +42,13 @@ const App = () => {
   const scrollContainerRef = useRef(null);
   const headerRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(true);
 
   // Handle resize event with debounce
   useEffect(() => {
     const handleResize = () => {
       setIsLoading(true);
+      setIsVisible(true);
     };
 
     const debouncedResize = debounce(handleResize, 200); // 200ms debounce
@@ -88,8 +90,9 @@ const App = () => {
   return (
     <CursorProvider>
       <div className={styles.appWrapper}>
-        <Loading setIsLoading={setIsLoading} countingSpeed={4} />
-
+        {isVisible && (
+          <Loading setIsLoading={setIsLoading} setIsVisible={setIsVisible} />
+        )}
         {!isLoading && (
           <>
             <Cursor />
