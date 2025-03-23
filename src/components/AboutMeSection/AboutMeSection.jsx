@@ -122,19 +122,7 @@ const AboutMeSection = ({ scrollContainerRef }) => {
               {letter}
             </span>
           ))}
-          <div
-            ref={textfitRef}
-            style={{
-              position: "absolute",
-              top: "0px",
-              left: "0px",
-              width: "100%",
-              height: "100%",
-              border: "1px solid white",
-              fontFamily: "SharpGroteskSemiBold25",
-              opacity: 0,
-            }}
-          >
+          <div ref={textfitRef} className={styles.textFitHiddenDiv}>
             <Textfit
               mode="multi"
               style={{

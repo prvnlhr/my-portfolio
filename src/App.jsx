@@ -103,7 +103,7 @@ const App = () => {
             </div>
 
             <div className={styles.appScrollWrapper} ref={scrollContainerRef}>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<></>}>
                 <HeroSection
                   scrollContainerRef={scrollContainerRef}
                   isLoading={isLoading}
