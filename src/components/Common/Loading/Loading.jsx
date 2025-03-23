@@ -29,7 +29,7 @@ const Loading = ({ setIsLoading, setIsVisible }) => {
       // Animate number spindle
       tl.to(countWrapperRef.current, {
         y: "-10000%",
-        duration: 1.5,
+        duration: 3,
         ease: "power2.out",
       });
 
