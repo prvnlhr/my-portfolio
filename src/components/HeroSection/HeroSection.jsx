@@ -4,7 +4,7 @@ import HeroImage from "./HeroImage";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { MouseParallax } from "react-just-parallax";
+import { MouseParallax, ScrollParallax } from "react-just-parallax";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Textfit } from "react-textfit";
 import { useCursor } from "../../context/useCursor";
@@ -31,7 +31,7 @@ const links = [
   },
 ];
 
-const HeroSection = ({ isLoading }) => {
+const HeroSection = ({ scrollContainerRef, isLoading }) => {
   const prefixRef = useRef();
   const nameRef = useRef();
   const suffixRef = useRef();
@@ -138,7 +138,6 @@ const HeroSection = ({ isLoading }) => {
                 style={{
                   width: "100%",
                   height: "100%",
-                  // border: "1px solid blue",
                   fontFamily: "SharpGroteskSemiBold25",
                   display: "flex",
                   alignItems: "center",
@@ -174,15 +173,21 @@ const HeroSection = ({ isLoading }) => {
           </div>
         </MouseParallax>
 
-        <MouseParallax
+        <ScrollParallax
+          scrollContainerRef={scrollContainerRef}
           isAbsolutelyPositioned
-          strength={0.05}
           zIndex={2}
-          parallaxContainerRef={parallaxContainer}
-          shouldResetPosition
         >
-          <HeroImage heroImageRef={heroImageRef} />
-        </MouseParallax>
+          <MouseParallax
+            isAbsolutelyPositioned
+            strength={0.05}
+            zIndex={2}
+            parallaxContainerRef={parallaxContainer}
+            shouldResetPosition
+          >
+            <HeroImage heroImageRef={heroImageRef} />
+          </MouseParallax>
+        </ScrollParallax>
 
         <MouseParallax
           isAbsolutelyPositioned
