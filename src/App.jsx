@@ -63,8 +63,6 @@ const App = () => {
     }
   }, [isLoading]);
 
-  // GSAP cursor animation
-
   return (
     <CursorProvider>
       <div className={styles.appWrapper}>
