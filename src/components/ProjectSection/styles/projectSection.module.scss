@@ -10,252 +10,236 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  // background-color: #77adf9;
-  // background-color: var(--theme-color);
-  background-color: #77adf9;
   z-index: 1;
-
-  // margin-bottom: 100px;
-  .innerWrapper {
-    width: calc(100% - 200px);
-    height: auto;
-    padding-top: 70px;
-    @include mixins.small-device {
-      width: 90%;
-    }
-  }
 }
 
-.sectionHeadingContainer {
+.projectMainWrapper {
+  position: absolute;
   width: 100%;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.mainWrapper {
-  width: 100%;
-  height: calc(100% - 100px);
-  display: flex;
-  align-items: center;
-  padding: 0% 0%;
-  position: relative;
-  // background-color: salmon;
-  @include mixins.small-device {
-    flex-direction: column;
-    width: 100%;
-  }
-}
-
-.left_wrapper {
-  width: 55%;
-  height: 100%;
-  // border: 1px solid orange;
-
-  @include mixins.small-device {
-    width: 100%;
-    height: auto;
-    margin-bottom: 25px;
-  }
-
-  .imageNumWrapper {
-    width: 100%;
-    height: 40px;
-    .numDiv {
-      height: 100%;
-      aspect-ratio: 1/1;
-      // border: 1px solid red;
-      position: relative;
-      display: flex;
-      align-items: center;
-      p {
-        position: absolute;
-        font-family: "SharpGroteskMedium10";
-        font-family: "SharpGroteskBook20";
-        color: #1b1c1e;
-        // color: #fbfbfb;
-        color: #363b45;
-        color: #24262e;
-        color: var(--text-color);
-        font-size: 1.2rem;
-        span {
-          color: white;
-          font-size: 1.2rem;
-        }
-
-        @include mixins.small-device {
-          font-size: 1.2rem;
-        }
-      }
-    }
-  }
-
-  .imageDisplayWrapper {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 137/77;
-    overflow: hidden;
-    border-radius: 8px;
-    border: 3px solid white;
-    will-change: transform;
-    backface-visibility: hidden;
-    box-shadow: 0px 0.85px 34px rgba(0, 0, 0, 0.36);
-    .projectImageDiv {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0px;
-      left: 0px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      backface-visibility: hidden;
-      img {
-        width: 100%;
-        height: 100%;
-        backface-visibility: hidden;
-      }
-    }
-  }
-}
-
-.right_wrapper {
-  position: relative;
-  width: 45%;
   height: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-end;
-  // border: 1px solid blue;
-
+  flex-direction: column;
+  padding: 70px 100px 0px 100px;
   @include mixins.small-device {
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 100%;
-    flex-grow: 1;
-    height: 100%;
+    padding: 70px 5% 0px 5%;
   }
 
-  .descGrid {
-    width: 90%;
-    height: 50%;
-    display: grid;
-    grid-template-rows: 50px minmax(0, 1fr) 50px 50px;
-    grid-template-columns: 100%;
-    grid-template-areas:
-      "titleCell"
-      "descCell"
-      "techStackCell"
-      "linkCell";
-    // border: 1px solid greenyellow;
-    @include mixins.small-device {
-      width: 100%;
-      height: 90%;
-    }
-  }
-
-  .titleCell {
-    grid-area: titleCell;
-    // border: 1px solid red;
+  .sectionHeadingWrapper {
     width: 100%;
-    height: 100%;
+    height: 100px;
     display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    // border: 1px solid white;
+  }
+
+  .projectDisplayWrapper {
+    width: 100%;
+    height: calc(100% - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    @include mixins.small-device {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+  }
+}
+
+.projectImgSection {
+  width: 50%;
+  height: 100%;
+  // border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  @include mixins.small-device {
+    width: 100%;
+    height: auto;
+  }
+
+  .projectNumContainer {
+    width: 100%;
+    height: 50px;
+    // border: 1px solid red;
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
     p {
-      position: absolute;
-      font-family: "SharpGroteskBook25";
-      font-family: "SharpGroteskSemiBold25";
-      color: #fbfbfb;
-      color: #363b45;
-      color: #24262e;
+      font-family: "SharpGroteskMedium20";
       color: var(--text-color);
-      font-size: 2.3rem;
-      font-size: 1.5rem;
-      // border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-      // border: 1px solid red;
-      @include mixins.small-device {
+      font-size: 1rem;
+      span {
+        color: white;
         font-size: 1.2rem;
-        white-space: nowrap;
       }
     }
   }
-
-  .descCell {
+  .projectImageContainer {
     position: relative;
-    grid-area: descCell;
-    // border: 1px solid green;
-    width: 100%;
-    height: 100%;
-    min-height: 100%;
+    width: 95%;
+    aspect-ratio: 137/77;
+    max-height: 90%;
+    // border: 1px solid red;
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    div {
+    will-change: transform;
+    backface-visibility: hidden;
+    // box-shadow: 0px 0.85px 34.05px rgba(0, 0, 0, 0.36);
+
+    @include mixins.small-device {
+      width: 100%;
+    }
+    img {
       width: 100%;
       height: 100%;
-      position: absolute;
-      font-family: "SharpGroteskBook20";
-      color: var(--text-color);
-      line-height: 1.7;
-      text-align: justify;
-      overflow: hidden;
-      // border: 1px solid blue;
+      backface-visibility: hidden;
     }
   }
+}
 
-  .techStackCell {
-    position: relative;
-    grid-area: techStackCell;
+.projectInfoSection {
+  width: 50%;
+  height: 100%;
+  // border: 1px solid blue;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 50px;
+  @include mixins.small-device {
+    width: 100%;
+    height: 50%;
+    padding-top: unset;
+  }
+}
+
+.projectInfoGrid {
+  width: 95%;
+  aspect-ratio: 137/77;
+  // border: 1px solid black;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 80px minmax(0, 1fr) 60px 45px;
+  // grid-template-rows: 100px auto 50px 50px;
+  grid-template-areas:
+    "projectTitleCell"
+    "projectDescCell"
+    "projectStackCell"
+    "projectLinkBtnCell";
+
+  @include mixins.small-device {
     width: 100%;
     height: 100%;
-    // border: 1px solid orange;
+  }
+
+  .projectTitleCell {
+    grid-area: "projectTitleCell";
+    width: 100%;
+    height: 100%;
+    // border: 1px solid salmon;
     display: flex;
     align-items: center;
-    overflow: hidden;
+    flex-direction: column;
 
-    .techStackRow {
+    &__titleDiv {
+      width: 100%;
+      height: 60%;
       display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      // border: 1px solid lightgreen;
+    }
+    &__subTitleDiv {
+      width: 100%;
+      height: 40%;
+      display: flex;
+      justify-content: flex-start;
       align-items: center;
-      width: auto;
-      height: 80%;
-      position: absolute;
-      // border-top: 1px solid rgba(255, 255, 255, 0.18);
-      // border: 1px solid red;
-
-      span {
-        margin-right: 8px;
-        font-family: "SharpGroteskBook20";
-        font-size: 0.7rem;
-        color: #aaacb3;
-        color: #e0e5eb;
-        color: #363b45;
-        color: #24262e;
-        // color: white;
-        color: var(--text-color);
-
-        text-transform: uppercase;
-        letter-spacing: 0.3px;
-        white-space: nowrap;
-
-        &::first-letter {
-          // color: #a99ef0 !important;
-          // color: white !important;
+      // border: 1px solid lightgreen;
+    }
+    .titleText {
+      color: var(--text-color);
+      &__main {
+        font-family: "SharpGroteskSemiBold25";
+        font-size: 1.5rem;
+        @include mixins.small-device {
+          font-size: 1.2rem;
+          white-space: nowrap;
+        }
+      }
+      &__sub {
+        font-family: "SharpGroteskMedium25";
+        font-size: 1rem;
+        @include mixins.small-device {
+          font-size: 0.9rem;
+          white-space: nowrap;
         }
       }
     }
   }
-  .linkCell {
-    grid-area: linkCell;
-    // border: 1px solid skyblue;
+
+  .projectDescCell {
+    grid-area: "projectDescCell";
     width: 100%;
     height: 100%;
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    // border: 1px solid green;
+
+    .textFit {
+      width: 90%;
+      height: 90%;
+      // background-color: salmon;
+      @include mixins.small-device {
+        width: 100%;
+      }
+    }
+    p {
+      font-family: "SharpGroteskBook25";
+      // font-size: 0.7rem;
+      color: var(--text-color);
+      line-height: 1.8;
+
+      @include mixins.small-device {
+        // font-size: 0.6rem;
+      }
+    }
+  }
+  .projectStackCell {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    // border: 1px solid red;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    span {
+      font-family: "SharpGroteskMedium25";
+      font-size: 0.7rem;
+      color: var(--text-color);
+      white-space: nowrap;
+      margin-right: 8px;
+      margin-bottom: 5px;
+      white-space: nowrap;
+    }
+  }
+  .projectLinkBtnCell {
+    grid-area: "projectLinkBtnCell";
+    width: 100%;
+    height: 100%;
+    // border: 1px solid blue;
+    display: flex;
     align-items: center;
     justify-content: flex-start;
-    position: relative;
-
     .linkBtnContainer {
-      position: absolute;
       height: 40px;
       width: auto;
       display: flex;

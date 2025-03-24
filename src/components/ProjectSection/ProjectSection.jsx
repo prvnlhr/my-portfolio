@@ -6,40 +6,24 @@ import LinkBtn from "../Common/Button/LinkBtn";
 import portfolioData from "../../utils/portfolioData";
 import SectionHeading from "../Common/SectionHeading/SectionHeading";
 import { Textfit } from "react-textfit";
-import { useCursor } from "../../context/useCursor";
+// import { useCursor } from "../../context/useCursor";
 
 const ProjectSection = ({ scrollContainerRef }) => {
   const projects = portfolioData.projects;
-  const sectionRef = useRef(null);
-  const mainWrapperRef = useRef();
-  const imageRefs = useRef([]);
-  const descRefs = useRef([]);
-  const linkRefs = useRef([]);
-  const titleRefs = useRef([]);
-  const numRefs = useRef([]);
-  const techStackRefs = useRef([]);
-  const headingRef = useRef();
 
-  const { handleMouseEnter, handleMouseLeave, cursorTailRef } = useCursor();
-
-  imageRefs.current = [];
-  descRefs.current = [];
-  linkRefs.current = [];
-  titleRefs.current = [];
-  numRefs.current = [];
-  techStackRefs.current = [];
+  const projectSectionRef = useRef(null);
+  const projectRefs = useRef([]);
 
   const addToRefs = (el, refArray) => {
     if (el && !refArray.current.includes(el)) {
       refArray.current.push(el);
     }
   };
-
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Create a single scroll trigger for pinning the section
       ScrollTrigger.create({
-        trigger: sectionRef.current,
+        trigger: projectSectionRef.current,
         scroller: scrollContainerRef.current,
         start: "top 0px",
         end: "bottom -50%",
@@ -48,40 +32,10 @@ const ProjectSection = ({ scrollContainerRef }) => {
         // markers: { startColor: "salmon", endColor: "salmon" },
       });
 
-      // Left and Desc Animation
-      const leftAndDescTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          scroller: scrollContainerRef.current,
-          start: "top 50%",
-          end: "top top",
-          scrub: true,
-          // markers: { startColor: "orange", endColor: "orange" },
-        },
-      });
-
-      // gsap.set(`.${styles.left_wrapper}`, { y: 100, x: -100, opacity: 0 });
-      gsap.set(`.${styles.left_wrapper}`, { y: 100, opacity: 0 });
-      // gsap.set(`.${styles.descGrid}`, { y: 100, x: 100, opacity: 0 });
-      gsap.set(`.${styles.descGrid}`, { x: 100, opacity: 0 });
-      leftAndDescTimeline
-        .to(`.${styles.left_wrapper}`, {
-          x: 0,
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power2.out",
-        })
-        .to(
-          `.${styles.descGrid}`,
-          { x: 0, y: 0, opacity: 1, duration: 1, ease: "power2.out" },
-          "<"
-        );
-
       // Image Animation
-      const imageTimeline = gsap.timeline({
+      const projectTimeline = gsap.timeline({
         scrollTrigger: {
-          trigger: sectionRef.current,
+          trigger: projectSectionRef.current,
           scroller: scrollContainerRef.current,
           start: "top 0px",
           end: "bottom -50%",
@@ -89,13 +43,13 @@ const ProjectSection = ({ scrollContainerRef }) => {
         },
       });
 
-      gsap.set(imageRefs.current[0], {
+      gsap.set(projectRefs.current[0], {
         clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
       });
 
-      imageRefs.current.forEach((image, index) => {
+      projectRefs.current.forEach((project, index) => {
         if (index !== 0) {
-          imageTimeline.to(image, {
+          projectTimeline.to(project, {
             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
             ease: "power2.inOut",
             duration: 1,
@@ -103,286 +57,99 @@ const ProjectSection = ({ scrollContainerRef }) => {
         }
       });
 
-      // Description Animation
-      const descTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          scroller: scrollContainerRef.current,
-          start: "top 0px",
-          end: "bottom -50%",
-          scrub: 2,
-        },
-      });
-
-      gsap.set(descRefs.current[0], { opacity: 1 });
-      descRefs.current.forEach((desc, index) => {
-        if (index !== 0) {
-          descTimeline
-            .to(
-              descRefs.current[index - 1],
-              { opacity: 0, duration: 0.5 },
-              index
-            )
-            .fromTo(
-              desc,
-              { opacity: 0 },
-              { opacity: 1, duration: 0.5, ease: "power2.inOut" },
-              index
-            );
-        }
-      });
-
-      // Title Animation
-      const titleTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          scroller: scrollContainerRef.current,
-          start: "top 0px",
-          end: "bottom -50%",
-          scrub: 2,
-        },
-      });
-
-      gsap.set(titleRefs.current[0], { opacity: 1 });
-      titleRefs.current.forEach((title, index) => {
-        if (index !== 0) {
-          titleTimeline
-            .to(
-              titleRefs.current[index - 1],
-              { opacity: 0, duration: 0.5 },
-              index
-            )
-            .fromTo(
-              title,
-              { opacity: 0 },
-              { opacity: 1, duration: 0.5, ease: "power2.inOut" },
-              index
-            );
-        }
-      });
-
-      // Number Animation
-      const numTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          scroller: scrollContainerRef.current,
-          start: "top 0px",
-          end: "bottom -50%",
-          scrub: 2,
-        },
-      });
-
-      gsap.set(numRefs.current[0], { opacity: 1 });
-      numRefs.current.forEach((num, index) => {
-        if (index !== 0) {
-          numTimeline
-            .to(
-              numRefs.current[index - 1],
-              { opacity: 0, duration: 0.5 },
-              index
-            )
-            .fromTo(
-              num,
-              { opacity: 0 },
-              { opacity: 1, duration: 0.5, ease: "power2.inOut" },
-              index
-            );
-        }
-      });
-
-      // Link Animation
-      const linkTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          scroller: scrollContainerRef.current,
-          start: "top 0px",
-          end: "bottom -50%",
-          scrub: 2,
-        },
-      });
-
-      gsap.set(linkRefs.current[0], { opacity: 1 });
-      linkRefs.current.forEach((num, index) => {
-        if (index !== 0) {
-          linkTimeline
-            .to(
-              linkRefs.current[index - 1],
-              { opacity: 0, duration: 0.5 },
-              index
-            )
-            .fromTo(
-              num,
-              { opacity: 0 },
-              { opacity: 1, duration: 0.5, ease: "power2.inOut" },
-              index
-            );
-        }
-      });
-
-      // Tech Stack Animation
-      const techStackTimeLine = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          scroller: scrollContainerRef.current,
-          start: "top 0px",
-          end: "bottom -50%",
-          scrub: 2,
-        },
-      });
-
-      gsap.set(techStackRefs.current[0], { opacity: 1 });
-      techStackRefs.current.forEach((num, index) => {
-        if (index !== 0) {
-          techStackTimeLine
-            .to(
-              techStackRefs.current[index - 1],
-              { opacity: 0, duration: 0.5 },
-              index
-            )
-            .fromTo(
-              num,
-              { opacity: 0 },
-              { opacity: 1, duration: 0.5, ease: "power2.inOut" },
-              index
-            );
-        }
-      });
-
       // Refresh ScrollTrigger
       ScrollTrigger.refresh();
-    }, sectionRef); // Scope the context to the sectionRef
+    }, projectSectionRef);
 
     // Cleanup on unmount
     return () => ctx.revert();
   }, []);
 
-  const onEnterCallback = () => {
-    gsap.to(cursorTailRef.current, {
-      backgroundColor: "white",
-    });
-  };
-  const onLeaveCallback = () => {
-    gsap.to(cursorTailRef.current, {
-      backgroundColor: "#907aea",
-    });
-  };
-
   return (
-    <div className={styles.projectSectionWrapper} ref={sectionRef}>
-      <div className={styles.innerWrapper}>
-        <div className={styles.sectionHeadingContainer} ref={headingRef}>
-          <SectionHeading upperText={"SELECTED"} lowerText={"WORK"} />
-        </div>
-        <div className={styles.mainWrapper} ref={mainWrapperRef}>
-          <div className={styles.left_wrapper}>
-            <div className={styles.imageNumWrapper}>
-              <div className={styles.numDiv}>
-                {Array.from({ length: 3 }).map((_, index) => (
-                  <p
-                    key={index}
-                    ref={(el) => addToRefs(el, numRefs)}
-                    style={{ opacity: index === 0 ? 1 : 0 }}
-                  >
-                    {`0${index + 1}`} <span>.</span>
-                  </p>
-                ))}
-              </div>
-            </div>
-            <div className={styles.imageDisplayWrapper}>
-              {projects.map((image, index) => (
-                <div
-                  className={styles.projectImageDiv}
-                  key={index}
-                  ref={(el) => addToRefs(el, imageRefs)}
-                  style={{
-                    clipPath:
-                      index === 0
-                        ? "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
-                        : "polygon(0 0, 100% 0, 100% 0, 0 0)",
-                  }}
-                >
-                  <img src={image.imageSrc} alt={`Project${index + 1}`} />
-                </div>
-              ))}
-            </div>
+    <div className={styles.projectSectionWrapper} ref={projectSectionRef}>
+      {projects.map((project, projectIndex) => (
+        <main
+          className={styles.projectMainWrapper}
+          key={project.id}
+          ref={(el) => addToRefs(el, projectRefs)}
+          style={{
+            background: `${project.background}`,
+            clipPath:
+              projectIndex === 0
+                ? "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
+                : "polygon(0 0, 100% 0, 100% 0, 0 0)",
+          }}
+        >
+          <div className={styles.sectionHeadingWrapper}>
+            <SectionHeading upperText={"SELECTED"} lowerText={"WORKS"} />
           </div>
-          <div className={styles.right_wrapper}>
-            <div className={styles.descGrid}>
-              <div className={styles.titleCell}>
-                {projects.map((item, iIndx) => (
-                  <p
-                    key={iIndx}
-                    ref={(el) => addToRefs(el, titleRefs)}
-                    style={{ opacity: iIndx === 0 ? 1 : 0 }}
-                  >
-                    {item.title}.
-                  </p>
-                ))}
+          <div className={styles.projectDisplayWrapper}>
+            <section className={styles.projectImgSection}>
+              <div className={styles.projectNumContainer}>
+                <p>
+                  {`${projectIndex + 1}`.padStart(2, 0)} <span>.</span>
+                </p>
               </div>
-              <div className={styles.descCell}>
-                {projects.map((item, jIndx) => (
-                  <div
-                    key={jIndx}
-                    ref={(el) => addToRefs(el, descRefs)}
-                    style={{ opacity: jIndx === 0 ? 1 : 0 }}
-                  >
-                    <Textfit
-                      mode="multi"
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        // border: "1px solid blue",
-                        fontFamily: "SharpGroteskBook20",
-                      }}
+              <div className={styles.projectImageContainer}>
+                <img
+                  src={project.imageSrc}
+                  alt={`Project${projectIndex + 1}`}
+                />
+              </div>
+            </section>
+            <section className={styles.projectInfoSection}>
+              <div className={styles.projectInfoGrid}>
+                <div className={styles.projectTitleCell}>
+                  <div className={styles.projectTitleCell__titleDiv}>
+                    <p
+                      className={`${styles.titleText} ${styles.titleText__main}`}
                     >
-                      {item.desc}
-                    </Textfit>
+                      {project.title}
+                    </p>
                   </div>
-                ))}
-              </div>
-              <div className={styles.techStackCell}>
-                {projects.map((item, kIndx) => (
-                  <div
-                    className={styles.techStackRow}
-                    key={kIndx}
-                    ref={(el) => addToRefs(el, techStackRefs)}
-                    style={{ opacity: kIndx === 0 ? 1 : 0 }}
-                  >
-                    {item.techStack.map((techStack, lIndx) => (
-                      <span key={lIndx}>{techStack}</span>
-                    ))}
+                  <div className={styles.projectTitleCell__subTitleDiv}>
+                    <p
+                      className={`${styles.titleText} ${styles.titleText__sub}`}
+                    >
+                      {project.titleSub}
+                    </p>
                   </div>
-                ))}
-              </div>
-              <div className={styles.linkCell}>
-                {projects.map((item, lIndex) => (
-                  <div
-                    key={lIndex}
-                    className={styles.linkBtnContainer}
-                    ref={(el) => addToRefs(el, linkRefs)}
-                    style={{ opacity: lIndex === 0 ? 1 : 0 }}
-                    onMouseEnter={() => {
-                      handleMouseEnter(onEnterCallback);
-                    }}
-                    onMouseLeave={() => {
-                      handleMouseLeave(onLeaveCallback);
-                    }}
+                </div>
+                <div className={styles.projectDescCell}>
+                  <Textfit className={styles.textFit} mode="multi"
                   >
+                    <p>{project.desc}</p>
+                  </Textfit>
+                </div>
+                <div className={styles.projectStackCell}>
+                  {project.techStack.map((stack, stackIndex) => (
+                    <span key={stackIndex}>{stack}</span>
+                  ))}
+                </div>
+                <div className={styles.projectLinkBtnCell}>
+                  <div className={styles.linkBtnWrapper}>
                     <LinkBtn
-                      key={item.id}
                       height={40}
-                      linkHref={item.link}
+                      linkHref={project.link}
                       label={"Try Now"}
                     />
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
+            </section>
           </div>
-        </div>
-      </div>
+        </main>
+      ))}
     </div>
   );
 };
 
 export default ProjectSection;
+// aspect-ratio: 137/77;
+{
+  /* {project.tags.map((tag, tagIndex) => (
+                    <div className={styles.tagCell} key={tagIndex}>
+                      <p>{tag}</p>
+                    </div>
+                  ))} */
+}
